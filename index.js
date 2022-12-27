@@ -1,9 +1,6 @@
-console.log("hello world")
+let currentDate = new Date("2023-01-01");
 
-let currentDate = new Date();
-console.log(currentDate);
-
-// Funtion to convert current date to week number 
+// Function to convert current date to week number 
 
 Date.prototype.getWeek = function() {
     var onejan = new Date(this.getFullYear(),0,1);
@@ -21,7 +18,7 @@ console.log(week);
 
 if (week % 2 === 0) { // If the current week is even
     // Perform actions for even weeks
-    console.log("week is even");
+ 
     if(currentDate.getDay()===0){
         console.log("halwa puri, Lobia, Chicken Pulao");
         mainContainer.innerHTML = `        
@@ -53,7 +50,7 @@ if (week % 2 === 0) { // If the current week is even
         `
     }
     if(currentDate.getDay()===1){
-        console.log("paratha Omellete, Aluu Teenday, Shami kabab");
+        
         mainContainer.innerHTML = `        
         <div class="container my-4" id="mainContainer">
     <ol class="list-group list-group-numbered">
@@ -83,7 +80,7 @@ if (week % 2 === 0) { // If the current week is even
         `
     }
     if(currentDate.getDay()===2){
-        console.log("naan channa, Kari Pakora rice, Korma kheer");
+        
         mainContainer.innerHTML = `        
         <div class="container my-4" id="mainContainer">
     <ol class="list-group list-group-numbered">
@@ -113,7 +110,7 @@ if (week % 2 === 0) { // If the current week is even
         `
     }
     if(currentDate.getDay()===3){
-        console.log("paratha khakina, daal Salad,  Manchurian ");
+        
         mainContainer.innerHTML = `        
         <div class="container my-4" id="mainContainer">
     <ol class="list-group list-group-numbered">
@@ -143,7 +140,7 @@ if (week % 2 === 0) { // If the current week is even
         `
     }
     if(currentDate.getDay()===4){
-        console.log("french toast, Aluu palak ,Biryani"); 
+       
         mainContainer.innerHTML = `        
         <div class="container my-4" id="mainContainer">
     <ol class="list-group list-group-numbered">
@@ -173,7 +170,7 @@ if (week % 2 === 0) { // If the current week is even
         `
     }
     if(currentDate.getDay()===5){
-        console.log("paratha aluu,daal chawal yellow, Koftay");
+      
         mainContainer.innerHTML = `        
         <div class="container my-4" id="mainContainer">
     <ol class="list-group list-group-numbered">
@@ -203,16 +200,16 @@ if (week % 2 === 0) { // If the current week is even
         `
     }
     if(currentDate.getDay()===6){
-        console.log("aluu paratha, Aluu gobi, Chapli kabab ");
+       
          menu.innerHTML = `<h1 id="Menu">
          aluu paratha, Aluu gobi, Chapli kabab
         </h1>`;
     }
 } else { // If the current week is odd
     // Perform actions for odd weeks
-    console.log("week is odd");
+  
     if(currentDate.getDay()===0){
-        console.log("halwa puri, Lobia, Curry Pulao");
+      
         mainContainer.innerHTML = `        
         <div class="container my-4" id="mainContainer">
     <ol class="list-group list-group-numbered">
@@ -242,7 +239,7 @@ if (week % 2 === 0) { // If the current week is even
         `
     }
     if(currentDate.getDay()===1){
-        console.log("paratha Omellete, Aluu Teenday, Shami kabab");
+        
         mainContainer.innerHTML = `        
         <div class="container my-4" id="mainContainer">
     <ol class="list-group list-group-numbered">
@@ -272,7 +269,7 @@ if (week % 2 === 0) { // If the current week is even
         `
     }
     if(currentDate.getDay()===2){
-        console.log("naan channa, Kari Pakora roti, Korma Gajar halwa");
+       
         mainContainer.innerHTML = `        
         <div class="container my-4" id="mainContainer">
     <ol class="list-group list-group-numbered">
@@ -302,7 +299,7 @@ if (week % 2 === 0) { // If the current week is even
         `
     }
     if(currentDate.getDay()===3){
-        console.log("paratha khakina, daal Dahi,  Chana Pulao ");
+     
         mainContainer.innerHTML = `        
         <div class="container my-4" id="mainContainer">
     <ol class="list-group list-group-numbered">
@@ -332,7 +329,7 @@ if (week % 2 === 0) { // If the current week is even
         `
     }
     if(currentDate.getDay()===4){
-        console.log("french toast, Aluu palak ,Biryani"); 
+       
         mainContainer.innerHTML = `        
         <div class="container my-4" id="mainContainer">
     <ol class="list-group list-group-numbered">
@@ -362,7 +359,7 @@ if (week % 2 === 0) { // If the current week is even
         `
     }
     if(currentDate.getDay()===5){
-        console.log("paratha aluu,daal chawal Black, Daleem");
+        
         mainContainer.innerHTML = `        
         <div class="container my-4" id="mainContainer">
     <ol class="list-group list-group-numbered">
@@ -392,7 +389,7 @@ if (week % 2 === 0) { // If the current week is even
         `
     }
     if(currentDate.getDay()===6){
-        console.log("aluu paratha, Aluu gobi,Cutlets Daal");
+       
         mainContainer.innerHTML = `        
         <div class="container my-4" id="mainContainer">
     <ol class="list-group list-group-numbered">
