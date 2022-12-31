@@ -1,6 +1,6 @@
 console.log("hello world")
 
-let currentDate = new Date("2023-01-08");
+let currentDate = new Date();
 console.log(currentDate);
 
 // Funtion to convert current date to week number 
