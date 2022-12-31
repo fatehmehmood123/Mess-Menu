@@ -14,7 +14,7 @@ Date.prototype.getWeek = function() {
 let mainContainer = document.getElementById("mainContainer");
 // Getting Week Number
 let week = currentDate.getWeek();
-console.log(week)
+console.log(week);
 // Main Funtion Starts
 if (week % 2 !== 0) { // If the current week is even
     // Perform actions for even weeks
