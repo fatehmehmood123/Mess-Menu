@@ -14,7 +14,7 @@ Date.prototype.getWeek = function() {
 let mainContainer = document.getElementById("mainContainer");
 // Getting Week Number
 let week = currentDate.getWeek();
-
+console.log(week);
 // Main Funtion Starts
 if (week % 2 === 0) { // If the current week is even
     // Perform actions for even weeks
@@ -201,9 +201,33 @@ if (week % 2 === 0) { // If the current week is even
     }
     if(currentDate.getDay()===6){
         console.log("aluu paratha, Aluu gobi, Chapli kabab ");
-         menu.innerHTML = `<h1 id="Menu">
-         aluu paratha, Aluu gobi, Chapli kabab
-        </h1>`;
+        mainContainer.innerHTML = `        
+        <div class="container my-4" id="mainContainer">
+    <ol class="list-group list-group-numbered">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">BreakFast</div>
+          Aluu Paratha
+          </div>
+         
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">Lunch</div>
+          Aluu Gobi
+          </div>
+          
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">Dinner</div>
+              Chapli Kabab
+          </div>
+          
+        </li>
+      </ol>
+  </div>
+        `
   }
 } else { // If the current week is odd
     // Perform actions for odd weeks
