@@ -12,17 +12,20 @@ Date.prototype.getWeek = function() {
 
 //   Getting the DOM element  main container
 let mainContainer = document.getElementById("mainContainer");
+
 // Getting Week Number
 let week = currentDate.getWeek();
 console.log(week);
 // Main Funtion Starts
-if (week % 2 !== 0) { // If the current week is even
-    // Perform actions for even weeks
-    console.log("week is even");
+if (week % 2 !== 0) { // If the current week is odd
+    // Perform actions for odd weeks
+//     
+    console.log("week is odd");
     if(currentDate.getDay()===0){
         console.log("halwa puri, Lobia, Chicken Pulao");
         mainContainer.innerHTML = `        
         <div class="container my-4" id="mainContainer">
+        
     <ol class="list-group list-group-numbered">
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
@@ -229,6 +232,7 @@ if (week % 2 !== 0) { // If the current week is even
   </div>
         `;
   }
+  
 } else { // If the current week is odd
     // Perform actions for odd weeks
     console.log("week is odd");
@@ -442,4 +446,5 @@ if (week % 2 !== 0) { // If the current week is even
   </div>
         `
   }
+
 }
