@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mess Menu</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
-  <link rel="manifest" href="/site.webmanifest?v=2">
-  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=2" color="#5bbad5">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png?v=2">
+  <link rel="manifest" href="favicon/site.webmanifest?v=2">
+  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg?v=2" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
   <link href="https://fonts.googleapis.com/css2?family=Urbanist&display=swap" rel="stylesheet">
@@ -35,6 +35,9 @@
       -webkit-filter: grayscale(100%);
       filter: grayscale(100%);
     }
+    #footerLink{
+      text-decoration: none;
+    }
   </style>
 </head>
 
@@ -42,7 +45,10 @@
   <!-- As a link -->
   <nav class="nav navbar navbar-expand-lg bg-body-tertiary justify-content-center">
     <div class="container-fluid">
-      <img src="/android-chrome-192x192.png" alt="logo" height="70px" width="70px">
+      <a href="/">
+
+        <img src="favicon/android-chrome-192x192.png" alt="logo" height="70px" width="70px">
+      </a>
       <a class="navbar-brand" href="/">Nust Mess Menu</a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -64,7 +70,7 @@
   <footer class="page-footer font-small">
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2023 Copyright: Muhammad Fateh Mehmood
-      <a target="_blank" href="https://github.com/fatehmehmood123/Mess-Menu"> Github</a>
+      <a id="footerLink" target="_blank" href="https://github.com/fatehmehmood123/Mess-Menu"> Github</a>
       <a id="footerLink" target="_blank" href="mailto:fatehmehmood123@gmail.com" > Contact Us</a>
     </div>
     <!-- Copyright -->

@@ -16,7 +16,7 @@ let week = currentDate.getWeek();
 if (week % 2 !== 0) { // If the current week is odd
     // Perform actions for odd weeks
 //     
-    console.log("week is odd");
+
     if(currentDate.getDay()===0){
         mainContainer.innerHTML = `        
         <div class="container my-4" id="mainContainer">
