@@ -1,70 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week Menu</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
-<link rel="manifest" href="/site.webmanifest?v=2">
-<link rel="mask-icon" href="/safari-pinned-tab.svg?v=2" color="#5bbad5">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff">
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist&display=swap" rel="stylesheet">
-   <style>
-     *{
-            font-family: 'Urbanist', sans-serif;
-        }
-    table {
- 
-  border-collapse: collapse;
- width: 100%;
-}
-body{
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-footer{
-    margin-top: auto;
-}
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-   </style>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week Menu</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
+  <link rel="manifest" href="/site.webmanifest?v=2">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=2" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Urbanist', sans-serif;
+    }
+
+    table {
+
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    footer {
+      margin-top: auto;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    img {
+      margin-right: 20px;
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
+
+    #footerLink{
+      text-decoration: none;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Nust Mess Menu</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html">Today</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="week.html">This Week</a>
-              </li>
-            </ul>
-            
-          </div>
-        </div>
-      </nav>
-      <div id="weekData" class="container my-5">
-        <div class="container">
-            <!-- <h3 id="weekHeading">This Week Menu</h3>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <img src="/android-chrome-192x192.png" alt="logo" height="70px" width="70px">
+      <a class="navbar-brand" href="#">Nust Mess Menu</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Today</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="week.html">This Week</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <div id="weekData" class="container my-5">
+    <div class="container">
+      <!-- <h3 id="weekHeading">This Week Menu</h3>
               <table>
                 <tr>
                   <th>Day</th>
@@ -117,20 +135,22 @@ tr:nth-child(even) {
                 </tr>
               </table>
             </div> -->
-             </div>
-      </div>
+    </div>
+  </div>
 
-      <!-- Footer -->
-<footer class="page-footer font-small">
+  <!-- Footer -->
+  <footer class="page-footer font-small">
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2023 Copyright: Muhammad Fateh Mehmood
-      <a target="_blank" href="https://github.com/fatehmehmood123/Mess-Menu"> Github</a>
+      <a id="footerLink" target="_blank" href="https://github.com/fatehmehmood123/Mess-Menu"> Github</a>
+      <a id="footerLink" target="_blank" href="mailto:fatehmehmood123@gmail.com" > Contact Us</a>
     </div>
     <!-- Copyright -->
   </footer>
   <!-- Footer -->
-      <script src="week.js">
-    </script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="week.js">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
