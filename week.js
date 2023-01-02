@@ -30,7 +30,7 @@ weekData.innerHTML = `
   <tr>
     <td>Monday</td>
     <td>Paratha Omelette</td>
-    <td>Aluu Teenday</td>
+    <td>Aluu Gajar Matar</td>
     <td>Shami Kabab + Daal channa</td>
   </tr>
   <tr>
@@ -88,7 +88,7 @@ weekData.innerHTML = `
   <tr>
     <td>Monday</td>
     <td>Paratha Omelette</td>
-    <td>Aluu Teenday</td>
+    <td>Aluu Gajar Matar</td>
     <td>Fish + Daal channa</td>
   </tr>
   <tr>
