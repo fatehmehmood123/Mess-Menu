@@ -69,7 +69,7 @@ if (week % 2 !== 0) { // If the current week is odd
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
             <div class="fw-bold">Dinner</div>
-              Fish
+              Shami Kabab + Daal
           </div>
           
         </li>
@@ -283,7 +283,7 @@ if (week % 2 !== 0) { // If the current week is odd
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
             <div class="fw-bold">Dinner</div>
-              Shami Kabab
+             Fish
           </div>
           
         </li>
