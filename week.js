@@ -1,7 +1,7 @@
 let currentDate = new Date();
 Date.prototype.getWeek = function() {
     var onejan = new Date(this.getFullYear(),0,1);
-    return Math.ceil((((this - onejan) / 86400000) + onejan.getDay()+1)/7);
+    return Math.ceil((((this - onejan) / 86400000) + onejan.getDay()-1)/7);
   }
 let week = currentDate.getWeek();
 let weekData = document.getElementById("weekData");
@@ -15,18 +15,7 @@ weekData.innerHTML = `
     <th>Lunch</th>
     <th>Dinner</th>
   </tr>
-  <tr>
-    <td>Saturday</td>
-    <td>Aluu Paratha</td>
-    <td>Aluu Gobi</td>
-    <td>Chapli Kabab</td>
-  </tr>
-  <tr>
-    <td>Sunday</td>
-    <td>Halwa Poori</td>
-    <td>Red Beans</td>
-    <td>Chicken Pulao</td>
-  </tr>
+  
   <tr>
     <td>Monday</td>
     <td>Paratha Omelette</td>
@@ -57,7 +46,18 @@ weekData.innerHTML = `
     <td>Daal Chawal (Yellow) </td>
     <td>Koftay</td>
   </tr>
-  
+  <tr>
+    <td>Saturday</td>
+    <td>Aluu Paratha</td>
+    <td>Aluu Gobi</td>
+    <td>Cutlets</td>
+  </tr>
+  <tr>
+    <td>Sunday</td>
+    <td>Halwa Poori</td>
+    <td>Red Beans</td>
+    <td>Chicken Curry + Pulao</td>
+  </tr>
   
 </table>
 </div> 
@@ -73,18 +73,7 @@ weekData.innerHTML = `
     <th>Lunch</th>
     <th>Dinner</th>
   </tr>
-  <tr>
-    <td>Saturday</td>
-    <td>Aluu Paratha</td>
-    <td>Aluu Gobi</td>
-    <td>Cutlets</td>
-  </tr>
-  <tr>
-    <td>Sunday</td>
-    <td>Halwa Poori</td>
-    <td>Red Beans</td>
-    <td>Chicken Curry + Pulao</td>
-  </tr>
+  
   <tr>
     <td>Monday</td>
     <td>Paratha Omelette</td>
@@ -115,7 +104,18 @@ weekData.innerHTML = `
     <td>Daal Chawal (Black) </td>
     <td>Daleem</td>
   </tr>
-  
+  <tr>
+    <td>Saturday</td>
+    <td>Aluu Paratha</td>
+    <td>Aluu Gobi</td>
+    <td>Chapli Kabab</td>
+  </tr>
+  <tr>
+    <td>Sunday</td>
+    <td>Halwa Poori</td>
+    <td>Red Beans</td>
+    <td>Chicken Pulao</td>
+  </tr>
   
 </table>
 </div> 

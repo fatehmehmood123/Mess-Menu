@@ -4,7 +4,7 @@ let currentDate = new Date();
 
 Date.prototype.getWeek = function() {
     var onejan = new Date(this.getFullYear(),0,1);
-    return Math.ceil((((this - onejan) / 86400000) + onejan.getDay()+1)/7);
+    return Math.ceil((((this - onejan) / 86400000) + onejan.getDay()-1)/7);
   }
 
 //   Getting the DOM element  main container
@@ -12,6 +12,7 @@ let mainContainer = document.getElementById("mainContainer");
 
 // Getting Week Number
 let week = currentDate.getWeek();
+console.log(week)
 // Main Funtion Starts
 if (week % 2 !== 0) { // If the current week is odd
     // Perform actions for odd weeks
@@ -39,7 +40,7 @@ if (week % 2 !== 0) { // If the current week is odd
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
             <div class="fw-bold">Dinner</div>
-              Chicken Pulao
+            Chicken Curry + Pulao
           </div>
           
         </li>
@@ -219,7 +220,7 @@ if (week % 2 !== 0) { // If the current week is odd
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
             <div class="fw-bold">Dinner</div>
-              Chapli Kabab
+              Cutlets + Daal 
           </div>
           
         </li>
@@ -253,7 +254,7 @@ if (week % 2 !== 0) { // If the current week is odd
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
             <div class="fw-bold">Dinner</div>
-              Chicken Curry + Pulao
+              Chicken Pulao
           </div>
           
         </li>
@@ -433,7 +434,7 @@ if (week % 2 !== 0) { // If the current week is odd
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
             <div class="fw-bold">Dinner</div>
-            Cutlets + Daal
+            Chapli Kabab + Daal
           </div>
           
         </li>
