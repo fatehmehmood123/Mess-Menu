@@ -52,7 +52,7 @@ useEffect(() => {
     <>
     <Navbar/>
     <WeekContainer tueLunch={tueLunch} monDinner={monDinner} tueDinner={tueDinner} wedLunch={wedLunch} wedDinner={wedDinner} friLunch={friLunch} friDinner={friDinner} satDinner={satDinner} sunDinner={sunDinner}/>
-    <Footer/>
+    <Footer />
     </>
   )
 }

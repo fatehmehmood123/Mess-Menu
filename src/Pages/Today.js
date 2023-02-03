@@ -1,7 +1,7 @@
 import { React, useEffect, useMemo, useState } from 'react'
 import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import TodayContainer from '../components/TodayContainer'
+import TodayFooter from '../components/TodayFooter';
 
 
 export default function Daily() {
@@ -100,7 +100,7 @@ export default function Daily() {
     <>
       <Navbar />
       <TodayContainer breakfast={breakfast} lunch={lunch} dinner={dinner} />
-      <Footer />
+      <TodayFooter />
     </>
   )
 }
