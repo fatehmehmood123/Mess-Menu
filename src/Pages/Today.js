@@ -7,7 +7,7 @@ import TodayFooter from '../components/TodayFooter';
 export default function Daily() {
   //initializing Current date using UseMemo hook to avoid re-rendering
   const currentDate = useMemo(() => new Date(), []);
-  
+
   // Funtion to convert current date to week number 
   // eslint-disable-next-line
   Date.prototype.getWeek = function () {
@@ -39,9 +39,9 @@ export default function Daily() {
         setdinner("Korma + Kheer")
       }
       if (currentDate.getDay() === 3) {     //Wednesday odd
-        setbreakfast("Paratha + Khakina")
+        setbreakfast("Paratha + Omelette")
         setlunch("Mash Daal + Salad")
-        setdinner("Chicken Manchurian")
+        setdinner("Chicken Karahi + Custard")
       }
       if (currentDate.getDay() === 4) {     //Thursday odd
         setbreakfast("French Toast")
