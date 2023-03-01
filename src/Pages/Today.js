@@ -39,7 +39,7 @@ export default function Daily() {
         setdinner("Korma + Kheer")
       }
       if (currentDate.getDay() === 3) {     //Wednesday odd
-        setbreakfast("Paratha + Omelette")
+        setbreakfast(" Paratha + Omelette")
         setlunch("Mash Daal + Salad")
         setdinner("Chicken Karahi + Custard")
       }
