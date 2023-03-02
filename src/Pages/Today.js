@@ -44,7 +44,7 @@ export default function Daily() {
         setdinner("Chicken Karahi + Custard")
       }
       if (currentDate.getDay() === 4) {     //Thursday odd
-        setbreakfast("French Toast")
+        setbreakfast("Bread + Butter + Jam")
         setlunch("Aluu Palak")
         setdinner("Biryani")
       }
