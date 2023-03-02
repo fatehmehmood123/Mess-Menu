@@ -38,7 +38,7 @@ export default function WeekContainer(props) {
                     </tr>
                     <tr>
                         <td>Friday</td>
-                        <td>Paratha Aluu Bhujia</td>
+                        <td>Egg + Tomato + Onion</td>
                         <td>{props.friLunch} </td>
                         <td>{props.friDinner}</td>
                     </tr>
