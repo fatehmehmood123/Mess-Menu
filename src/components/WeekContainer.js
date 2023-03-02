@@ -32,7 +32,7 @@ export default function WeekContainer(props) {
                     </tr>
                     <tr>
                         <td>Thursday</td>
-                        <td>French toast</td>
+                        <td>Bread + Butter + Jam</td>
                         <td>Aluu Palak</td>
                         <td>Biryani</td>
                     </tr>
