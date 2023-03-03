@@ -51,7 +51,7 @@ export default function Daily() {
       if (currentDate.getDay() === 5) {     //Friday odd
         setbreakfast("Egg + Tomato + Onion")
         setlunch("Daal Chawal (Yellow)")
-        setdinner("Chicken Koftay")
+        setdinner("Beef Daleem")
       }
       if (currentDate.getDay() === 6) {     //Saturday odd
         setbreakfast("Aluu Paratha")

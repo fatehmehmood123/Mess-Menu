@@ -33,7 +33,7 @@ export default function Weekly() {
       setwedLunch('Mash Daal + Salad')
       setwedDinner('Chicken Karahi + Custard')
       setfriLunch('Daal Chawal (Yellow)')
-      setfriDinner('Chicken Koftay')
+      setfriDinner('Beef Daleem')
       setsatDinner('Cutlets + Daal')
       setsunDinner('Chicken Curry + Pulao')
     } else {      //week is even
