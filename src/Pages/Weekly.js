@@ -13,46 +13,46 @@ export default function Weekly() {
   const [satDinner, setsatDinner] = useState("")
   const [sunDinner, setsunDinner] = useState("")
 
-   //initializing Current date
-   let currentDate = new Date();
-  
-   // Funtion to convert current date to week number 
-   // eslint-disable-next-line
-   Date.prototype.getWeek = function () {
-     var onejan = new Date(this.getFullYear(), 0, 1);
-     return Math.ceil((((this - onejan) / 86400000) + onejan.getDay() - 1) / 7);
-   }
-   // Getting Week Number
-   let week = currentDate.getWeek();
-//Useeffect Hook Starts
-useEffect(() => {
-  if (week % 2 !== 0) {   //week is odd
-    setmonDinner('Shami Kabab + Daal')
-    settueLunch('Kari Pakora + Rice')
-    settueDinner('Korma + Kheer')
-    setwedLunch('Mash Daal + Salad')
-    setwedDinner('Manchurian + Fried Rice')
-    setfriLunch('Daal Chawal (Yellow)')
-    setfriDinner('Chicken Koftay')
-    setsatDinner('Cutlets + Daal')
-    setsunDinner('Chicken Curry + Pulao')
-  } else {      //week is even
-    setmonDinner('Fish')
-    settueLunch(' Kari Pakora + Roti')
-    settueDinner('Korma + Gajar Halwa')
-    setwedLunch('Mash Daal + Yoghurt')
-    setwedDinner('Mattar Pulao')
-    setfriLunch('Daal Chawal (Black)')
-    setfriDinner('Daleem')
-    setsatDinner('Chapli Kabab + Daal')
-    setsunDinner('Chicken Pulao')
+  //initializing Current date
+  let currentDate = new Date();
+
+  // Funtion to convert current date to week number 
+  // eslint-disable-next-line
+  Date.prototype.getWeek = function () {
+    var onejan = new Date(this.getFullYear(), 0, 1);
+    return Math.ceil((((this - onejan) / 86400000) + onejan.getDay() - 1) / 7);
   }
-}, [week])
+  // Getting Week Number
+  let week = currentDate.getWeek();
+  //Useeffect Hook Starts
+  useEffect(() => {
+    if (week % 2 !== 0) {   //week is odd
+      setmonDinner('Shami Kabab + Daal')
+      settueLunch('Kari Pakora + Rice')
+      settueDinner('Korma + Kheer')
+      setwedLunch('Mash Daal + Salad')
+      setwedDinner('Chicken Karahi + Custard')
+      setfriLunch('Daal Chawal (Yellow)')
+      setfriDinner('Beef Daleem')
+      setsatDinner('Cutlets + Daal')
+      setsunDinner('Chicken Curry + Pulao')
+    } else {      //week is even
+      setmonDinner('Fish')
+      settueLunch(' Kari Pakora + Roti')
+      settueDinner('Korma + Gajar Halwa')
+      setwedLunch('Mash Daal + Yoghurt')
+      setwedDinner('Mattar Pulao')
+      setfriLunch('Daal Chawal (Black)')
+      setfriDinner('Daleem')
+      setsatDinner('Chapli Kabab + Daal')
+      setsunDinner('Chicken Pulao')
+    }
+  }, [week])
   return (
     <>
-    <Navbar/>
-    <WeekContainer tueLunch={tueLunch} monDinner={monDinner} tueDinner={tueDinner} wedLunch={wedLunch} wedDinner={wedDinner} friLunch={friLunch} friDinner={friDinner} satDinner={satDinner} sunDinner={sunDinner}/>
-    <Footer />
+      <Navbar />
+      <WeekContainer tueLunch={tueLunch} monDinner={monDinner} tueDinner={tueDinner} wedLunch={wedLunch} wedDinner={wedDinner} friLunch={friLunch} friDinner={friDinner} satDinner={satDinner} sunDinner={sunDinner} />
+      <Footer />
     </>
   )
 }

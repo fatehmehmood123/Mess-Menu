@@ -14,7 +14,7 @@ export default function WeekContainer(props) {
                     </tr>
                     <tr>
                         <td>Monday</td>
-                        <td>Paratha Omelette</td>
+                        <td>Half/Full Fried Egg</td>
                         <td>Aluu Gajar Matar</td>
                         <td>{props.monDinner}</td>
                     </tr>
@@ -26,19 +26,19 @@ export default function WeekContainer(props) {
                     </tr>
                     <tr>
                         <td>Wednesday</td>
-                        <td>Paratha Khakina</td>
+                        <td>Paratha Omelette</td>
                         <td>{props.wedLunch} </td>
                         <td>{props.wedDinner}</td>
                     </tr>
                     <tr>
                         <td>Thursday</td>
-                        <td>French toast</td>
+                        <td>Bread + Butter + Jam</td>
                         <td>Aluu Palak</td>
                         <td>Biryani</td>
                     </tr>
                     <tr>
                         <td>Friday</td>
-                        <td>Paratha Aluu Bhujia</td>
+                        <td>Egg + Tomato + Onion</td>
                         <td>{props.friLunch} </td>
                         <td>{props.friDinner}</td>
                     </tr>
