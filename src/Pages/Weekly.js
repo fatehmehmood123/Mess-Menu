@@ -57,7 +57,7 @@ export default function Weekly() {
   return (
     <>
       <Navbar />
-      <WeekContainer wedBreakfast={wedBreakfast} tueLunch={tueLunch} monDinner={monDinner} tueDinner={tueDinner} wedLunch={wedLunch} wedDinner={wedDinner} friLunch={friLunch} friDinner={friDinner} satDinner={satDinner} sunDinner={sunDinner} />
+      <WeekContainer satLunch={satLunch} wedBreakfast={wedBreakfast} tueLunch={tueLunch} monDinner={monDinner} tueDinner={tueDinner} wedLunch={wedLunch} wedDinner={wedDinner} friLunch={friLunch} friDinner={friDinner} satDinner={satDinner} sunDinner={sunDinner} />
       <Footer />
     </>
   )
