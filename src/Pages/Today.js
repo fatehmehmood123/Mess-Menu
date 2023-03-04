@@ -31,7 +31,7 @@ export default function Daily() {
       if (currentDate.getDay() === 1) {    //Monday odd
         setbreakfast("Paratha + Fried Egg")
         setlunch("Seasonal Vegetable")
-        setdinner("Beef Shami Kabab / Chicken Roast")
+        setdinner("Beef Shami Kabab / Chicken Roast + Daal")
       }
       if (currentDate.getDay() === 2) {    //Tuesday odd
         setbreakfast("Naan Channa")

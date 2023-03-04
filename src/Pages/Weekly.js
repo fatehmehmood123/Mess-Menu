@@ -6,6 +6,7 @@ export default function Weekly() {
   const [monDinner, setmonDinner] = useState("")
   const [tueLunch, settueLunch] = useState("")
   const [tueDinner, settueDinner] = useState("")
+  const [wedBreakfast, setwedBreakfast] = useState("")
   const [wedLunch, setwedLunch] = useState("")
   const [wedDinner, setwedDinner] = useState("")
   const [friLunch, setfriLunch] = useState("")
@@ -27,31 +28,33 @@ export default function Weekly() {
   //Useeffect Hook Starts
   useEffect(() => {
     if (week % 2 !== 0) {   //week is odd
-      setmonDinner('Shami Kabab + Daal')
+      setmonDinner('Beef Shami Kabab / Chicken Roast + Daal')
       settueLunch('Kari Pakora + Rice')
-      settueDinner('Korma + Kheer')
+      settueDinner('Beef Pulao + Aluu Cutlets')
+      setwedBreakfast('Paratha + Omellete')
       setwedLunch('Mash Daal + Salad')
       setwedDinner('Chicken Karahi + Custard')
       setfriLunch('Daal Chawal (Yellow)')
       setfriDinner('Beef Daleem')
-      setsatDinner('Cutlets + Daal')
-      setsunDinner('Chicken Curry + Pulao')
+      setsatDinner('Aluu Cutlets/Beef Chapli kabab + Daal')
+      setsunDinner('Chicken Pulao + Aluu Cutlets + Raita')
     } else {      //week is even
-      setmonDinner('Fish')
-      settueLunch(' Kari Pakora + Roti')
-      settueDinner('Korma + Gajar Halwa')
+      setmonDinner('Beef Shami Kabab / Chicken Roast')
+      settueLunch('Kari Pakora + Roti')
+      settueDinner('Beef Pulao + Aluu Cutlets')
+      setwedBreakfast('Paratha + Aluu Bhujia')
       setwedLunch('Mash Daal + Yoghurt')
-      setwedDinner('Mattar Pulao')
+      setwedDinner('Chicken Karahi + Custard')
       setfriLunch('Daal Chawal (Black)')
-      setfriDinner('Daleem')
-      setsatDinner('Chapli Kabab + Daal')
-      setsunDinner('Chicken Pulao')
+      setfriDinner('Aluu Beef Curry')
+      setsatDinner('Aluu Cutlets/Beef Chapli kabab + Daal')
+      setsunDinner('Chicken Pulao + Aluu Cutlets + Raita')
     }
   }, [week])
   return (
     <>
       <Navbar />
-      <WeekContainer tueLunch={tueLunch} monDinner={monDinner} tueDinner={tueDinner} wedLunch={wedLunch} wedDinner={wedDinner} friLunch={friLunch} friDinner={friDinner} satDinner={satDinner} sunDinner={sunDinner} />
+      <WeekContainer wedBreakfast={wedBreakfast} tueLunch={tueLunch} monDinner={monDinner} tueDinner={tueDinner} wedLunch={wedLunch} wedDinner={wedDinner} friLunch={friLunch} friDinner={friDinner} satDinner={satDinner} sunDinner={sunDinner} />
       <Footer />
     </>
   )
