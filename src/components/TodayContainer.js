@@ -26,7 +26,6 @@ export default function TodayContainer(props) {
               <div className="fw-bold">Dinner</div>
               {props.dinner}
             </div>
-
           </li>
         </ol>
       </div>

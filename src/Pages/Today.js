@@ -24,75 +24,75 @@ export default function Daily() {
   useEffect(() => {
     if (week % 2 !== 0) {   //week is odd
       if (currentDate.getDay() === 0) {    //Sunday  odd
-        setbreakfast("Halwa poori")
+        setbreakfast("Halwa poori + Channay")
         setlunch("Red Beans")
-        setdinner("Chicken Curry + Pulao")
+        setdinner("Chicken Pulao + Aluu Cutlets + Raita")
       }
       if (currentDate.getDay() === 1) {    //Monday odd
-        setbreakfast("Paratha + Omelette")
-        setlunch("Aluu Gajar Matar")
-        setdinner("Shami Kabab + Daal")
+        setbreakfast("Paratha + Fried Egg")
+        setlunch("Seasonal Vegetable")
+        setdinner("Beef Shami Kabab / Chicken Roast")
       }
       if (currentDate.getDay() === 2) {    //Tuesday odd
         setbreakfast("Naan Channa")
         setlunch(" Kari Pakora + Rice")
-        setdinner("Korma + Kheer")
+        setdinner("Beef Pulao + Aluu Cutlets")
       }
       if (currentDate.getDay() === 3) {     //Wednesday odd
-        setbreakfast("Paratha + Khakina")
+        setbreakfast("Paratha + Omellete")
         setlunch("Mash Daal + Salad")
-        setdinner("Chicken Manchurian")
+        setdinner("Chicken Karahi + Custard")
       }
       if (currentDate.getDay() === 4) {     //Thursday odd
-        setbreakfast("French Toast")
+        setbreakfast("Bread Butter Jam")
         setlunch("Aluu Palak")
         setdinner("Biryani")
       }
       if (currentDate.getDay() === 5) {     //Friday odd
-        setbreakfast("Paratha + Aluu Bhujia")
+        setbreakfast("Paratha + Egg Tomato Onion")
         setlunch("Daal Chawal (Yellow)")
-        setdinner("Chicken Koftay")
+        setdinner("Beef Daleem")
       }
       if (currentDate.getDay() === 6) {     //Saturday odd
         setbreakfast("Aluu Paratha")
-        setlunch("Aluu Gobi")
-        setdinner("Cutlets + Daal")
+        setlunch("Aluu Gobi / Bhindi")
+        setdinner("Aluu Cutlets/Beef Chapli kabab + Daal")
       }
     } else {      //week is even
       if (currentDate.getDay() === 0) {    //Sunday  even
-        setbreakfast("Halwa poori")
+        setbreakfast("Halwa poori + Channay")
         setlunch("Red Beans")
-        setdinner("Chicken Pulao")
+        setdinner("Chicken Pulao + Aluu Cutlets + Raita")
       }
       if (currentDate.getDay() === 1) {    //Monday even
-        setbreakfast("Paratha + Omelette")
-        setlunch("Aluu Gajar Matar")
-        setdinner("Fish")
+        setbreakfast("Paratha + Fried Egg")
+        setlunch("Seasonal Vegetable")
+        setdinner("Beef Shami Kabab / Chicken Roast")
       }
       if (currentDate.getDay() === 2) {    //Tuesday even
         setbreakfast("Naan Channa")
-        setlunch(" Kari Pakora + Roti")
-        setdinner("Korma + Gajar Halwa")
+        setlunch("Kari Pakora + Roti")
+        setdinner("Beef Pulao + Aluu Cutlets")
       }
       if (currentDate.getDay() === 3) {     //Wednesday even
-        setbreakfast("Paratha + Khakina")
+        setbreakfast("Paratha + Aluu Bhujia")
         setlunch("Mash Daal + Yoghurt")
-        setdinner("Mattar Pulao")
+        setdinner("Chicken Karahi + Custard")
       }
       if (currentDate.getDay() === 4) {     //Thursday even
-        setbreakfast("French Toast")
+        setbreakfast("Bread Butter Jam")
         setlunch("Aluu Palak")
         setdinner("Biryani")
       }
       if (currentDate.getDay() === 5) {     //Friday even
-        setbreakfast("Paratha + Aluu Bhujia")
+        setbreakfast("Paratha + Egg Tomato Onion")
         setlunch("Daal Chawal (Black)")
-        setdinner("Daleem")
+        setdinner("Aluu Beef Curry")
       }
       if (currentDate.getDay() === 6) {     //Saturday even
         setbreakfast("Aluu Paratha")
         setlunch("Aluu Gobi")
-        setdinner("Chapli Kabab + Daal")
+        setdinner("Aluu Cutlets/Beef Chapli kabab + Daal")
       }
     }
   }, [currentDate, week])
