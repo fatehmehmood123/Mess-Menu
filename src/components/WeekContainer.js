@@ -45,7 +45,7 @@ export default function WeekContainer(props) {
                     <tr>
                         <td>Saturday</td>
                         <td>Aluu Paratha</td>
-                        <td>Aluu Gobi / Bhindi</td>
+                        <td>{props.satLunch}</td>
                         <td>{props.satDinner}</td>
                     </tr>
                     <tr>

@@ -11,6 +11,7 @@ export default function Weekly() {
   const [wedDinner, setwedDinner] = useState("")
   const [friLunch, setfriLunch] = useState("")
   const [friDinner, setfriDinner] = useState("")
+  const [satLunch, setsatLunch] = useState("")
   const [satDinner, setsatDinner] = useState("")
   const [sunDinner, setsunDinner] = useState("")
 
@@ -36,6 +37,7 @@ export default function Weekly() {
       setwedDinner('Chicken Karahi + Custard')
       setfriLunch('Daal Chawal (Yellow)')
       setfriDinner('Beef Daleem')
+      setsatLunch('Aluu Gobi')
       setsatDinner('Beef Chapli kabab + Daal')
       setsunDinner('Chicken Pulao + Aluu Cutlets + Raita')
     } else {      //week is even
@@ -47,6 +49,7 @@ export default function Weekly() {
       setwedDinner('Chicken Karahi + Custard')
       setfriLunch('Daal Chawal (Black)')
       setfriDinner('Aluu Beef Curry')
+      setsatLunch('Bhindi')
       setsatDinner('Aluu Cutlets + Daal')
       setsunDinner('Chicken Pulao + Aluu Cutlets + Raita')
     }
