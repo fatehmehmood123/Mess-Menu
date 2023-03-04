@@ -56,8 +56,8 @@ export default function Daily() {
       }
       if (currentDate.getDay() === 6) {     //Saturday odd
         setbreakfast("Aluu Paratha")
-        setlunch("Aluu Gobi / Bhindi")
-        setdinner("Aluu Cutlets/Beef Chapli kabab + Daal")
+        setlunch("Aluu Gobi")
+        setdinner("Beef Chapli kabab + Daal")
       }
     } else {      //week is even
       if (currentDate.getDay() === 0) {    //Sunday  even
@@ -92,8 +92,8 @@ export default function Daily() {
       }
       if (currentDate.getDay() === 6) {     //Saturday even
         setbreakfast("Aluu Paratha")
-        setlunch("Aluu Gobi")
-        setdinner("Aluu Cutlets/Beef Chapli kabab + Daal")
+        setlunch("Bhindi")
+        setdinner("Aluu Cutlets + Daal") 
       }
     }
   }, [currentDate, week])

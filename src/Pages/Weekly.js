@@ -36,7 +36,7 @@ export default function Weekly() {
       setwedDinner('Chicken Karahi + Custard')
       setfriLunch('Daal Chawal (Yellow)')
       setfriDinner('Beef Daleem')
-      setsatDinner('Aluu Cutlets/Beef Chapli kabab + Daal')
+      setsatDinner('Beef Chapli kabab + Daal')
       setsunDinner('Chicken Pulao + Aluu Cutlets + Raita')
     } else {      //week is even
       setmonDinner('Beef Shami Kabab / Chicken Roast')
@@ -47,7 +47,7 @@ export default function Weekly() {
       setwedDinner('Chicken Karahi + Custard')
       setfriLunch('Daal Chawal (Black)')
       setfriDinner('Aluu Beef Curry')
-      setsatDinner('Aluu Cutlets/Beef Chapli kabab + Daal')
+      setsatDinner('Aluu Cutlets + Daal')
       setsunDinner('Chicken Pulao + Aluu Cutlets + Raita')
     }
   }, [week])
