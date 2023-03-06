@@ -29,7 +29,7 @@ export default function Weekly() {
   //Useeffect Hook Starts
   useEffect(() => {
     if (week % 2 !== 0) {   //week is odd
-      setmonDinner('Beef Shami Kabab / Chicken Roast + Daal')
+      setmonDinner('Beef Shami Kabab + Chana Daal + Raita')
       settueLunch('Kari Pakora + Rice')
       settueDinner('Beef Pulao + Aluu Cutlets')
       setwedBreakfast('Paratha + Omellete')
@@ -41,7 +41,7 @@ export default function Weekly() {
       setsatDinner('Beef Chapli kabab + Daal')
       setsunDinner('Chicken Pulao + Aluu Cutlets + Raita')
     } else {      //week is even
-      setmonDinner('Beef Shami Kabab / Chicken Roast')
+      setmonDinner('Chicken Roast + Chana Daal + Raita')
       settueLunch('Kari Pakora + Roti')
       settueDinner('Beef Pulao + Aluu Cutlets')
       setwedBreakfast('Paratha + Aluu Bhujia')
