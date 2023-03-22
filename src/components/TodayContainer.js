@@ -6,9 +6,9 @@ export default function TodayContainer(props) {
       {/* returning component */}
       <div className="container my-4" id="mainContainer">
         <div>
-          <h3>
+          <h1>
             رمضان المبارک
-          </h3>
+          </h1>
         </div>
         <ol className="list-group list-group-numbered">
           <li className="list-group-item d-flex justify-content-between align-items-start">
