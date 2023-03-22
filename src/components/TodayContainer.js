@@ -5,7 +5,9 @@ export default function TodayContainer(props) {
     <>
       {/* returning component */}
       <div className="container my-4" id="mainContainer">
-
+        <div>
+          رمضان المبارک
+        </div>
         <ol className="list-group list-group-numbered">
           <li className="list-group-item d-flex justify-content-between align-items-start">
             <div className="ms-2 me-auto">
