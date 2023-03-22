@@ -82,7 +82,7 @@ export default function Daily() {
       }
       if (currentDate.getDay() === 4) {     //Thursday even
         setbreakfast("Aluu Bhujia + Paratha/Chapati + Yogurt + Tea")
-        setlunch("Dates + Chicken Vegetable Roll + Mix Pakora + Chatni + Rooh Afza")
+        setlunch("Chicken Vegetable Roll + Mix Pakora + Chatni + Rooh Afza")
         setdinner("Biryani + Cold Drinks + Green Tea")
       }
       if (currentDate.getDay() === 5) {     //Friday even
