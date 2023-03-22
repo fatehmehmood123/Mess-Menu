@@ -56,6 +56,7 @@ export default function WeekContainer(props) {
                     </tr>
                 </tbody>
             </table>
+            {/* normal menu */}
             {/* <table>
                 <tbody>
                     <tr>
