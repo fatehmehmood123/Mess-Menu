@@ -58,17 +58,17 @@ export default function Weekly() {
       // setsunLunch('Chicken Pulao + Aluu Cutlets + Raita')
       // setsunDinner('Chicken Pulao + Aluu Cutlets + Raita')
 
-// Ramzan 
+      // Ramzan 
 
 
-      setmonBreakfast('Daal Channa/Daal Mash + Paratha + Yoghurt')
+      setmonBreakfast('Daal Channa / Daal Mash + Paratha + Yoghurt')
       setmonLunch('Chicken vegetable Roll + Mix Pakora + Rooh Afza')
       setmonDinner('Chicken Daleem + Naan + Tea')
       settueBreakfast('White Channa + Paratha + Yoghurt')
       settueLunch('Aluu Samosa + Mix Pakora + Jaame Shireen')
       settueDinner('Aluu Beef Curry + Tea')
       setwedBreakfast('Chicken Curry + Paratha + Yoghurt ')
-      setwedLunch('Channa Chaat/fruit Chaat + Mix Pakora + Rooh Afza')
+      setwedLunch('Channa Chaat / Fruit Chaat + Mix Pakora + Rooh Afza')
       setwedDinner('Daal Mash + tea')
       setthursBreakfast('Aluu Bhujia + Paratha + Yoghurt')
       setthursLunch('Chicken Vegatable Roll + Mix Pakora + Jaame Shireen')
@@ -79,7 +79,7 @@ export default function Weekly() {
       setsatBreakfast('Onion Tomato Egg + Paratha + Yoghurt ')
       setsatLunch('Aluu Samosa + Mix Pakora + Jaame Shireen')
       setsatDinner('Chicken Kofta + Tea')
-      setsunBreakfast('AluuAnda Curry + Paratha + Yoghurt')
+      setsunBreakfast('Aluu Anda Curry + Paratha + Yoghurt')
       setsunLunch('Lobia With Channa Chaat + Mix Pakora + Rooh Afza')
       setsunDinner('Aluu Beef Qeema + Tea')
     } else {      //week is even
@@ -102,8 +102,29 @@ export default function Weekly() {
       // setsunLunch('Chicken Pulao + Aluu Cutlets + Raita')
       // setsunDinner('Chicken Pulao + Aluu Cutlets + Raita')
 
-//Ramzan
+      //Ramzan
 
+      setmonBreakfast('Daal Channa/Daal Mash')
+      setmonLunch('Chicken vegetable Roll + Mix Pakora + Rooh Afza')
+      setmonDinner('Chicken Daleem + Naan + Tea')
+      settueBreakfast('White Channa')
+      settueLunch('Aluu Samosa + Mix Pakora + Jaame Shireen')
+      settueDinner('Aluu Beef Curry + Tea')
+      setwedBreakfast('Chicken Curry')
+      setwedLunch('Channa Chaat/fruit Chaat + Mix Pakora + Rooh Afza')
+      setwedDinner('Daal Mash + tea')
+      setthursBreakfast('Aluu Bhujia')
+      setthursLunch('Chicken Vegatable Roll + Mix Pakora + Jaame Shireen')
+      setthursDinner('Chicken Biryani + Raita + Cold Drinks + Green Tea')
+      setfriBreakfast('Aluu Qeema')
+      setfriLunch('Dahi Bhallay + Mix Pakora + Rooh Afza')
+      setfriDinner('Seasonal Vegetable + Tea')
+      setsatBreakfast('Onion Tomato Egg')
+      setsatLunch('Aluu Samosa + Mix Pakora + Jaame Shireen')
+      setsatDinner('Chicken Kofta + Tea')
+      setsunBreakfast('AluuAnda Curry')
+      setsunLunch('Lobia With Channa Chaat + Mix Pakora + Rooh Afza')
+      setsunDinner('Aluu Beef Qeema + Tea')
 setmonBreakfast('Daal Channa/Daal Mash')
 setmonLunch('Chicken vegetable Roll + Mix Pakora + Rooh Afza')
 setmonDinner('Chicken Daleem + Naan + Tea')
