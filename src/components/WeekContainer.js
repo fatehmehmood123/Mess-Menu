@@ -8,9 +8,9 @@ export default function WeekContainer(props) {
                 <tbody>
                     <tr>
                         <th>Day</th>
-                        <th>Sehri</th>
-                        <th>Aftari</th>
-                        <th>Dinner</th>
+                        <th>سحری</th>
+                        <th>افطاری</th>
+                        <th>رات کا کھانا</th>
                     </tr>
                     <tr>
                         <td>Monday</td>
