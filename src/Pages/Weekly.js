@@ -104,25 +104,25 @@ export default function Weekly() {
 
 //Ramzan
 
-setmonBreakfast('Daal Channa/Daal Mash + Paratha + Yoghurt')
+setmonBreakfast('Daal Channa/Daal Mash')
 setmonLunch('Chicken vegetable Roll + Mix Pakora + Rooh Afza')
 setmonDinner('Chicken Daleem + Naan + Tea')
-settueBreakfast('White Channa + Paratha + Yoghurt')
+settueBreakfast('White Channa')
 settueLunch('Aluu Samosa + Mix Pakora + Jaame Shireen')
 settueDinner('Aluu Beef Curry + Tea')
-setwedBreakfast('Chicken Curry + Paratha + Yoghurt ')
+setwedBreakfast('Chicken Curry')
 setwedLunch('Channa Chaat/fruit Chaat + Mix Pakora + Rooh Afza')
 setwedDinner('Daal Mash + tea')
-setthursBreakfast('Aluu Bhujia + Paratha + Yoghurt')
+setthursBreakfast('Aluu Bhujia')
 setthursLunch('Chicken Vegatable Roll + Mix Pakora + Jaame Shireen')
 setthursDinner('Chicken Biryani + Raita + Cold Drinks + Green Tea')
-setfriBreakfast('Aluu Qeema + Paratha + Yoghurt')
+setfriBreakfast('Aluu Qeema')
 setfriLunch('Dahi Bhallay + Mix Pakora + Rooh Afza')
 setfriDinner('Seasonal Vegetable + Tea')
-setsatBreakfast('Onion Tomato Egg + Paratha + Yoghurt ')
+setsatBreakfast('Onion Tomato Egg')
 setsatLunch('Aluu Samosa + Mix Pakora + Jaame Shireen')
 setsatDinner('Chicken Kofta + Tea')
-setsunBreakfast('AluuAnda Curry + Paratha + Yoghurt')
+setsunBreakfast('AluuAnda Curry')
 setsunLunch('Lobia With Channa Chaat + Mix Pakora + Rooh Afza')
 setsunDinner('Aluu Beef Qeema + Tea')
     }
@@ -131,7 +131,7 @@ setsunDinner('Aluu Beef Qeema + Tea')
     <>
       <Navbar />
       <WeekContainer monBreakfast={monBreakfast} monLunch={monLunch} satLunch={satLunch} wedBreakfast={wedBreakfast} tueLunch={tueLunch} tueBreakfast={tueBreakfast} monDinner={monDinner} tueDinner={tueDinner} wedLunch={wedLunch} wedDinner={wedDinner} thursBreakfast={thursBreakfast} thursLunch={thursLunch} thursDinner={thursDinner} friLunch={friLunch} friBreakfast={friBreakfast} friDinner={friDinner} satDinner={satDinner} satBreakfast={satBreakfast} sunDinner={sunDinner} sunLunch={sunLunch} sunBreakfast={sunBreakfast} />
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
