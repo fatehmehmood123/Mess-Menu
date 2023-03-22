@@ -6,7 +6,7 @@ export default function TodayContainer(props) {
       {/* returning component */}
       <div className="container my-4" id="mainContainer">
         <div>
-          <h1>
+          <h1 style={{ textAlign: "center", fontWeight: 800 }}>
             رمضان المبارک
           </h1>
         </div>
