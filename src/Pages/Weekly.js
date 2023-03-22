@@ -122,7 +122,7 @@ setfriDinner('Seasonal Vegetable + Tea')
 setsatBreakfast('Onion Tomato Egg')
 setsatLunch('Aluu Samosa + Mix Pakora + Jaame Shireen')
 setsatDinner('Chicken Kofta + Tea')
-setsunBreakfast('AluuAnda Curry')
+setsunBreakfast('Aluu Anda Curry')
 setsunLunch('Lobia With Channa Chaat + Mix Pakora + Rooh Afza')
 setsunDinner('Aluu Beef Qeema + Tea')
     }
