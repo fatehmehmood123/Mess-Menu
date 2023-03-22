@@ -105,7 +105,7 @@ export default function Weekly() {
       //Ramzan
 
     
-setmonBreakfast('Daal Channa/Daal Mash')
+setmonBreakfast('Daal Channa / Daal Mash')
 setmonLunch('Chicken vegetable Roll + Mix Pakora + Rooh Afza')
 setmonDinner('Chicken Daleem + Naan + Tea')
 settueBreakfast('White Channa')
