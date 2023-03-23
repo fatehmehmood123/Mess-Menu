@@ -13,14 +13,14 @@ export default function TodayContainer(props) {
         <ol className="list-group list-group-numbered">
           <li className="list-group-item d-flex justify-content-between align-items-start">
             <div className="ms-2 me-auto">
-              <div><b style={{ fontSize: "18px" }}>سحری</b> (2:45 Onwards)</div>
+              <div><b style={{ fontSize: "18px" }}>سحر</b> (2:45 Onwards)</div>
               {props.breakfast}
             </div>
 
           </li>
           <li className="list-group-item d-flex justify-content-between align-items-start">
             <div className="ms-2 me-auto">
-              <div><b style={{ fontSize: "18px" }}>افطاری</b> (Sunset)</div>
+              <div><b style={{ fontSize: "18px" }}>افطار</b> (Sunset)</div>
               {props.lunch}
             </div>
 
