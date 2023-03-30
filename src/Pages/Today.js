@@ -46,7 +46,7 @@ export default function Daily() {
       }
       if (currentDate.getDay() === 4) {     //Thursday odd
         setbreakfast("Aluu Bhujia")
-        setlunch("Chicken Vegatable Roll + Mix Pakora + Jaame Shireen")
+        setlunch("Chicken Vegetable Roll + Mix Pakora + Jaame Shireen")
         setdinner("Chicken Biryani + Raita + Cold Drinks + Green Tea")
       }
       if (currentDate.getDay() === 5) {     //Friday odd
@@ -83,7 +83,7 @@ export default function Daily() {
       }
       if (currentDate.getDay() === 4) {     //Thursday odd
         setbreakfast("Aluu Bhujia")
-        setlunch("Chicken Vegatable Roll + Mix Pakora + Jaame Shireen")
+        setlunch("Chicken Vegetable Roll + Mix Pakora + Jaame Shireen")
         setdinner("Biryani + Green Tea")
       }
       if (currentDate.getDay() === 5) {     //Friday odd
