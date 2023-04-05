@@ -61,7 +61,7 @@ export default function Weekly() {
       // Ramzan 
       // console.log("week is odd");
 
-      setmonBreakfast('Daal Channa')
+      setmonBreakfast('Daal Mash')
       setmonLunch('Chicken vegetable Roll + Mix Pakora + Rooh Afza')
       setmonDinner('Chicken Daleem + Naan + Tea')
       settueBreakfast('White Channa')
@@ -73,7 +73,7 @@ export default function Weekly() {
       setthursBreakfast('Aluu Bhujia')
       setthursLunch('Chicken Vegatable Roll + Mix Pakora + Jaame Shireen')
       setthursDinner('Biryani + Green Tea')
-      setfriBreakfast('Aluu Qeema')
+      setfriBreakfast('Daal Channa')
       setfriLunch('Dahi Bhallay + Mix Pakora + Rooh Afza')
       setfriDinner('Aluu Gajar Matar + Tea')
       setsatBreakfast('Onion Tomato Egg')
@@ -81,7 +81,7 @@ export default function Weekly() {
       setsatDinner('Chicken Kofta + Tea')
       setsunBreakfast('Aluu Anda Curry')
       setsunLunch('Lobia With Channa Chaat + Mix Pakora + Rooh Afza')
-      setsunDinner('Aluu Beef Qeema + Tea')
+      setsunDinner('Chicken Pulao + Raita + Tea')
     } else {      //week is even
       // setmonBreakfast('Beef Shami Kabab + Chana Daal + Raita')
       // setmonLunch('Beef Shami Kabab + Chana Daal + Raita')
@@ -111,12 +111,12 @@ export default function Weekly() {
       settueLunch('Aluu Samosa + Mix Pakora + Jaame Shireen')
       settueDinner('Aluu Beef Curry + Tea')
       setwedBreakfast('Chicken Curry')
-      setwedLunch('Fruit Chaat + Mix Pakora + Rooh Afza')
+      setwedLunch('Channa Chaat + Mix Pakora + Rooh Afza')
       setwedDinner('Daal Mash + Tea')
       setthursBreakfast('Aluu Bhujia')
       setthursLunch('Chicken Vegatable Roll + Mix Pakora + Jaame Shireen')
       setthursDinner('Biryani + Green Tea')
-      setfriBreakfast('Aluu Qeema')
+      setfriBreakfast('Daal Channa')
       setfriLunch('Dahi Bhallay + Mix Pakora + Rooh Afza')
       setfriDinner('Aluu Gajar Matar + Tea')
       setsatBreakfast('Onion Tomato Egg')
@@ -124,7 +124,7 @@ export default function Weekly() {
       setsatDinner('Chicken Kofta + Tea')
       setsunBreakfast('Aluu Anda Curry')
       setsunLunch('Lobia With Channa Chaat + Mix Pakora + Rooh Afza')
-      setsunDinner('Aluu Beef Qeema + Tea')
+      setsunDinner('Chicken Pulao + Raita + Tea')
     }
   }, [week])
   return (
