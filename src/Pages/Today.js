@@ -27,10 +27,10 @@ export default function Daily() {
       if (currentDate.getDay() === 0) {    //Sunday  odd
         setbreakfast("Aluu Anda Curry")
         setlunch("Lobia With Channa Chaat + Mix Pakora + Rooh Afza")
-        setdinner("Aluu Beef Qeema + Tea")
+        setdinner("Chicken Pulao + Raita + Tea")
       }
       if (currentDate.getDay() === 1) {    //Monday odd
-        setbreakfast("Daal Channa")
+        setbreakfast("Daal Mash")
         setlunch("Chicken vegetable Roll + Mix Pakora + Rooh Afza")
         setdinner("Chicken Daleem + Naan + Tea")
       }
@@ -50,7 +50,7 @@ export default function Daily() {
         setdinner("Chicken Biryani + Raita + Cold Drinks + Green Tea")
       }
       if (currentDate.getDay() === 5) {     //Friday odd
-        setbreakfast("Aluu Qeema")
+        setbreakfast("Daal Channa")
         setlunch("Dahi Bhallay + Mix Pakora + Rooh Afza")
         setdinner("Aluu Gajar Matar + Tea")
 
@@ -64,7 +64,7 @@ export default function Daily() {
       if (currentDate.getDay() === 0) {    //Sunday  odd
         setbreakfast("Aluu Anda Curry")
         setlunch("Lobia With Channa Chaat + Mix Pakora + Rooh Afza")
-        setdinner("Aluu Beef Qeema + Tea")
+        setdinner("Chicken Pulao + Raita + Tea")
       }
       if (currentDate.getDay() === 1) {    //Monday odd
         setbreakfast("Daal Mash")
@@ -78,7 +78,7 @@ export default function Daily() {
       }
       if (currentDate.getDay() === 3) {     //Wednesday odd
         setbreakfast("Chicken Curry")
-        setlunch("Fruit Chaat + Mix Pakora + Rooh Afza")
+        setlunch("Channa Chaat + Mix Pakora + Rooh Afza")
         setdinner("Daal Mash + tea")
       }
       if (currentDate.getDay() === 4) {     //Thursday odd
@@ -87,7 +87,7 @@ export default function Daily() {
         setdinner("Biryani + Green Tea")
       }
       if (currentDate.getDay() === 5) {     //Friday odd
-        setbreakfast("Aluu Qeema")
+        setbreakfast("Daal Channa")
         setlunch("Dahi Bhallay + Mix Pakora + Rooh Afza")
         setdinner("Aluu Gajar Matar + Tea")
 
