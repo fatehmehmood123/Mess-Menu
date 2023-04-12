@@ -15,6 +15,8 @@ git push
 
 # following command will make this file executable
 # icacls .\gitpush.sh /grant:r "%USERNAME%:(RX)"
+# for MacOS and Linux
+# chmod +x gitpush.sh 
 # to run this enter
 # ./gitpush.sh                  # Uses default commit message
 # ./gitpush.sh "My commit message"  # Uses provided commit message
