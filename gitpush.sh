@@ -1,3 +1,4 @@
+# Script to push code to github
 
 if [ -z "$1" ]
 then
@@ -8,6 +9,7 @@ fi
 
 git add .
 git commit -m "$commit_message"
+git pull
 git push
 
 
