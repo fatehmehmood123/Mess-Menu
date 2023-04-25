@@ -7,10 +7,10 @@ export default function WeekContainer(props) {
             <table>
                 <tbody>
                     <tr>
-                        <th>Day</th>
-                        <th style={{ fontSize: "18px" }}>سحر</th>
-                        <th style={{ fontSize: "18px" }}>افطار</th>
-                        <th style={{ fontSize: "18px" }}>رات کا کھانا</th>
+                    <th>Day</th>
+                        <th>Breakfast</th>
+                        <th>Lunch</th>
+                        <th>Dinner</th>
                     </tr>
                     <tr>
                         <td>Monday</td>
