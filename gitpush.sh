@@ -4,7 +4,7 @@ if [ -z "$1" ]
 then
     commit_message="Automated commit message"
 else
-    commit_message="$1"
+    commit_message="$*"
 fi
 
 git add .
