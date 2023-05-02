@@ -41,7 +41,7 @@ export default function Weekly() {
     if (week % 2 === 0) {   //week is odd
       setmonBreakfast('Fried Egg')
       setmonLunch('Aluu Matar')
-      setmonDinner('Chicken Roast + Chana Daal + Raita')
+      setmonDinner('Beef Shami + Chana Daal + Raita')
       settueBreakfast('Naan Channa')
       settueLunch('Kari Pakora + Rice')
       settueDinner('Beef Pulao + Aluu Cutlets')
@@ -63,7 +63,7 @@ export default function Weekly() {
     } else {      //week is even
       setmonBreakfast('Fried Egg')
       setmonLunch('Aluu Matar')
-      setmonDinner('Beef Shami Kabab + Chana Daal + Raita')
+      setmonDinner('Chicken Roast + Chana Daal + Raita')
       settueBreakfast('Naan Channa')
       settueLunch('Kari Pakora + Roti')
       settueDinner('Beef Pulao + Aluu Cutlets')
