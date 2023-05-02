@@ -38,7 +38,7 @@ export default function Weekly() {
   let week = currentDate.getWeek();
   //Useeffect Hook Starts
   useEffect(() => {
-    if (week % 2 !== 0) {   //week is odd
+    if (week % 2 === 0) {   //week is odd
       setmonBreakfast('Fried Egg')
       setmonLunch('Aluu Matar')
       setmonDinner('Chicken Roast + Chana Daal + Raita')
