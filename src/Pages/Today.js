@@ -116,7 +116,7 @@ export default function Daily() {
         setdinner("Beef Pulao + Aluu Cutlets")
       }
       if (currentDate.getDay() === 3) {     //Wednesday odd
-        setbreakfast("Paratha + Omellete")
+        setbreakfast("Paratha + Aluu Bhujia")
         setlunch("Mash Daal + Salad")
         setdinner("Chicken Karahi + Custard")
       }
@@ -152,7 +152,7 @@ export default function Daily() {
         setdinner("Beef Pulao + Aluu Cutlets")
       }
       if (currentDate.getDay() === 3) {     //Wednesday even
-        setbreakfast("Paratha + Aluu Bhujia")
+        setbreakfast("Paratha + Omellete")
         setlunch("Mash Daal + Yoghurt")
         setdinner("Chicken Karahi + Custard")
       }
