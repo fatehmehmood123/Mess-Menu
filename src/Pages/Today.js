@@ -99,7 +99,7 @@ export default function Daily() {
     //   }
     // }
     //Normal Days
-    if (week % 2 !== 0) {   //week is odd
+    if (week % 2 === 0) {   //week is odd
       if (currentDate.getDay() === 0) {    //Sunday  odd
         setbreakfast("Halwa poori + Channay")
         setlunch("Red Beans")
@@ -108,7 +108,7 @@ export default function Daily() {
       if (currentDate.getDay() === 1) {    //Monday odd
         setbreakfast("Paratha + Fried Egg")
         setlunch("Aluu Mattar")
-        setdinner("Chicken Roast + Chana Daal + Raita")
+        setdinner("Beef Shami Kabab + Chana Daal + Raita")
       }
       if (currentDate.getDay() === 2) {    //Tuesday odd
         setbreakfast("Naan Channa")
@@ -116,7 +116,7 @@ export default function Daily() {
         setdinner("Beef Pulao + Aluu Cutlets")
       }
       if (currentDate.getDay() === 3) {     //Wednesday odd
-        setbreakfast("Paratha + Omellete")
+        setbreakfast("Paratha + Aluu Bhujia")
         setlunch("Mash Daal + Salad")
         setdinner("Chicken Karahi + Custard")
       }
@@ -144,7 +144,7 @@ export default function Daily() {
       if (currentDate.getDay() === 1) {    //Monday even
         setbreakfast("Paratha + Fried Egg")
         setlunch("Aluu Matar")
-        setdinner("Beef Shami Kabab + Chana Daal + Raita")
+        setdinner("Chicken Roast + Chana Daal + Raita")
       }
       if (currentDate.getDay() === 2) {    //Tuesday even
         setbreakfast("Naan Channa")
@@ -152,7 +152,7 @@ export default function Daily() {
         setdinner("Beef Pulao + Aluu Cutlets")
       }
       if (currentDate.getDay() === 3) {     //Wednesday even
-        setbreakfast("Paratha + Aluu Bhujia")
+        setbreakfast("Paratha + Omellete")
         setlunch("Mash Daal + Yoghurt")
         setdinner("Chicken Karahi + Custard")
       }

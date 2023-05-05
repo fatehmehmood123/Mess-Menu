@@ -38,14 +38,14 @@ export default function Weekly() {
   let week = currentDate.getWeek();
   //Useeffect Hook Starts
   useEffect(() => {
-    if (week % 2 !== 0) {   //week is odd
+    if (week % 2 === 0) {   //week is odd
       setmonBreakfast('Fried Egg')
       setmonLunch('Aluu Matar')
-      setmonDinner('Chicken Roast + Chana Daal + Raita')
+      setmonDinner('Beef Shami + Chana Daal + Raita')
       settueBreakfast('Naan Channa')
       settueLunch('Kari Pakora + Rice')
       settueDinner('Beef Pulao + Aluu Cutlets')
-      setwedBreakfast('Paratha + Omellete')
+      setwedBreakfast('Paratha + Aluu Bhujia')
       setwedLunch('Mash Daal + Salad')
       setwedDinner('Chicken Karahi + Custard')
       setthursBreakfast('Bread Butter Jam')
@@ -63,11 +63,11 @@ export default function Weekly() {
     } else {      //week is even
       setmonBreakfast('Fried Egg')
       setmonLunch('Aluu Matar')
-      setmonDinner('Beef Shami Kabab + Chana Daal + Raita')
+      setmonDinner('Chicken Roast + Chana Daal + Raita')
       settueBreakfast('Naan Channa')
       settueLunch('Kari Pakora + Roti')
       settueDinner('Beef Pulao + Aluu Cutlets')
-      setwedBreakfast('Paratha + Aluu Bhujia')
+      setwedBreakfast('Paratha + Omellete')
       setwedLunch('Mash Daal + Dahi')
       setwedDinner('Chicken Karahi + Custard')
       setthursBreakfast('Bread Butter Jam')
