@@ -103,7 +103,7 @@ export default function Daily() {
       if (currentDate.getDay() === 0) {    //Sunday  odd
         setbreakfast("Halwa poori + Channay")
         setlunch("Red Beans")
-        setdinner("Chicken Pulao + Aluu Cutlets + Raita")
+        setdinner("Chicken Pulao + Raita")
       }
       if (currentDate.getDay() === 1) {    //Monday odd
         setbreakfast("Paratha + Fried Egg")
@@ -113,7 +113,7 @@ export default function Daily() {
       if (currentDate.getDay() === 2) {    //Tuesday odd
         setbreakfast("Naan Channa")
         setlunch("Kari Pakora + Rice")
-        setdinner("Beef Pulao + Aluu Cutlets")
+        setdinner("Beef Pulao")
       }
       if (currentDate.getDay() === 3) {     //Wednesday odd
         setbreakfast("Paratha + Aluu Bhujia")
@@ -122,7 +122,7 @@ export default function Daily() {
       }
       if (currentDate.getDay() === 4) {     //Thursday odd
         setbreakfast("Bread + Butter + Jam")
-        setlunch("Aluu Palak")
+        setlunch("Daal Channa Kadoo")
         setdinner("Biryani + Cold Drinks")
       }
       if (currentDate.getDay() === 5) {     //Friday odd
@@ -139,7 +139,7 @@ export default function Daily() {
       if (currentDate.getDay() === 0) {    //Sunday  even
         setbreakfast("Halwa poori + Channay")
         setlunch("Red Beans")
-        setdinner("Chicken Pulao + Aluu Cutlets + Raita")
+        setdinner("Chicken Pulao + Raita")
       }
       if (currentDate.getDay() === 1) {    //Monday even
         setbreakfast("Paratha + Fried Egg")
@@ -149,7 +149,7 @@ export default function Daily() {
       if (currentDate.getDay() === 2) {    //Tuesday even
         setbreakfast("Naan Channa")
         setlunch("Kari Pakora + Roti")
-        setdinner("Beef Pulao + Aluu Cutlets")
+        setdinner("Beef Pulao")
       }
       if (currentDate.getDay() === 3) {     //Wednesday even
         setbreakfast("Paratha + Omellete")
@@ -158,7 +158,7 @@ export default function Daily() {
       }
       if (currentDate.getDay() === 4) {     //Thursday even
         setbreakfast("Bread + Butter + Jam")
-        setlunch("Aluu Palak")
+        setlunch("Daal Channa Kadoo")
         setdinner("Biryani + Cold Drinks")
       }
       if (currentDate.getDay() === 5) {     //Friday even
