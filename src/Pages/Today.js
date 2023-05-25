@@ -7,7 +7,7 @@ import TodayFooter from '../components/TodayFooter';
 export default function Daily() {
   //initializing Current date using UseMemo hook to avoid re-rendering
   const currentDate = useMemo(() => new Date(), []);
-// this is test comment
+
   // Funtion to convert current date to week number 
   // eslint-disable-next-line
   Date.prototype.getWeek = function () {
