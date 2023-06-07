@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import WeekContainer from '../components/WeekContainer'
 export default function Weekly() {
   const [monBreakfast, setmonBreakfast] = useState("")
