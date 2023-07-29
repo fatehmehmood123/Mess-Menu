@@ -132,7 +132,7 @@ export default function Daily() {
       }
       if (currentDate.getDay() === 6) {     //Saturday odd
         setbreakfast("Aluu Paratha")
-        setlunch("Bhindi")
+        setlunch("Teenday")
         setdinner("Aluu Cutlets + Daal")
       }
     } else {      //week is even
@@ -168,7 +168,7 @@ export default function Daily() {
       }
       if (currentDate.getDay() === 6) {     //Saturday even
         setbreakfast("Aluu Paratha")
-        setlunch("Bhindi")
+        setlunch("Teenday")
         setdinner("Beef Chapli kabab + Daal")
       }
     }
