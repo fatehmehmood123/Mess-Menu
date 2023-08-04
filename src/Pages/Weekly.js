@@ -33,7 +33,7 @@ export default function Weekly() {
     var onejan = new Date(this.getFullYear(), 0, 1);
     return Math.ceil((((this - onejan) / 86400000) + onejan.getDay() - 1) / 7);
   }
-  // Getting Week Number
+  // Getting Week Number to check even or odd
   let week = currentDate.getWeek();
   //Useeffect Hook Starts
   useEffect(() => {
