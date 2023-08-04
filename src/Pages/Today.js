@@ -8,7 +8,7 @@ export default function Daily() {
   //initializing Current date using UseMemo hook to avoid re-rendering
   const currentDate = useMemo(() => new Date(), []);
 
-  // Funtion to convert current date to week number 
+  // Function to convert current date to week number
   // eslint-disable-next-line
   Date.prototype.getWeek = function () {
     var onejan = new Date(this.getFullYear(), 0, 1);
@@ -157,7 +157,7 @@ export default function Daily() {
         setdinner("Chicken Karahi + Custard")
       }
       if (currentDate.getDay() === 4) {     //Thursday even
-        setbreakfast("Bread + Butter + Jam")
+        setbreakfast("Aluu Bhujia + Paratha")
         setlunch("Daal Channa Kadoo")
         setdinner("Biryani + Cold Drinks")
       }
