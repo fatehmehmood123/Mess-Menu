@@ -7,7 +7,7 @@ import {weekChange} from '../redux/menu.js';
 
 export default function Weekly() {
   
-  //initializing Current date
+  //initializing Current date and
   let currentDate = new Date();
 
   // Funtion to convert current date to week number 
