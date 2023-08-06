@@ -24,8 +24,8 @@ Welcome to the Mess Menu website! This dynamic website allows users to check the
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/mess-menu-website.git
-cd mess-menu-website
+git clone https://github.com/fatehmehmood123/Mess-Menu
+cd Mess-Menu
 ```
 
 2. Install the dependencies:
