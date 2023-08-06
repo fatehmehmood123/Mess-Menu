@@ -18,6 +18,7 @@ export default function Daily() {
   // Getting Week Number and day number
   let week = currentDate.getWeek();
   let day = currentDate.getDay();
+  
   //redux functions to get values from store and dispatch an action 
   const todayMenu = useSelector((state) => state.menu);
   const dispatch = useDispatch();

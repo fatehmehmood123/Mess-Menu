@@ -35,7 +35,7 @@ const menuSlice = createSlice({
       Lunch:"Aluu Teenday",
       Dinner:"Beef Chapli kabab + Daal"
     },{
-      day: 7,
+      day: 0,
       Breakfast:"Halwa Poori Channa",
       Lunch:"Red Bean",
       Dinner:"Chicken Pulao + Raita"
