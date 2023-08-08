@@ -1,22 +1,13 @@
 table {
   border-collapse: collapse;
   width: 100%;
+
 }
 
 td,
 th {
   border: 1px solid #535151;
-
   text-align: left;
   padding: 8px;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-
-/* @media only screen and (max-width: 600px) {
-  body {
-    background-color: lightblue;
-  }
-} */

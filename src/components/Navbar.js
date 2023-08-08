@@ -4,7 +4,7 @@ import logo from "../images/android-chrome-192x192.png"
 export default function Navbar() {
   return (
     <>
-      <nav className="nav navbar navbar-expand-lg bg-body-tertiary">
+      <nav  className="nav navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <Link to="/">
 
