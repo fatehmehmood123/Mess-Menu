@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
-import {menuReducer} from './menu.js'; 
+import { configureStore } from "@reduxjs/toolkit";
+import { menuReducer } from "./menu.js";
 
 export default configureStore({
   reducer: {
-    menu: menuReducer
-  }
+    menu: menuReducer,
+  },
 });

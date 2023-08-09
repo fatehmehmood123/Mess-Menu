@@ -1,71 +1,46 @@
-import React from 'react'
-
+import React, { useEffect, useState } from "react";
+import "../css/WeekContainer.css";
 export default function TodayContainer(props) {
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    // Simulate loading the data or triggering the animation
+    setTimeout(() => {
+      setIsActive(true);
+    }, 100); // Adjust the delay as needed
+  }, []);
   return (
-    < >
+    <>
       <div className="container my-4">
-      <h3>Today Menu</h3>
-      <table className="container my-4 table table-hover shadow-lg p-3 mb-5 bg-body-tertiary rounded" id="mainContainer">
-        <thead >
-        <tr className="table-active">
-          <th scope="col">Meals</th>
-          <th scope="col">Menu</th>
-
-
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-
-          <td>Breakfast</td>
-          <td>{props.breakfast}</td>
-
-        </tr>
-        <tr >
-
-          <td>Lunch</td>
-          <td>{props.lunch}</td>
-
-        </tr><tr>
-
-          <td>Dinner</td>
-          <td>{props.dinner}</td>
-
-        </tr>
-
-        </tbody>
-      </table>
-      </div>
-      {/*/!* returning component *!/*/}
-      {/*<div className="container my-4" id="mainContainer">*/}
-        <div>
-          {/* <h1 style={{ textAlign: "center", fontWeight: 800 }}>
-            رمضان المبارک
-          </h1> */}
+        <h3>Today Menu</h3>
+        <div className={`table-container ${isActive ? "active" : ""}`}>
+          <table
+            className="container my-4 table table-hover shadow p-3 mb-5 bg-body-tertiary rounded"
+            id="mainContainer"
+          >
+            <thead>
+              <tr className="table-active">
+                <th scope="col">Meals</th>
+                <th scope="col">Menu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Breakfast</td>
+                <td>{props.breakfast}</td>
+              </tr>
+              <tr>
+                <td>Lunch</td>
+                <td>{props.lunch}</td>
+              </tr>
+              <tr>
+                <td>Dinner</td>
+                <td>{props.dinner}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      {/*  <ol className="list-group list-group-numbered">*/}
-      {/*    <li className="list-group-item d-flex justify-content-between align-items-start">*/}
-      {/*      <div className="ms-2 me-auto">*/}
-      {/*        <div><b style={{ fontSize: "18px" }}>Breakfast</b> </div>*/}
-      {/*        {props.breakfast}*/}
-      {/*      </div>*/}
-
-      {/*    </li>*/}
-      {/*    <li className="list-group-item d-flex justify-content-between align-items-start">*/}
-      {/*      <div className="ms-2 me-auto">*/}
-      {/*        <div><b style={{ fontSize: "18px" }}>Lunch</b></div>*/}
-      {/*        {props.lunch}*/}
-      {/*      </div>*/}
-
-      {/*    </li>*/}
-      {/*    <li className="list-group-item d-flex justify-content-between align-items-start">*/}
-      {/*      <div className="ms-2 me-auto">*/}
-      {/*        <div><b style={{ fontSize: "18px" }}>Dinner</b></div>*/}
-      {/*        {props.dinner}*/}
-      {/*      </div>*/}
-      {/*    </li>*/}
-      {/*  </ol>*/}
-      {/*</div>*/}
+      </div>
     </>
-  )
+  );
 }
