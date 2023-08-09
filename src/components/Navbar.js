@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from "../images/android-chrome-192x192.png"
+import "../css/navbar.css"
 export default function Navbar() {
   return (
     <>
@@ -18,10 +19,10 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/daily">Today</Link>
+                <Link className="nav-link active hover-underline-animation" aria-current="page" to="/daily">Today</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/weekly">This Week</Link>
+                <Link className="nav-link active hover-underline-animation" aria-current="page" to="/weekly">This Week</Link>
               </li>
             </ul>
           </div>
