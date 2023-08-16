@@ -17,5 +17,12 @@ th {
 }
 
 .table-container.active {
-  max-height: 1000px; /* Set an appropriate max-height value to reveal the table */
+  max-height: 1000px;
+}
+.scroll-container {
+  overflow-x: auto;
+}
+
+.scroll-content {
+  display: inline-block;
 }
