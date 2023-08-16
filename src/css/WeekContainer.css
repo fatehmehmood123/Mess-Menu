@@ -2,27 +2,18 @@ table {
   border-collapse: collapse;
   width: 100%;
 }
-
 td,
 th {
   border: 1px solid #535151;
   text-align: left;
   padding: 8px;
 }
-
 .table-container {
   max-height: 0; /* Initially hide the table */
   overflow: hidden;
   transition: max-height 2s ease-in-out; /* Apply transition to max-height property */
 }
-
 .table-container.active {
-  max-height: 1000px;
-}
-.scroll-container {
-  overflow-x: auto;
+  max-height: 1000px; /* Set an appropriate max-height value to reveal the table */
 }
 
-.scroll-content {
-  display: inline-block;
-}

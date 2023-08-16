@@ -11,17 +11,16 @@ export default function WeekContainer(props) {
   }, []);
 
   return (
-    <div class="scroll-container">
-      <div class="scroll-content">
-        <div id="weekContainer" className="container my-3">
+   
+        <div id="weekContainer" className="container  my-3">
           <h3>This Week Menu</h3>
 
           <div
             className={`table-container ${
               isActive ? "active" : ""
-            } table-responsive`}
+            } overflow-x-scroll`}
           >
-            <table className="container my-4 table table-hover shadow p-3 mb-5 bg-body-tertiary rounded">
+            <table  className=" container my-4 table table-hover shadow p-3 mb-5 bg-body-tertiary rounded">
               <tbody>
                 <tr className="table-active">
                   <th>Day</th>
@@ -75,7 +74,6 @@ export default function WeekContainer(props) {
             </table>
           </div>
         </div>
-      </div>
-    </div>
+     
   );
 }
