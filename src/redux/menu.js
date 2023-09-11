@@ -6,7 +6,7 @@ const menuSlice = createSlice({
     {
       day: 1,
       Breakfast: "Fried Egg + Paratha",
-      Lunch: "Aluu Matar",
+      Lunch: "Palak Aluu",
       Dinner: "Chicken Roast + Chana Daal + Raita",
     },
     {
@@ -49,7 +49,7 @@ const menuSlice = createSlice({
   reducers: {
     weekChange: (state) => {
       state[0].Breakfast = "Fried Egg + Paratha";
-      state[0].Lunch = "Aluu Matar";
+      state[0].Lunch = "Palak Aluu";
       state[0].Dinner = "Beef Shami + Chana Daal + Raita";
       state[1].Breakfast = "Naan Channa";
       state[1].Lunch = "Kari Pakora + Rice";
