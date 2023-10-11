@@ -18,7 +18,7 @@ const menuSlice = createSlice({
     {
       day: 3,
       Breakfast: "Paratha + Omellete",
-      Lunch: "Masoor Daal + Dahi",
+      Lunch: "Masoor Daal + Raita",
       Dinner: "Chicken Karahi + Custard",
     },
     {
