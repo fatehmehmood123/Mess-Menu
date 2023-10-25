@@ -7,7 +7,7 @@ const menuSlice = createSlice({
       day: 1,
       Breakfast: "Fried Egg + Paratha",
       Lunch: "Palak Aluu",
-      Dinner: "Chicken Roast + Chana Daal + Raita",
+      Dinner: "Chicken Roast + Channa Daal + Raita",
     },
     {
       day: 2,
@@ -17,13 +17,13 @@ const menuSlice = createSlice({
     },
     {
       day: 3,
-      Breakfast: "Paratha + Omellete",
-      Lunch: "Daal Mung + Raita",
+      Breakfast: "Paratha + Omelette",
+      Lunch: "Daal Moong + Raita",
       Dinner: "Chicken Karahi + Custard",
     },
     {
       day: 4,
-      Breakfast: "Alu Bhujia + Paratha",
+      Breakfast: "Aluu Bhujia + Paratha",
       Lunch: "Daal Channa Kadoo",
       Dinner: "Biryani",
     },
@@ -31,7 +31,7 @@ const menuSlice = createSlice({
       day: 5,
       Breakfast: "Egg Tomato Onion",
       Lunch: "Daal Chawal (Yellow)",
-      Dinner: "Chiken Daleem",
+      Dinner: "Chicken Daleem",
     },
     {
       day: 6,
