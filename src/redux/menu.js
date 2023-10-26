@@ -25,7 +25,7 @@ const menuSlice = createSlice({
       day: 4,
       Breakfast: "Aluu Bhujia + Paratha",
       Lunch: "Daal Channa Kadoo",
-      Dinner: "Biryani",
+      Dinner: "Biryani + Cold Drinks",
     },
     {
       day: 5,
@@ -59,7 +59,7 @@ const menuSlice = createSlice({
       state[2].Dinner = "Chicken Karahi + Custard";
       state[3].Breakfast = "Bread Butter Jam";
       state[3].Lunch = "Daal Channa Kadoo";
-      state[3].Dinner = "Biryani";
+      state[3].Dinner = "Biryani + Cold Drinks";
       state[4].Breakfast = "Egg tomato Onion";
       state[4].Lunch = "Daal Chawal (Black)";
       state[4].Dinner = "Chicken Daleem";
