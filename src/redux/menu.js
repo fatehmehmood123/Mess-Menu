@@ -13,37 +13,37 @@ const menuSlice = createSlice({
       day: 2,
       Breakfast: "Naan Channa",
       Lunch: "Kari Pakora + Roti",
-      Dinner: "Beef Pulao + Raita",
+      Dinner: "Chicken Manchurian + Chineese Rice",
     },
     {
       day: 3,
       Breakfast: "Paratha + Omelette",
-      Lunch: "Daal Moong + Chatni",
-      Dinner: "Chicken Karahi + Custard",
+      Lunch: "Daal Moong + Salad",
+      Dinner: "Chicken Karahi + Kheer/Zarda",
     },
     {
       day: 4,
-      Breakfast: "Aluu Bhujia + Paratha",
+      Breakfast: "French Toast",
       Lunch: "Aluu Gajar Mattar",
       Dinner: "Biryani + Cold Drinks",
     },
     {
       day: 5,
-      Breakfast: "Egg Tomato Onion",
+      Breakfast: "Aalu Anda",
       Lunch: "Daal Chawal (Yellow)",
-      Dinner: "Beef Daleem",
+      Dinner: "Beef Kofta",
     },
     {
       day: 6,
       Breakfast: "Aluu Paratha",
       Lunch: "Aluu Gobi",
-      Dinner: "Beef Chappal Kabab + Daal + Chatni",
+      Dinner: "Chicken Pulao + Raita",
     },
     {
       day: 0,
       Breakfast: "Halwa Poori Channa",
       Lunch: "Red Bean",
-      Dinner: "Chicken Pulao + Raita",
+      Dinner: "Beef Chappal Kabab + Mix Daal + Chatni",
     },
   ],
   reducers: {
@@ -53,22 +53,22 @@ const menuSlice = createSlice({
       state[0].Dinner = "Beef Shami + Chana Daal + Chatni";
       state[1].Breakfast = "Naan Channa";
       state[1].Lunch = "Kari Pakora + Rice";
-      state[1].Dinner = "Beef Pulao + Raita";
-      state[2].Breakfast = "Paratha + Aluu Bhujia";
+      state[1].Dinner = "Chicken Manchurian + Chineese Rice";
+      state[2].Breakfast = "Paratha + Omelette";
       state[2].Lunch = "Daal Mash + Salad";
-      state[2].Dinner = "Chicken Karahi + Custard";
+      state[2].Dinner = "Chicken Karahi + Kheer/Zarda";
       state[3].Breakfast = "Bread Butter Jam";
       state[3].Lunch = "Aluu Gajar Mattar";
       state[3].Dinner = "Biryani + Cold Drinks";
-      state[4].Breakfast = "Egg tomato Onion";
+      state[4].Breakfast = "Aalu Anda";
       state[4].Lunch = "Daal Chawal (Black)";
-      state[4].Dinner = "Aluu Beef Curry";
+      state[4].Dinner = "Beef Kofta";
       state[5].Breakfast = "Aluu paratha";
       state[5].Lunch = "Aluu Gobi";
-      state[5].Dinner = "Aluu Cutlets + Daal";
+      state[5].Dinner = "Chicken Pulao + Raita";
       state[6].Breakfast = "Halwa Poori Channa";
       state[6].Lunch = "Red Bean";
-      state[6].Dinner = "Chicken Pulao + Raita";
+      state[6].Dinner = "Aluu Cutlets + mix Daal + Chatni";
     },
   },
 });
