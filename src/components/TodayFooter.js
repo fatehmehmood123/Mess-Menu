@@ -4,8 +4,8 @@ function TodayFooter() {
     <>
       <footer className="fixed-bottom page-footer font-small">
         <div className="footer-copyright text-center py-3">
-          © 2023 Copyright: Muhammad Fateh Mehmood
-          <a
+          © 2024 Copyright: Muhammad Fateh Mehmood
+          <a  
             id="footerLink"
             rel="noreferrer"
             target="_blank"
