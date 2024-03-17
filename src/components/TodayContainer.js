@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "../css/WeekContainer.css";
 export default function TodayContainer(props) {
   const [isActive, setIsActive] = useState(false);
-
+  
+  
   useEffect(() => {
     // Simulate loading the data or triggering the animation
     setTimeout(() => {

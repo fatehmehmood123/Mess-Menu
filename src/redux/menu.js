@@ -7,7 +7,7 @@ const menuSlice = createSlice({
     {
       day: 1,
       Breakfast: "Daal Channa",
-      Lunch: "Chicken vegetable Roll + Chatni + Jam-e-Shireen",
+      Lunch: "Vegetable Roll + Mix Pakora + Chatni + Jam-e-Shireen",
       Dinner: "Chicken Manchurian + Chineese Rice",
     },
     {
@@ -18,32 +18,32 @@ const menuSlice = createSlice({
     },
     {
       day: 3,
-      Breakfast: "Chicken Curry",
-      Lunch: "Channa Chat + Rooh Afza",
+      Breakfast: "Mix vegetables",
+      Lunch: "Channa Chat + Mix Pakora + Rooh Afza",
       Dinner: "Daal Mash + Chatni + Tea",
     },
     {
       day: 4,
       Breakfast: "Aluu Anda Onion",
-      Lunch: "Mix Pakora + Tang (Orange)",
+      Lunch: "Vegetable Roll + Mix Pakora + Tang (Orange)",
       Dinner: "Biryani + Cold Drinks + Raita",
     },
     {
       day: 5,
       Breakfast: "Daal Channa",
-      Lunch: "Dahi Bhallay + Chatni + Jaam-e-Shireen",
+      Lunch: "Dahi Bhallay + Mix Pakora + Chatni + Jaam-e-Shireen",
       Dinner: "Seasonal Vegetables + Tea",
     },
     {
       day: 6,
-      Breakfast: "Mix Vegetables",
-      Lunch: "Mix Pakora + Chatni + Tang(Mango)",
+      Breakfast: "Chicken Curry",
+      Lunch: "Aluu Samosa + Mix Pakora + Chatni + Tang(Mango)",
       Dinner: "Chicken Kofta + Tea",
     },
     {
       day: 0,
       Breakfast: "Aluu Anda Curry",
-      Lunch: "Lobia with Channa Chat + Rooh Afza",
+      Lunch: "Lobia with Channa Chat + Mix Pakora + Rooh Afza",
       Dinner: "Chicken Pulao + Raita + Tea",
     },
   ],
@@ -95,25 +95,25 @@ const menuSlice = createSlice({
   reducers: {
     weekChange: (state) => {
       state[0].Breakfast = "Daal Mash";
-      state[0].Lunch = "Chicken vegetable Roll + Chatni + Jam-e-Shireen";
+      state[0].Lunch = "Vegetable Roll + Mix Pakora + Chatni + Jam-e-Shireen";
       state[0].Dinner = "Chicken Manchurian + Chineese Rice + Tea";
       state[1].Breakfast = "White Channa";
       state[1].Lunch = "Alu Samosa + Mix Pakora + Chatni + Tang (lemon)";
       state[1].Dinner = "Chicken Curry + Tea";
-      state[2].Breakfast = "Chicken Curry";
-      state[2].Lunch = "Channa Chat + Rooh Afza";
+      state[2].Breakfast = "Mix Vegetables";
+      state[2].Lunch = "Channa Chat + Mix Pakora + Rooh Afza";
       state[2].Dinner = "Daal Mash + Chatni + Tea";
       state[3].Breakfast = "Aluu Anda Onion";
-      state[3].Lunch = "Mix Pakora + Tang (Orange)";
+      state[3].Lunch = "Vegetable Roll + Mix Pakora + Tang (Orange)";
       state[3].Dinner = "Biryani + Cold Drinks + Raita";
       state[4].Breakfast = "Daal Channa";
-      state[4].Lunch = "Dahi Bhallay + Chatni + Jaam-e-Shireen";
+      state[4].Lunch = "Dahi Bhallay + Mix Pakora + Chatni + Jaam-e-Shireen";
       state[4].Dinner = "Seasonal Vegetables + Tea";
-      state[5].Breakfast = "Mix Vegetables";
-      state[5].Lunch = "Mix Pakora + Chatni + Tang(Mango)";
+      state[5].Breakfast = "Chicken Curry";
+      state[5].Lunch = "Aluu Samosa + Mix Pakora + Chatni + Tang(Mango)";
       state[5].Dinner = "Chicken Kofta + Tea";
       state[6].Breakfast = "Aluu Anda Curry";
-      state[6].Lunch = "Lobia with Channa Chat + Rooh Afza";
+      state[6].Lunch = "Lobia with Channa Chat + Mix Pakora + Rooh Afza"; 
       state[6].Dinner = "Chicken Pulao + Raita + Tea";
     },
     // weekChange: (state) => {
