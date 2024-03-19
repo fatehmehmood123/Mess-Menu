@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import WeekContainer from "../components/WeekContainer";
 import { useSelector, useDispatch } from "react-redux";
-import { weekChange } from "../redux/menu.js";
+import { weekChange,nextWeek } from "../redux/menu.js";
 
 export default function Weekly() {
   //initializing Current date and
@@ -52,6 +52,7 @@ export default function Weekly() {
         sunLunch={weekMenu[6].Lunch}
         sunBreakfast={weekMenu[6].Breakfast}
       />
+      {/* <button type="button" class="btn btn-secondary" onClick={() => dispatch(nextWeek())}>Next Week</button> */}
     </>
   );
 }

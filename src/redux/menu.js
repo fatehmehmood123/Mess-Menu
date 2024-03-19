@@ -6,7 +6,7 @@ const menuSlice = createSlice({
   initialState: [
     {
       day: 1,
-      Breakfast: "Daal Channa",
+      Breakfast: "Daal Mash",
       Lunch: "Vegetable Roll + Mix Pakora + Chatni + Jam-e-Shireen",
       Dinner: "Chicken Manchurian + Chineese Rice",
     },
@@ -94,6 +94,29 @@ const menuSlice = createSlice({
   // ],
   reducers: {
     weekChange: (state) => {
+      state[0].Breakfast = "Daal Channa";
+      state[0].Lunch = "Vegetable Roll + Mix Pakora + Chatni + Jam-e-Shireen";
+      state[0].Dinner = "Chicken Manchurian + Chineese Rice + Tea";
+      state[1].Breakfast = "White Channa";
+      state[1].Lunch = "Alu Samosa + Mix Pakora + Chatni + Tang (lemon)";
+      state[1].Dinner = "Chicken Curry + Tea";
+      state[2].Breakfast = "Mix Vegetables";
+      state[2].Lunch = "Channa Chat + Mix Pakora + Rooh Afza";
+      state[2].Dinner = "Daal Mash + Chatni + Tea";
+      state[3].Breakfast = "Aluu Anda Onion";
+      state[3].Lunch = "Vegetable Roll + Mix Pakora + Tang (Orange)";
+      state[3].Dinner = "Biryani + Cold Drinks + Raita";
+      state[4].Breakfast = "Daal Channa";
+      state[4].Lunch = "Dahi Bhallay + Mix Pakora + Chatni + Jaam-e-Shireen";
+      state[4].Dinner = "Seasonal Vegetables + Tea";
+      state[5].Breakfast = "Chicken Curry";
+      state[5].Lunch = "Aluu Samosa + Mix Pakora + Chatni + Tang(Mango)";
+      state[5].Dinner = "Chicken Kofta + Tea";
+      state[6].Breakfast = "Aluu Anda Curry";
+      state[6].Lunch = "Lobia with Channa Chat + Mix Pakora + Rooh Afza"; 
+      state[6].Dinner = "Chicken Pulao + Raita + Tea";
+    },
+    nextWeek: (state) => {
       state[0].Breakfast = "Daal Mash";
       state[0].Lunch = "Vegetable Roll + Mix Pakora + Chatni + Jam-e-Shireen";
       state[0].Dinner = "Chicken Manchurian + Chineese Rice + Tea";
@@ -141,5 +164,5 @@ const menuSlice = createSlice({
     // },
   },
 });
-export const { weekChange } = menuSlice.actions;
+export const { weekChange,nextWeek } = menuSlice.actions;
 export const menuReducer = menuSlice.reducer;
