@@ -36,7 +36,7 @@ export default function TodayContainer(props) {
                 <td>{props.lunch}</td>
               </tr>
               <tr>
-                <td>Dinner (7:30 - 8:30)</td>
+                <td>Dinner (7:30 - 9:00)</td>
                 <td>{props.dinner}</td>
               </tr>
             </tbody>

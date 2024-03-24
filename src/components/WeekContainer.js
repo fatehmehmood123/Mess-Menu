@@ -27,7 +27,7 @@ export default function WeekContainer(props) {
                   <th>Day</th>
                   <th>Sehri (2:45 Onward)</th>
                   <th>Aftari</th>
-                  <th>Dinner (7:30 - 8:30)</th>
+                  <th>Dinner (7:30 - 9:00)</th>
                 </tr>
                 <tr>
                   <td>Monday</td>
