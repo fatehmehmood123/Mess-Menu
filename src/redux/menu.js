@@ -59,18 +59,18 @@ const menuSlice = createSlice({
       day: 2,
       Breakfast: "Naan Channa",
       Lunch: "Kari Pakora + Roti",
-      Dinner: "Chicken Manchurian + Chineese Rice",
+      Dinner: "Chicken Manchurian + Chinese Rice",
     },
     {
       day: 3,
       Breakfast: "Paratha + Omelette",
       Lunch: "Daal Moong + Salad",
-      Dinner: "Chicken Karahi + Kheer/Zarda",
+      Dinner: "Chicken Karahi + Kheer",
     },
     {
       day: 4,
       Breakfast: "French Toast",
-      Lunch: "Aluu Gajar Mattar",
+      Lunch: "Aluu Mattar",
       Dinner: "Biryani + Cold Drinks",
     },
     {
@@ -145,12 +145,12 @@ const menuSlice = createSlice({
       state[0].Dinner = "Beef Shami + Chana Daal + Chatni";
       state[1].Breakfast = "Naan Channa";
       state[1].Lunch = "Kari Pakora + Rice";
-      state[1].Dinner = "Chicken Manchurian + Chineese Rice";
+      state[1].Dinner = "Chicken Manchurian + Chinese Rice";
       state[2].Breakfast = "Paratha + Omelette";
       state[2].Lunch = "Daal Mash + Salad";
-      state[2].Dinner = "Chicken Karahi + Kheer/Zarda";
+      state[2].Dinner = "Chicken Karahi + Zarda";
       state[3].Breakfast = "Bread Butter Jam";
-      state[3].Lunch = "Aluu Gajar Mattar";
+      state[3].Lunch = "Aluu Mattar";
       state[3].Dinner = "Biryani + Cold Drinks";
       state[4].Breakfast = "Aalu Anda";
       state[4].Lunch = "Daal Chawal (Black)";
