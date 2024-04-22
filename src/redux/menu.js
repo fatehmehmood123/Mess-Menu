@@ -89,7 +89,7 @@ const menuSlice = createSlice({
       day: 0,
       Breakfast: "Halwa Poori Channa",
       Lunch: "Red Bean",
-      Dinner: "Beef Chappal Kabab + Mix Daal + Chatni",
+      Dinner: "Aluu Cutlets + Mix Daal + Chatni",
     },
   ],
   reducers: {
@@ -160,7 +160,7 @@ const menuSlice = createSlice({
       state[5].Dinner = "Chicken Pulao + Raita";
       state[6].Breakfast = "Halwa Poori Channa";
       state[6].Lunch = "Red Bean";
-      state[6].Dinner = "Aluu Cutlets + mix Daal + Chatni";
+      state[6].Dinner = "Beef Chappal Kabab + mix Daal + Chatni";
     },
   },
 });
