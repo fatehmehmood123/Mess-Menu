@@ -7,7 +7,7 @@ const menuSlice = createSlice({
     {
       day: 1,
       Breakfast: "Fried Egg + Paratha",
-      Lunch: "Aluu Gobi",
+      Lunch: "Aluu Palak",
       Dinner: "Chicken Roast + Channa Daal + Chatni",
     },
     {
@@ -37,7 +37,7 @@ const menuSlice = createSlice({
     {
       day: 6,
       Breakfast: "Aluu Paratha",
-      Lunch: "Alu Palak",
+      Lunch: "Alu Gobi",
       Dinner: "Chicken Pulao + Raita",
     },
     {
@@ -50,14 +50,14 @@ const menuSlice = createSlice({
   reducers: {
     weekChange: (state) => {
       state[0].Breakfast = "Fried Egg + Paratha";
-      state[0].Lunch = "Aluu Gobi";
+      state[0].Lunch = "Aluu Palak";
       state[0].Dinner = "Beef Shami + Chana Daal + Chatni";
       state[1].Breakfast = "Naan Channa";
       state[1].Lunch = "Kari Pakora + Rice";
       state[1].Dinner = "Channa Pulao";
       state[2].Breakfast = "Paratha + Omelette";
       state[2].Lunch = "Daal Mash + Salad";
-      state[2].Dinner = "Chicken Karahi + Zarda";
+      state[2].Dinner = "Chicken Karahi + Gajar halwa";
       state[3].Breakfast = "Bread Butter Jam";
       state[3].Lunch = "Aluu Matar Gajar";
       state[3].Dinner = "Biryani + Cold Drinks";
@@ -65,7 +65,7 @@ const menuSlice = createSlice({
       state[4].Lunch = "Daal Chawal (Black)";
       state[4].Dinner = "Chicken Daleem";
       state[5].Breakfast = "Aluu paratha";
-      state[5].Lunch = "Alu Palak";
+      state[5].Lunch = "Alu Gobi";
       state[5].Dinner = "Chicken Pulao + Raita";
       state[6].Breakfast = "Halwa Poori Channa";
       state[6].Lunch = "Red Bean";
