@@ -2,7 +2,27 @@ import React, { useEffect, useState } from "react";
 import "../css/WeekContainer.css";
 export default function WeekContainer(props) {
   const [isActive, setIsActive] = useState(false);
-
+  function getWeekRange(date = new Date()) {
+    // Clone the input date to avoid mutation
+    const inputDate = new Date(date);
+    
+    // Calculate the Monday of the week
+    const monday = new Date(inputDate);
+    const day = inputDate.getDay(); // 0 (Sunday) to 6 (Saturday)
+    const diffToMonday = day === 0 ? -6 : 1 - day; // Adjust to get Monday
+    monday.setDate(inputDate.getDate() + diffToMonday);
+    
+    // Calculate the Sunday of the week (6 days after Monday)
+    const sunday = new Date(monday);
+    sunday.setDate(monday.getDate() + 6);
+  
+    // Format dates (e.g., "February 24, 2025")
+    const options = {  day: 'numeric',month: 'long'};
+    const formattedMonday = monday.toLocaleDateString('en-UK', options);
+    const formattedSunday = sunday.toLocaleDateString('en-UK', options);
+  
+    return `${formattedMonday} to ${formattedSunday}`;
+  }
   useEffect(() => {
     // Simulate loading the data or triggering the animation
     setTimeout(() => {
@@ -13,8 +33,8 @@ export default function WeekContainer(props) {
   return (
    
         <div id="weekContainer" className="container  my-3">
-          {/* <h2 style = {{"textAlign":"center"}}>رمضان المبارک  </h2> */}
-          <h3>This Week Menu  </h3>
+          {<h2 style = {{"textAlign":"center"}}>رمضان المبارک  </h2>}
+          <h3>{getWeekRange()}</h3>
 
           <div
             className={`table-container ${
@@ -25,9 +45,9 @@ export default function WeekContainer(props) {
               <tbody>
                 <tr className="table-active">
                   <th>Day</th>
-                  <th>Breakfast </th>
-                  <th>Lunch</th>
-                  <th>Dinner </th>
+                  <th>Sehri (2:45 am onwards) </th>
+                  <th>Iftar</th>
+                  <th>Dinner (7:30 - 9:00) </th>
                 </tr>
                 <tr>
                   <td>Monday</td>

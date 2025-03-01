@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import "../css/WeekContainer.css";
 export default function TodayContainer(props) {
   const [isActive, setIsActive] = useState(false);
-  
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
+  const currentDate = new Date();
+  const currentFormattedDate = currentDate.toLocaleDateString('en-US', options);
   
   useEffect(() => {
     // Simulate loading the data or triggering the animation
@@ -13,8 +20,8 @@ export default function TodayContainer(props) {
   return (
     <>
       <div className="container my-4">
-      {/* <h2 style = {{"textAlign":"center"}}>رمضان المبارک  </h2> */}
-        <h3>Today Menu</h3>
+      <h2 style = {{"textAlign":"center"}}>رمضان المبارک  </h2>
+        <h3>{currentFormattedDate}</h3>
         <div className={`table-container ${isActive ? "active" : ""}`}>
           <table
             className="container my-4 table table-hover shadow p-3 mb-5 bg-body-tertiary rounded"
@@ -28,15 +35,15 @@ export default function TodayContainer(props) {
             </thead>
             <tbody>
               <tr>
-                <td>Breakfast</td>
+                <td>Sehri (2:45 am onwards)</td>
                 <td>{props.breakfast}</td>
               </tr>
               <tr>
-                <td>Lunch</td>
+                <td>Iftar</td>
                 <td>{props.lunch}</td>
               </tr>
               <tr>
-                <td>Dinner</td>
+                <td>Dinner (7:30 - 9:00)</td>
                 <td>{props.dinner}</td>
               </tr>
             </tbody>
