@@ -13,32 +13,3 @@ code {
     monospace;
 }
 
-body.light {
-  background-color: white;
-  color: black;
-}
-
-body.dark {
-  background-color: black;
-  color: white;
-}
-
-body.dark .navbar {
-  background-color: #333;
-  color: white;
-}
-
-body.dark .table {
-  background-color: #444;
-  color: white;
-}
-
-body.dark .table th,
-body.dark .table td {
-  border-color: #555;
-}
-
-body.dark .horizontal-scroller {
-  background-color: #333;
-  color: white;
-}
