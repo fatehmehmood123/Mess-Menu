@@ -21,7 +21,7 @@ export default function TodayContainer(props) {
     <>
       <div className="container my-4">
       <h2 style = {{"textAlign":"center"}}>رمضان المبارک  </h2>
-        <h3>{currentFormattedDate}</h3>
+        <h3 style={{ textAlign: "center" }}>{currentFormattedDate}</h3>
         <div className={`table-container ${isActive ? "active" : ""}`}>
           <table
             className="container my-4 table table-hover shadow p-3 mb-5 bg-body-tertiary rounded"
