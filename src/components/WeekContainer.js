@@ -34,7 +34,7 @@ export default function WeekContainer(props) {
    
         <div id="weekContainer" className="container  my-3">
           {<h2 style = {{"textAlign":"center"}}>رمضان المبارک  </h2>}
-          <h3>{getWeekRange()}</h3>
+          <h3 style={{ textAlign: "center" }}>{getWeekRange()}</h3>
 
           <div
             className={`table-container ${
