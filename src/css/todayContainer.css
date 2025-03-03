@@ -1,35 +1,19 @@
-/* filepath: /E:/MessMenu/src/css/WeekContainer.css */
 table {
   border-collapse: collapse;
   width: 100%;
 }
-
 td,
 th {
   border: 1px solid #535151;
   text-align: left;
   padding: 8px;
 }
-
 .table-container {
   max-height: 0; /* Initially hide the table */
-  overflow: hidden;
-  overflow-y: auto; /* Ensure vertical scrolling */
+  
   transition: max-height 2s ease-in-out; /* Apply transition to max-height property */
 }
-
 .table-container.active {
   max-height: 1000px; /* Set an appropriate max-height value to reveal the table */
 }
 
-@media (max-width: 600px) {
-  .table-container {
-    overflow-x: auto; /* Ensure horizontal scrolling on small screens */
-  }
-
-  .table th,
-  .table td {
-    font-size: 12px;
-    padding: 4px;
-  }
-}
