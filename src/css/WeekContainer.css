@@ -25,6 +25,7 @@ th {
 @media (max-width: 600px) {
   .table-container {
     overflow-x: auto; /* Ensure horizontal scrolling on small screens */
+    overflow-y: auto;
   }
 
   .table th,

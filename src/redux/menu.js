@@ -51,7 +51,7 @@ const menuSlice = createSlice({
     // Ramzan
     {
       day: 1,
-      Breakfast: "Murgh Channay / Daal Mash",
+      Breakfast: "Daal Mash",
       Lunch: "Chicken Veg Roll, Pakora Fries, Jaame-Sheerin",
       Dinner: "Chicken Manchurian, Chinese Rice",
     },
@@ -118,7 +118,7 @@ const menuSlice = createSlice({
 
 
 //Ramzan
-      state[0].Breakfast = "Murgh Channay / Daal Mash";
+      state[0].Breakfast = "Murgh Channay";
       state[0].Lunch = "Chicken Veg Roll, Pakora Fries, Jaame-Sheerin";
       state[0].Dinner = "Chicken Manchurian, Chinese Rice";
 
