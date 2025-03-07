@@ -17,10 +17,13 @@ export default function TodayContainer(props) {
       setIsActive(true);
     }, 100); // Adjust the delay as needed
   }, []);
+
   return (
     <>
       <div className="container my-4">
-      <h2 style = {{"textAlign":"center"}}>رمضان المبارک  </h2>
+      <h2 style={{ textAlign: "center" }}>
+          رمضان المبارک <span>{currentDate.getDate() - 1}</span>
+        </h2>
         <h3 style={{ textAlign: "center" }}>{currentFormattedDate}</h3>
         <div className={`table-container ${isActive ? "active" : ""}`}>
           <table
