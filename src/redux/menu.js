@@ -117,7 +117,7 @@ const menuSlice = createSlice({
       // state[6].Dinner = "Beef Chappal Kabab + Mix Daal + Raita";
 
 
-//Ramzan
+//Raaamzan
       state[0].Breakfast = "Murgh Channay";
       state[0].Lunch = "Chicken Veg Roll, Pakora Fries, Jaame-Sheerin";
       state[0].Dinner = "Chicken Manchurian, Chinese Rice";
