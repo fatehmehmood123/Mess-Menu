@@ -6,7 +6,7 @@ const menuSlice = createSlice({
   initialState: [
     {
       day: 1,
-      Breakfast: "Fried Egg + Paratha",
+      Breakfast: "Fried Egg + Paratha + Omelette",
       Lunch: "Aluu Palak",
       Dinner: "Chicken Roast + Channa Daal + Chatni",
     },
