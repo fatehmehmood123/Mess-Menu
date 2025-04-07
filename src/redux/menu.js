@@ -4,93 +4,93 @@ const menuSlice = createSlice({
   name: "menu",
  // Normal days
   initialState: [
-    // {
-    //   day: 1,
-    //   Breakfast: "Fried Egg + Paratha",
-    //   Lunch: "Aluu Palak",
-    //   Dinner: "Chicken Roast + Channa Daal + Chatni",
-    // },
-    // {
-    //   day: 2,
-    //   Breakfast: "Naan Channa",
-    //   Lunch: "Kari Pakora + Roti",
-    //   Dinner: "Chicken Manchurian + Chinese Rice",
-    // },
-    // {
-    //   day: 3,
-    //   Breakfast: "Paratha + Omelette",
-    //   Lunch: "Daal Mash + Salad",
-    //   Dinner: "Chicken Karahi + Zarda",
-    // },
-    // {
-    //   day: 4,
-    //   Breakfast: "French Toast",
-    //   Lunch: "Aluu Matar Gajar",
-    //   Dinner: "Biryani + Cold Drinks",
-    // },
-    // {
-    //   day: 5,
-    //   Breakfast: "Aalu Anda",
-    //   Lunch: "Daal Chawal (Yellow)",
-    //   Dinner: "Chicken Daleem + Naan",
-    // },
-    // {
-    //   day: 6,
-    //   Breakfast: "Aluu Paratha",
-    //   Lunch: "Alu Gobi",
-    //   Dinner: "Chicken Pulao + Raita",
-    // },
-    // {
-    //   day: 0,
-    //   Breakfast: "Halwa Poori Channa",
-    //   Lunch: "Red Bean",
-    //   Dinner: "Aluu Cutlets + Mix Daal + Chatni",
-    // },
-
-
-    // Ramzan
     {
       day: 1,
-      Breakfast: "Daal Mash",
-      Lunch: "Chicken Veg Roll, Pakora Fries, Jaame-Sheerin",
-      Dinner: "Chicken Manchurian, Chinese Rice",
+      Breakfast: "Fried Egg + Paratha",
+      Lunch: "Aluu Palak",
+      Dinner: "Chicken Roast + Channa Daal + Chatni",
     },
     {
       day: 2,
-      Breakfast: "Aloo Anda Onion",
-      Lunch: "Aloo Samosa, Mix Pakora, Tang Lemon",
-      Dinner: "Chicken Curry",
+      Breakfast: "Naan Channa",
+      Lunch: "Kari Pakora + Roti",
+      Dinner: "Chicken Manchurian + Chinese Rice",
     },
     {
       day: 3,
-      Breakfast: "White Channa",
-      Lunch: "Dahi Bhalay, Mix pakora, Jaame-Sheerin",
-      Dinner: "Chicken Kofta",
+      Breakfast: "Paratha + Omelette",
+      Lunch: "Daal Mash + Salad",
+      Dinner: "Chicken Karahi + Zarda",
     },
     {
       day: 4,
-      Breakfast: "Aloo Keema",
-      Lunch: "Chicken Veg Roll, Pakora Fries, Tang Orange",
-      Dinner: "Biryani , Cold Drinks",
+      Breakfast: "French Toast",
+      Lunch: "Aluu Matar Gajar",
+      Dinner: "Biryani + Cold Drinks",
     },
     {
       day: 5,
-      Breakfast: "Omelette",
-      Lunch: "Channa Chaat, Mix Pakora, Rooh Afza",
-      Dinner: "Chicken Daleem, Naan",
+      Breakfast: "Aalu Anda",
+      Lunch: "Daal Chawal (Yellow)",
+      Dinner: "Chicken Daleem + Naan",
     },
     {
       day: 6,
-      Breakfast: "Chicken Curry",
-      Lunch: "Chicken Veg Samosa, Mix Pakora, Tang Orange",
-      Dinner: "Chicken Nihari, Naan",
+      Breakfast: "Aluu Paratha",
+      Lunch: "Alu Gobi",
+      Dinner: "Chicken Pulao + Raita",
     },
     {
       day: 0,
-      Breakfast: "Aloo Anda Curry",
-      Lunch: "Lobia & Channa Chaat, Mix Pakora, Rooh Afza",
-      Dinner: "Chicken Pulao",
+      Breakfast: "Halwa Poori Channa",
+      Lunch: "Red Bean",
+      Dinner: "Aluu Cutlets + Mix Daal + Chatni",
     },
+
+
+    // Ramzan
+    // {
+    //   day: 1,
+    //   Breakfast: "Daal Mash",
+    //   Lunch: "Chicken Veg Roll, Pakora Fries, Jaame-Sheerin",
+    //   Dinner: "Chicken Manchurian, Chinese Rice",
+    // },
+    // {
+    //   day: 2,
+    //   Breakfast: "Aloo Anda Onion",
+    //   Lunch: "Aloo Samosa, Mix Pakora, Tang Lemon",
+    //   Dinner: "Chicken Curry",
+    // },
+    // {
+    //   day: 3,
+    //   Breakfast: "White Channa",
+    //   Lunch: "Dahi Bhalay, Mix pakora, Jaame-Sheerin",
+    //   Dinner: "Chicken Kofta",
+    // },
+    // {
+    //   day: 4,
+    //   Breakfast: "Aloo Keema",
+    //   Lunch: "Chicken Veg Roll, Pakora Fries, Tang Orange",
+    //   Dinner: "Biryani , Cold Drinks",
+    // },
+    // {
+    //   day: 5,
+    //   Breakfast: "Omelette",
+    //   Lunch: "Channa Chaat, Mix Pakora, Rooh Afza",
+    //   Dinner: "Chicken Daleem, Naan",
+    // },
+    // {
+    //   day: 6,
+    //   Breakfast: "Chicken Curry",
+    //   Lunch: "Chicken Veg Samosa, Mix Pakora, Tang Orange",
+    //   Dinner: "Chicken Nihari, Naan",
+    // },
+    // {
+    //   day: 0,
+    //   Breakfast: "Aloo Anda Curry",
+    //   Lunch: "Lobia & Channa Chaat, Mix Pakora, Rooh Afza",
+    //   Dinner: "Chicken Pulao",
+    // },
   ],
   reducers: {
     weekChange: (state) => {
