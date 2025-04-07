@@ -37,7 +37,6 @@ export default function WeekContainer(props) {
   return (
    
         <div id="weekContainer" className="container  my-3">
-          {<h2 style = {{"textAlign":"center"}}>رمضان المبارک  </h2>}
           <h3 style={{ textAlign: "center" }}>{getWeekRange()}</h3>
 
           <div
@@ -49,9 +48,9 @@ export default function WeekContainer(props) {
               <tbody>
                 <tr className="table-active">
                   <th>Day</th>
-                  <th>Sehri (2:45 am onwards) </th>
-                  <th>Iftar</th>
-                  <th>Dinner (7:30 - 9:00) </th>
+                  <th>Breakfast </th>
+                  <th>Lunch </th>
+                  <th>Dinner (7:30 PM - 9:30 PM) </th>
                 </tr>
                 <tr>
                   <td>Monday</td>
