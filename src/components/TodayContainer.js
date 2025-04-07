@@ -22,7 +22,7 @@ export default function TodayContainer(props) {
     <>
       <div className="container my-4">
       <h2 style={{ textAlign: "center" }}>
-          رمضان المبارک <span>{currentDate.getDate() - 1}</span>
+          <span>{currentDate.getDate() - 1}</span>
         </h2>
         <h3 style={{ textAlign: "center" }}>{currentFormattedDate}</h3>
         <div className={`table-container ${isActive ? "active" : ""}`}>
@@ -38,15 +38,15 @@ export default function TodayContainer(props) {
             </thead>
             <tbody>
               <tr>
-                <td>Sehri (2:45 am onwards)</td>
+                <td>Breakfast (7:30 AM - 9:30 AM)</td>
                 <td>{props.breakfast}</td>
               </tr>
               <tr>
-                <td>Iftar</td>
+                <td>Lunch</td>
                 <td>{props.lunch}</td>
               </tr>
               <tr>
-                <td>Dinner (7:30 - 9:00)</td>
+                <td>Dinner (7:30 PM - 9:30 PM)</td>
                 <td>{props.dinner}</td>
               </tr>
             </tbody>
