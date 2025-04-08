@@ -50,7 +50,7 @@ export default function WeekContainer(props) {
                   <th>Day</th>
                   <th>Breakfast </th>
                   <th>Lunch </th>
-                  <th>Dinner (7:30 PM - 9:30 PM) </th>
+                  <th>Dinner </th>
                 </tr>
                 <tr>
                   <td>Monday</td>

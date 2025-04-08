@@ -39,11 +39,11 @@ export default function TodayContainer(props) {
                 <td>{props.breakfast}</td>
               </tr>
               <tr>
-                <td>Lunch </td>
+                <td>Lunch  </td>
                 <td>{props.lunch}</td>
               </tr>
               <tr>
-                <td>Dinner (7:30 PM - 9:30 PM) </td>
+                <td>Dinner  </td>
                 <td>{props.dinner}</td>
               </tr>
             </tbody>

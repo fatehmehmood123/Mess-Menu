@@ -8,30 +8,30 @@ const menuSlice = createSlice({
       day: 1,
       Breakfast: "Omelette + Paratha",
       Lunch: "Aloo Palak",
-      Dinner: "Beef Kabli Pulao + Raita",
+      Dinner: "Channa Pulao + Raita",
     },
     {
       day: 2,
       Breakfast: "Kulcha Channa",
       Lunch: "Daal Mash + Salad",
-      Dinner: "Murgh Channay",
+      Dinner: "Murgh Channay/Chicken Daleem",
     },
     {
       day: 3,
       Breakfast: "Half & Full Fried Egg",
-      Lunch: "Kari Pakora + Rice",
-      Dinner: "Chicken Achari + Zarda",
+      Lunch: "Kari Pakora + Rice/Naan",
+      Dinner: "Chicken Achari + Zarda/Kheer",
     },
     {
       day: 4,
-      Breakfast: "Scrambled Egg",
+      Breakfast: "Scrambled Egg/ Egg Tomato Onion",
       Lunch: "Aloo Matar Gajar",
       Dinner: "Biryani + Cold Drinks",
     },
     {
       day: 5,
-      Breakfast: "Bread, Butter & Jam",
-      Lunch: "Daal Chawal (Yellow)",
+      Breakfast: "Bread, Butter & Jam/ French Toast",
+      Lunch: "Daal Chawal (Yellow/Black)",
       Dinner: "Aloo Beef Keema + Chapati",
     },
     {
@@ -44,7 +44,7 @@ const menuSlice = createSlice({
       day: 0,
       Breakfast: "Halwa Puri + Channa",
       Lunch: "Beef Curry + White Rice + Salad",
-      Dinner: "Chicken Chowmein + Mix Daal + Chatni",
+      Dinner: "Chicken Chowmein/Mix Daal + Mix Daal + Chatni",
     },
 
 
@@ -96,25 +96,25 @@ const menuSlice = createSlice({
     weekChange: (state) => {
       state[0].Breakfast = "Omelette + Paratha";
       state[0].Lunch = "Aloo Palak";
-      state[0].Dinner = "Channa Pulao + Raita";
+      state[0].Dinner = "Beef Kabuli Pulao + Raita";
       state[1].Breakfast = "Kulcha Channa";
       state[1].Lunch = "Daal Mash + Salad";
-      state[1].Dinner = "Chicken Daleem + Naan";
+      state[1].Dinner = "Murgh Channay/Chicken Daleem";
       state[2].Breakfast = "Half & Full Fried Egg + Paratha";
-      state[2].Lunch = "Kari Pakora + Naan";
-      state[2].Dinner = "Chicken Achari + Kheer";
-      state[3].Breakfast = "Egg Onion & Tomato";
+      state[2].Lunch = "Kari Pakora + Naan/Rice";
+      state[2].Dinner = "Chicken Achari + Kheer/Zarda";
+      state[3].Breakfast = "Egg Onion & Tomato/Scrambled Egg";
       state[3].Lunch = "Aloo Matar Gajar";
       state[3].Dinner = "Biryani + Cold Drinks";
-      state[4].Breakfast = "French Toast";
-      state[4].Lunch = "Daal Chawal (Black)";
+      state[4].Breakfast = "French Toast/ Bread, Butter & Jam";
+      state[4].Lunch = "Daal Chawal (Black/Yellow)";
       state[4].Dinner = "Aloo Beef Keema + Chapati";
       state[5].Breakfast = "Aloo paratha";
       state[5].Lunch = "Black Channa";
       state[5].Dinner = "Chicken Pulao + Raita";
       state[6].Breakfast = "Halwa Puri + Channa";
       state[6].Lunch = "Beef Curry + Rice + Salad";
-      state[6].Dinner = "Aloo Cutlets + Mix Daal + Chatni";
+      state[6].Dinner = "Chicken Chowmien/Aloo Cutlets + Mix Daal + Chatni";
 
 
 //Raaamzan
