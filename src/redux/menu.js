@@ -14,12 +14,12 @@ const menuSlice = createSlice({
       day: 2,
       Breakfast: "Kulcha Channa",
       Lunch: "Daal Mash + Salad",
-      Dinner: "Murgh Channay/Chicken Daleem",
+      Dinner: "Murgh Channay",
     },
     {
       day: 3,
       Breakfast: "Half & Full Fried Egg",
-      Lunch: "Kari Pakora + Rice/Naan",
+      Lunch: "Kari Pakora + Naan",
       Dinner: "Chicken Achari + Zarda/Kheer",
     },
     {
@@ -99,9 +99,9 @@ const menuSlice = createSlice({
       state[0].Dinner = "Beef Kabuli Pulao + Raita";
       state[1].Breakfast = "Kulcha Channa";
       state[1].Lunch = "Daal Mash + Salad";
-      state[1].Dinner = "Murgh Channay/Chicken Daleem";
+      state[1].Dinner = "Chicken Daleem";
       state[2].Breakfast = "Half & Full Fried Egg + Paratha";
-      state[2].Lunch = "Kari Pakora + Naan/Rice";
+      state[2].Lunch = "Kari Pakora + Rice";
       state[2].Dinner = "Chicken Achari + Kheer/Zarda";
       state[3].Breakfast = "Egg Onion & Tomato/Scrambled Egg";
       state[3].Lunch = "Aloo Matar Gajar";
