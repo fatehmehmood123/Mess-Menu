@@ -20,18 +20,18 @@ const menuSlice = createSlice({
       day: 3,
       Breakfast: "Half & Full Fried Egg",
       Lunch: "Kari Pakora + Naan",
-      Dinner: "Chicken Achari + Zarda/Kheer",
+      Dinner: "Chicken Achari + Kheer",
     },
     {
       day: 4,
-      Breakfast: "Scrambled Egg/ Egg Tomato Onion",
+      Breakfast: "Egg Tomato Onion",
       Lunch: "Aloo Matar Gajar",
       Dinner: "Biryani + Cold Drinks",
     },
     {
       day: 5,
-      Breakfast: "Bread, Butter & Jam/ French Toast",
-      Lunch: "Daal Chawal (Yellow/Black)",
+      Breakfast: "French Toast",
+      Lunch: "Daal Chawal (Black)",
       Dinner: "Aloo Beef Keema + Chapati",
     },
     {
@@ -44,7 +44,7 @@ const menuSlice = createSlice({
       day: 0,
       Breakfast: "Halwa Puri + Channa",
       Lunch: "Beef Curry + White Rice + Salad",
-      Dinner: "Chicken Chowmein/Mix Daal + Mix Daal + Chatni",
+      Dinner: "Chicken Chowmein",
     },
 
 
@@ -102,19 +102,19 @@ const menuSlice = createSlice({
       state[1].Dinner = "Chicken Daleem";
       state[2].Breakfast = "Half & Full Fried Egg + Paratha";
       state[2].Lunch = "Kari Pakora + Rice";
-      state[2].Dinner = "Chicken Achari + Kheer/Zarda";
-      state[3].Breakfast = "Egg Onion & Tomato/Scrambled Egg";
+      state[2].Dinner = "Chicken Achari + Zarda";
+      state[3].Breakfast = "Scrambled Egg";
       state[3].Lunch = "Aloo Matar Gajar";
       state[3].Dinner = "Biryani + Cold Drinks";
-      state[4].Breakfast = "French Toast/ Bread, Butter & Jam";
-      state[4].Lunch = "Daal Chawal (Black/Yellow)";
+      state[4].Breakfast = "Bread, Butter & Jam";
+      state[4].Lunch = "Daal Chawal (Yellow)";
       state[4].Dinner = "Aloo Beef Keema + Chapati";
       state[5].Breakfast = "Aloo paratha";
       state[5].Lunch = "Black Channa";
       state[5].Dinner = "Chicken Pulao + Raita";
       state[6].Breakfast = "Halwa Puri + Channa";
       state[6].Lunch = "Beef Curry + Rice + Salad";
-      state[6].Dinner = "Chicken Chowmien/Aloo Cutlets + Mix Daal + Chatni";
+      state[6].Dinner = "Aloo Cutlets + Mix Daal + Chatni";
 
 
 //Raaamzan
