@@ -1,0 +1,9 @@
+{
+  "watch": ["src"],
+  "ext": "js,jsx,ts,tsx,css,scss,json",
+  "ignore": ["node_modules", "build"],
+  "exec": "react-scripts start",
+  "env": {
+    "FAST_REFRESH": "true"
+  }
+}

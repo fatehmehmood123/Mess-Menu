@@ -25,7 +25,6 @@ const menuSlice = createSlice({
     {
       day: 4,
       Breakfast: "Egg Tomato Onion",
-      Lunch: "Kaddu Channa",
       Lunch: "Daal Kaddu",
       Dinner: "Biryani + Cold Drinks",
     },
