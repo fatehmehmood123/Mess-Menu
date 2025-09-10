@@ -52,10 +52,10 @@ Run the test suites:
 npm test
 ```
 
-
 ### Build
 
 Build the production-ready version:
+
 
 ```bash
 npm run build
