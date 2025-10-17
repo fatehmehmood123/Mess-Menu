@@ -3,8 +3,13 @@ import Navbar from "../components/Navbar";
 import WeekContainer from "../components/WeekContainer";
 import { useSelector, useDispatch } from "react-redux";
 import { weekChange } from "../redux/menu.js";
+import Userback from "@userback/widget";
 
 export default function Weekly() {
+  // Initialize Userback feedback widget
+  useEffect(() => {
+    Userback("A-OnuXRblXLHIFp6PEPSwFMbm5M");
+  }, []);
   //initializing Current date and
   let currentDate = new Date();
 

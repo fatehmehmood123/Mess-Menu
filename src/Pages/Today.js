@@ -4,8 +4,13 @@ import TodayContainer from "../components/TodayContainer";
 import TodayFooter from "../components/TodayFooter";
 import { useSelector, useDispatch } from "react-redux";
 import { weekChange } from "../redux/menu.js";
+import Userback from "@userback/widget";
 
 export default function Daily() {
+  // Initialize Userback feedback widget
+  useEffect(() => {
+    Userback("A-OnuXRblXLHIFp6PEPSwFMbm5M");
+  }, []);
   //initializing Current date using UseMemo hook to avoid re-rendering
   const currentDate = useMemo(() => new Date(), []);
 
