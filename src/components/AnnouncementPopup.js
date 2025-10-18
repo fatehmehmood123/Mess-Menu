@@ -282,21 +282,18 @@ const AnnouncementPopup = () => {
 
   useEffect(() => {
     const popupDismissed = localStorage.getItem("announcementDismissed");
-    const dismissedDate = localStorage.getItem("announcementDismissedDate");
+    const currentDate = new Date();
+    const endDate = new Date("2025-11-08T23:59:59"); // Show until November 8, 2025
 
+    // If current date is past November 8, 2025, don't show popup
+    if (currentDate > endDate) {
+      setShowPopup(false);
+      return;
+    }
+
+    // If user hasn't dismissed it yet, show the popup
     if (!popupDismissed) {
       setShowPopup(true);
-    } else if (dismissedDate) {
-      // Check if 3 weeks (21 days) have passed
-      const threWeeksInMs = 21 * 24 * 60 * 60 * 1000;
-      const timePassed = Date.now() - parseInt(dismissedDate);
-
-      if (timePassed >= threWeeksInMs) {
-        // Reset the popup after 3 weeks
-        localStorage.removeItem("announcementDismissed");
-        localStorage.removeItem("announcementDismissedDate");
-        setShowPopup(true);
-      }
     }
   }, []);
 
