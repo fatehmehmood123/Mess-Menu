@@ -1,7 +1,8 @@
 import { React, useEffect, useMemo } from "react";
 import Navbar from "../components/Navbar";
 import TodayContainer from "../components/TodayContainer";
-import TodayFooter from "../components/TodayFooter";
+import Footer from "../components/Footer";
+import AnnouncementPopup from "../components/AnnouncementPopup";
 import { useSelector, useDispatch } from "react-redux";
 import { weekChange } from "../redux/menu.js";
 import Userback from "@userback/widget";
@@ -41,13 +42,14 @@ export default function Daily() {
 
   return (
     <>
+      <AnnouncementPopup />
       <Navbar />
       <TodayContainer
         breakfast={filteredMenu[0].Breakfast}
         lunch={filteredMenu[0].Lunch}
         dinner={filteredMenu[0].Dinner}
       />
-      <TodayFooter />
+      <Footer />
     </>
   );
 }

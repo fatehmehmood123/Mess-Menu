@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import WeekContainer from "../components/WeekContainer";
+import Footer from "../components/Footer";
+import AnnouncementPopup from "../components/AnnouncementPopup";
 import { useSelector, useDispatch } from "react-redux";
 import { weekChange } from "../redux/menu.js";
 import Userback from "@userback/widget";
@@ -33,6 +35,7 @@ export default function Weekly() {
 
   return (
     <>
+      <AnnouncementPopup />
       <Navbar />
       <WeekContainer
         monBreakfast={weekMenu[0].Breakfast}
@@ -57,6 +60,7 @@ export default function Weekly() {
         sunLunch={weekMenu[6].Lunch}
         sunBreakfast={weekMenu[6].Breakfast}
       />
+      <Footer />
     </>
   );
 }

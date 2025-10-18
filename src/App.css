@@ -6,3 +6,56 @@ img {
 #footerLink {
   text-decoration: none;
 }
+
+.footer-icon-link {
+  color: inherit;
+}
+
+.footer-icon-link:hover {
+  opacity: 0.7;
+}
+
+.custom-footer {
+  font-size: 10px !important;
+}
+
+.custom-footer * {
+  font-size: 10px !important;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.footer-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-separator {
+  display: inline;
+}
+
+@media (max-width: 500px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 10px;
+  }
+  
+  .footer-separator {
+    display: none;
+  }
+  
+  .custom-footer {
+    font-size: 9px !important;
+  }
+  
+  .custom-footer * {
+    font-size: 9px !important;
+  }
+}
