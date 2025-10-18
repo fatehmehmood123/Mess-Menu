@@ -7,12 +7,12 @@ function Footer() {
         <div className="footer-content">
           <span>© 2025 Muhammad Fateh</span>
           <span className="footer-separator">|</span>
-          <span>Maintained by{" "}
+          <span>
             <a
               id="footerLink"
               rel="noreferrer"
               target="_blank"
-              href="https://github.com/taahabz"
+              href="https://taaha.dev"
             >
               Muhammad Taaha
             </a>
