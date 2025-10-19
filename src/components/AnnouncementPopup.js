@@ -324,11 +324,10 @@ const AnnouncementPopup = () => {
   return (
     <PopupOverlay>
       <PopupContainer onClick={(e) => e.stopPropagation()}>
-        <PopupHeader>New Feature Alert!</PopupHeader>
+        <PopupHeader>You can now report menu mismatches!</PopupHeader>
         <PopupMessage>
-          We've added a <strong>Feedback Widget</strong> to help us serve you
-          better! Found a bug or want to suggest a change? Click the feedback icon
-          on bottom left corner of the screen!
+          If the meal you received doesn't match what's shown on the menu, use
+          the feedback icon at the bottom left to let us know.
         </PopupMessage>
         <CarouselContainer>
           <ArrowButton direction="left" onClick={prevImage}>
