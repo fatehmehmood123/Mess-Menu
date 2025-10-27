@@ -8,6 +8,43 @@ th {
   text-align: left;
   padding: 8px;
 }
+
+/* Column widths: Timings is half of the other two equal columns */
+/* If Meals = x and Menu = x, then Timings = x/2 */
+/* Total: x/2 + x + x = 100% → x = 40% */
+#mainContainer th:first-child,
+#mainContainer td:first-child {
+  width: 20%;
+  text-align: left;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* Meals and Menu columns - equal width, each 40% */
+#mainContainer th:nth-child(2),
+#mainContainer td:nth-child(2),
+#mainContainer th:nth-child(3),
+#mainContainer td:nth-child(3) {
+  width: 40%;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 576px) {
+  #mainContainer th:first-child,
+  #mainContainer td:first-child {
+    width: 20%;
+    font-size: 0.75rem;
+    padding: 6px 4px;
+  }
+
+  #mainContainer th:nth-child(2),
+  #mainContainer td:nth-child(2),
+  #mainContainer th:nth-child(3),
+  #mainContainer td:nth-child(3) {
+    width: 40%;
+    font-size: 0.85rem;
+  }
+}
 .table-container {
   max-height: 0; /* Initially hide the table */
   
