@@ -23,7 +23,7 @@ export default function TodayContainer(props) {
       <>7:30 AM -<br />9:30 AM</>
     ),
     lunch: isWeekend ? (
-      <>2:00 PM -<br />2:30 PM</>
+      <>2:00 PM -<br />3:30 PM</>
     ) : (
       <>1:00 PM -<br />3:30 PM</>
     ),
