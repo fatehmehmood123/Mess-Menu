@@ -18,11 +18,8 @@ export default function Weekly() {
 
   // Fetch weekly menu on component mount
   useEffect(() => {
-    console.log("🟢 Weekly page mounted, fetching menu...");
     dispatch(fetchWeeklyMenu());
   }, [dispatch]);
-
-  console.log("🟡 Weekly page state - loading:", loading, "error:", error, "weeklyMenu:", weeklyMenu);
 
   // Helper function to get menu items as string
   const getMenuString = (day, mealType) => {
@@ -39,11 +36,13 @@ export default function Weekly() {
       <>
         <AnnouncementPopup />
         <Navbar />
-        <div className="container my-4 text-center">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Loading...</span>
+        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "60vh" }}>
+          <div className="text-center">
+            <div className="spinner-border" role="status" style={{ color: "#9bb158", width: "3rem", height: "3rem" }}>
+              <span className="visually-hidden">Loading...</span>
+            </div>
+            <p className="mt-3">Loading weekly menu...</p>
           </div>
-          <p className="mt-3">Loading weekly menu...</p>
         </div>
         <Footer />
       </>

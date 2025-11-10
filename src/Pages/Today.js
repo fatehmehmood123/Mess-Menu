@@ -4,7 +4,7 @@ import TodayContainer from "../components/TodayContainer";
 import Footer from "../components/Footer";
 import AnnouncementPopup from "../components/AnnouncementPopup";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchTodayMenu } from "../redux/menu.js";
+import { fetchTodayMenu, fetchWeeklyMenu } from "../redux/menu.js";
 import Userback from "@userback/widget";
 
 export default function Daily() {
@@ -16,13 +16,11 @@ export default function Daily() {
     Userback("A-OnuXRblXLHIFp6PEPSwFMbm5M");
   }, []);
 
-  // Fetch today's menu on component mount
+  // Fetch both menus on component mount (cache for later)
   useEffect(() => {
-    console.log("🟢 Today page mounted, fetching menu...");
     dispatch(fetchTodayMenu());
+    dispatch(fetchWeeklyMenu());
   }, [dispatch]);
-
-  console.log("🟡 Today page state - loading:", loading, "error:", error, "todayMenu:", todayMenu);
 
   // Handle loading state
   if (loading) {
@@ -30,11 +28,13 @@ export default function Daily() {
       <>
         <AnnouncementPopup />
         <Navbar />
-        <div className="container my-4 text-center">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Loading...</span>
+        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "60vh" }}>
+          <div className="text-center">
+            <div className="spinner-border" role="status" style={{ color: "#9bb158", width: "3rem", height: "3rem" }}>
+              <span className="visually-hidden">Loading...</span>
+            </div>
+            <p className="mt-3">Loading today's menu...</p>
           </div>
-          <p className="mt-3">Loading today's menu...</p>
         </div>
         <Footer />
       </>

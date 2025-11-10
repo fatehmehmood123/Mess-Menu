@@ -9,17 +9,28 @@ export const fetchTodayMenu = createAsyncThunk(
   "menu/fetchToday",
   async (_, { rejectWithValue }) => {
     try {
-      console.log("🔵 Fetching today's menu from:", `${API_BASE_URL}/api/menu/today`);
+      // Check cache first
+      const cachedData = localStorage.getItem('todayMenu');
+      const cacheTime = localStorage.getItem('todayMenuTime');
+      const now = Date.now();
+      
+      // Use cache if less than 1 hour old
+      if (cachedData && cacheTime && (now - parseInt(cacheTime)) < 3600000) {
+        return JSON.parse(cachedData);
+      }
+
       const response = await fetch(`${API_BASE_URL}/api/menu/today`);
-      console.log("🔵 Response status:", response.status);
       if (!response.ok) {
         throw new Error("Failed to fetch today's menu");
       }
       const data = await response.json();
-      console.log("✅ Today's menu data:", data);
+      
+      // Cache the data
+      localStorage.setItem('todayMenu', JSON.stringify(data));
+      localStorage.setItem('todayMenuTime', now.toString());
+      
       return data;
     } catch (error) {
-      console.error("❌ Error fetching today's menu:", error);
       return rejectWithValue(error.message);
     }
   }
@@ -30,17 +41,28 @@ export const fetchWeeklyMenu = createAsyncThunk(
   "menu/fetchWeekly",
   async (_, { rejectWithValue }) => {
     try {
-      console.log("🔵 Fetching weekly menu from:", `${API_BASE_URL}/api/menu/week`);
+      // Check cache first
+      const cachedData = localStorage.getItem('weeklyMenu');
+      const cacheTime = localStorage.getItem('weeklyMenuTime');
+      const now = Date.now();
+      
+      // Use cache if less than 1 hour old
+      if (cachedData && cacheTime && (now - parseInt(cacheTime)) < 3600000) {
+        return JSON.parse(cachedData);
+      }
+
       const response = await fetch(`${API_BASE_URL}/api/menu/week`);
-      console.log("🔵 Response status:", response.status);
       if (!response.ok) {
         throw new Error("Failed to fetch weekly menu");
       }
       const data = await response.json();
-      console.log("✅ Weekly menu data:", data);
+      
+      // Cache the data
+      localStorage.setItem('weeklyMenu', JSON.stringify(data));
+      localStorage.setItem('weeklyMenuTime', now.toString());
+      
       return data;
     } catch (error) {
-      console.error("❌ Error fetching weekly menu:", error);
       return rejectWithValue(error.message);
     }
   }
