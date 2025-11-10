@@ -34,6 +34,14 @@ cd Mess-Menu
 npm install
 ```
 
+3. Configure API URL:
+
+Edit `src/config.js` and update the API URL:
+```javascript
+API_BASE_URL: "http://localhost:3000"  // For local development
+// API_BASE_URL: "https://your-api.vercel.app"  // For production
+```
+
 ### Usage
 
 Start the development server:
@@ -43,6 +51,10 @@ npm start
 ```
 
 The website will be accessible at `http://localhost:3000`.
+
+**Note:** Make sure your backend API server is running for the app to fetch menu data. The app uses the following public APIs:
+- `GET /api/menu/today` - Fetches today's menu
+- `GET /api/menu/week` - Fetches the current week's menu
 
 ### Testing
 
