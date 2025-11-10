@@ -24,18 +24,19 @@ const API_BASE_URL = config.API_BASE_URL;
 
 /**
  * Fetch Today's Menu
- * Retrieves today's menu from API with 1-hour caching
+ * Retrieves today's menu from API with caching (invalidates on day change)
  */
 export const fetchTodayMenu = createAsyncThunk(
   "menu/fetchToday",
   async (_, { rejectWithValue }) => {
     try {
-      // Check localStorage cache first (1 hour expiry)
+      // Check localStorage cache
       const cachedData = localStorage.getItem('todayMenu');
-      const cacheTime = localStorage.getItem('todayMenuTime');
-      const now = Date.now();
+      const cachedDate = localStorage.getItem('todayMenuDate');
+      const today = new Date().toDateString(); // Current date as string
       
-      if (cachedData && cacheTime && (now - parseInt(cacheTime)) < 3600000) {
+      // Use cache only if it's from today
+      if (cachedData && cachedDate === today) {
         return JSON.parse(cachedData);
       }
 
@@ -46,9 +47,9 @@ export const fetchTodayMenu = createAsyncThunk(
       }
       const data = await response.json();
       
-      // Store in cache
+      // Store in cache with today's date
       localStorage.setItem('todayMenu', JSON.stringify(data));
-      localStorage.setItem('todayMenuTime', now.toString());
+      localStorage.setItem('todayMenuDate', today);
       
       return data;
     } catch (error) {
@@ -59,18 +60,19 @@ export const fetchTodayMenu = createAsyncThunk(
 
 /**
  * Fetch Weekly Menu
- * Retrieves full week menu from API with 1-hour caching
+ * Retrieves full week menu from API with caching (invalidates on day change)
  */
 export const fetchWeeklyMenu = createAsyncThunk(
   "menu/fetchWeekly",
   async (_, { rejectWithValue }) => {
     try {
-      // Check localStorage cache first (1 hour expiry)
+      // Check localStorage cache
       const cachedData = localStorage.getItem('weeklyMenu');
-      const cacheTime = localStorage.getItem('weeklyMenuTime');
-      const now = Date.now();
+      const cachedDate = localStorage.getItem('weeklyMenuDate');
+      const today = new Date().toDateString(); // Current date as string
       
-      if (cachedData && cacheTime && (now - parseInt(cacheTime)) < 3600000) {
+      // Use cache only if it's from today
+      if (cachedData && cachedDate === today) {
         return JSON.parse(cachedData);
       }
 
@@ -81,9 +83,9 @@ export const fetchWeeklyMenu = createAsyncThunk(
       }
       const data = await response.json();
       
-      // Store in cache
+      // Store in cache with today's date
       localStorage.setItem('weeklyMenu', JSON.stringify(data));
-      localStorage.setItem('weeklyMenuTime', now.toString());
+      localStorage.setItem('weeklyMenuDate', today);
       
       return data;
     } catch (error) {
