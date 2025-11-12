@@ -56,5 +56,6 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
-  }
+  },
+  "proxy": "https://backend-mess-menu-nust.vercel.app"
 }
