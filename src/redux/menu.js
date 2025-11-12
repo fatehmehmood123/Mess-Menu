@@ -6,7 +6,7 @@
  *
  * Features:
  * - Fetches today's menu and weekly menu from API
- * - Same-day caching using localStorage (invalidates on date change)
+ * - 15-minute caching using localStorage (invalidates after 15 minutes)
  * - Separate loading and error states per request
  *
  * API Endpoints:
@@ -14,8 +14,10 @@
  * - GET /api/menu/week - Returns full week menu (Monday-Sunday)
  *
  * Caching policy:
- * - Keys: todayMenu, todayMenuDate, weeklyMenu, weeklyMenuDate
- * - Policy: cache is considered valid for the current calendar day only
+ * - Keys: todayMenu, todayMenuTime, todayMenuDate, weeklyMenu, weeklyMenuTime, weeklyMenuDate
+ * - TTL: 15 minutes (900000 milliseconds)
+ * - Policy: cache is valid for 15 minutes from last fetch AND same calendar day
+ * - Invalidation: cache expires after 15 minutes OR at midnight (day change)
  *
  * Developer Contact: taahabz@gmail.com
  */
@@ -26,9 +28,12 @@ import config from "../config";
 // API Base URL - Update in src/config.js when deploying
 const API_BASE_URL = config.API_BASE_URL;
 
+// Cache TTL: 15 minutes in milliseconds
+const CACHE_TTL = 15 * 60 * 1000; // 900000ms = 15 minutes
+
 /**
  * Fetch Today's Menu
- * Retrieves today's menu from API with caching (invalidates on day change)
+ * Retrieves today's menu from API with caching (15-minute TTL + day change invalidation)
  */
 export const fetchTodayMenu = createAsyncThunk(
   "menu/fetchToday",
@@ -36,11 +41,16 @@ export const fetchTodayMenu = createAsyncThunk(
     try {
       // Check localStorage cache
       const cachedData = localStorage.getItem('todayMenu');
+      const cachedTime = localStorage.getItem('todayMenuTime');
       const cachedDate = localStorage.getItem('todayMenuDate');
-      const today = new Date().toDateString(); // Current date as string
+      const now = Date.now();
+      const today = new Date().toDateString();
       
-      // Use cache only if it's from today
-      if (cachedData && cachedDate === today) {
+      // Use cache only if:
+      // 1. It's less than 15 minutes old AND
+      // 2. It's from the same calendar day
+      if (cachedData && cachedTime && cachedDate === today && 
+          (now - parseInt(cachedTime) < CACHE_TTL)) {
         return JSON.parse(cachedData);
       }
 
@@ -51,8 +61,9 @@ export const fetchTodayMenu = createAsyncThunk(
       }
       const data = await response.json();
       
-      // Store in cache with today's date
+      // Store in cache with current timestamp and date
       localStorage.setItem('todayMenu', JSON.stringify(data));
+      localStorage.setItem('todayMenuTime', now.toString());
       localStorage.setItem('todayMenuDate', today);
       
       return data;
@@ -64,7 +75,7 @@ export const fetchTodayMenu = createAsyncThunk(
 
 /**
  * Fetch Weekly Menu
- * Retrieves full week menu from API with caching (invalidates on day change)
+ * Retrieves full week menu from API with caching (15-minute TTL + day change invalidation)
  */
 export const fetchWeeklyMenu = createAsyncThunk(
   "menu/fetchWeekly",
@@ -72,11 +83,16 @@ export const fetchWeeklyMenu = createAsyncThunk(
     try {
       // Check localStorage cache
       const cachedData = localStorage.getItem('weeklyMenu');
+      const cachedTime = localStorage.getItem('weeklyMenuTime');
       const cachedDate = localStorage.getItem('weeklyMenuDate');
-      const today = new Date().toDateString(); // Current date as string
+      const now = Date.now();
+      const today = new Date().toDateString();
       
-      // Use cache only if it's from today
-      if (cachedData && cachedDate === today) {
+      // Use cache only if:
+      // 1. It's less than 15 minutes old AND
+      // 2. It's from the same calendar day
+      if (cachedData && cachedTime && cachedDate === today && 
+          (now - parseInt(cachedTime) < CACHE_TTL)) {
         return JSON.parse(cachedData);
       }
 
@@ -87,8 +103,9 @@ export const fetchWeeklyMenu = createAsyncThunk(
       }
       const data = await response.json();
       
-      // Store in cache with today's date
+      // Store in cache with current timestamp and date
       localStorage.setItem('weeklyMenu', JSON.stringify(data));
+      localStorage.setItem('weeklyMenuTime', now.toString());
       localStorage.setItem('weeklyMenuDate', today);
       
       return data;

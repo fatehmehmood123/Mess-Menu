@@ -4,7 +4,7 @@
 
 ## Overview
 
-The app fetches mess menu data dynamically from a backend API. Responses are cached for the current calendar day (same-day caching) to reduce API calls and improve performance.
+The app fetches mess menu data dynamically from a backend API. Responses are cached for 15 minutes to reduce API calls and improve performance while ensuring users see updated menu changes relatively quickly.
 
 ## Configuration
 
@@ -62,15 +62,17 @@ export default config;
 ## How It Works
 
 1. Redux Store (`src/redux/menu.js`)
-   - `fetchTodayMenu()` - Fetches today's menu with same-day caching
-   - `fetchWeeklyMenu()` - Fetches weekly menu with same-day caching
+   - `fetchTodayMenu()` - Fetches today's menu with 15-minute caching
+   - `fetchWeeklyMenu()` - Fetches weekly menu with 15-minute caching
    - Separate loading and error states per request
 
 2. Caching Strategy
    - First visit: fetch from API
-   - Subsequent visits: use cached data for the same calendar day
-   - Automatic cache refresh on date change
-   - Cache keys: `todayMenu`, `todayMenuDate`, `weeklyMenu`, `weeklyMenuDate`
+   - Subsequent visits: use cached data if less than 15 minutes old AND same calendar day
+   - Automatic cache refresh after 15-minute TTL expires OR at midnight
+   - Cache keys: `todayMenu`, `todayMenuTime`, `todayMenuDate`, `weeklyMenu`, `weeklyMenuTime`, `weeklyMenuDate`
+   - TTL: 900000ms (15 minutes)
+   - Day change invalidation: ensures fresh data at midnight
 
 3. Components
    - `Today.js` - shows today's menu (prefetches weekly menu in background)
@@ -90,6 +92,8 @@ Cache Check → API Call (if needed) → Redux Store → Components → Display
 
 ## Developer Notes
 
-- Cache policy: same-day caching (invalidates on date change)
-- Cache keys: `todayMenu`, `todayMenuDate`, `weeklyMenu`, `weeklyMenuDate`
+- Cache policy: 15-minute time-based TTL (900000ms) + day change invalidation
+- Cache keys: `todayMenu`, `todayMenuTime`, `todayMenuDate`, `weeklyMenu`, `weeklyMenuTime`, `weeklyMenuDate`
+- Users will see menu updates within 15 minutes of backend changes
+- Cache automatically invalidates at midnight (day boundary)
 - CORS: use a proxy in development or configure your backend to allow the dev origin
