@@ -28,11 +28,25 @@ git clone https://github.com/fatehmehmood123/Mess-Menu
 cd Mess-Menu
 ```
 
-2. Install the dependencies:
+1. Install the dependencies:
 
 ```bash
 npm install
 ```
+
+1. Configure API URL:
+
+Edit `src/config.js` and update the API URL:
+
+```javascript
+API_BASE_URL: "http://localhost:3000"  // For local development
+// API_BASE_URL: "https://your-api.vercel.app"  // For production
+```
+
+Notes:
+
+- Same-day caching: API responses are cached for the current calendar day to reduce API calls.
+- Development proxy: If you removed the CRA proxy from `package.json`, ensure `API_BASE_URL` points to your local backend (e.g., `http://localhost:3000`). Alternatively, set up a proxy to your backend.
 
 ### Usage
 
@@ -43,6 +57,11 @@ npm start
 ```
 
 The website will be accessible at `http://localhost:3000`.
+
+**Note:** Make sure your backend API server is running for the app to fetch menu data. The app uses the following public APIs:
+
+- `GET /api/menu/today` - Fetches today's menu
+- `GET /api/menu/week` - Fetches the current week's menu
 
 ### Testing
 

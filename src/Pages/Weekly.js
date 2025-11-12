@@ -4,61 +4,113 @@ import WeekContainer from "../components/WeekContainer";
 import Footer from "../components/Footer";
 import AnnouncementPopup from "../components/AnnouncementPopup";
 import { useSelector, useDispatch } from "react-redux";
-import { weekChange } from "../redux/menu.js";
+import { fetchWeeklyMenu } from "../redux/menu.js";
 import Userback from "@userback/widget";
+import { formatMeal } from "../utils/formatMeal";
 
 export default function Weekly() {
+  const dispatch = useDispatch();
+  const { weeklyMenu, weeklyLoading, weeklyError } = useSelector((state) => state.menu);
+
   // Initialize Userback feedback widget
   useEffect(() => {
     Userback("A-OnuXRblXLHIFp6PEPSwFMbm5M");
   }, []);
-  //initializing Current date and
-  let currentDate = new Date();
 
-  // Funtion to convert current date to week number
-  // eslint-disable-next-line
-  Date.prototype.getWeek = function () {
-    var onejan = new Date(this.getFullYear(), 0, 1);
-    return Math.ceil(((this - onejan) / 86400000 + onejan.getDay() - 1) / 7);
-  };
-  // Getting Week Number
-  let week = currentDate.getWeek();
-  //redux functions to get values from store and dispatch an action
-  const weekMenu = useSelector((state) => state.menu);
-  const dispatch = useDispatch();
-  //useEffect for changing the menu when week changes
+  // Fetch weekly menu on component mount
   useEffect(() => {
-    if (week % 2 === 0) {
-      dispatch(weekChange());
-    }
-  }, [week, dispatch]);
+    dispatch(fetchWeeklyMenu());
+  }, [dispatch]);
+
+  // Helper function to get menu items as string
+  const getMenuString = (day, mealType) => {
+    return formatMeal(weeklyMenu?.menu?.[day]?.[mealType]);
+  };
+
+  // Handle loading state
+  if (weeklyLoading) {
+    return (
+      <>
+        <AnnouncementPopup />
+        <Navbar />
+        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "60vh" }}>
+          <div className="text-center">
+            <div className="spinner-border" role="status" style={{ color: "#9bb158", width: "3rem", height: "3rem" }}>
+              <span className="visually-hidden">Loading...</span>
+            </div>
+            <p className="mt-3">Loading weekly menu...</p>
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
+  // Handle error state
+  if (weeklyError) {
+    return (
+      <>
+        <AnnouncementPopup />
+        <Navbar />
+        <div className="container my-4">
+          <div className="alert alert-danger" role="alert">
+            <h4 className="alert-heading">Error loading menu</h4>
+            <p>{weeklyError}</p>
+            <button
+              className="btn btn-primary"
+              onClick={() => dispatch(fetchWeeklyMenu())}
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
+  // Handle no data state
+  if (!weeklyMenu || !weeklyMenu.menu) {
+    return (
+      <>
+        <AnnouncementPopup />
+        <Navbar />
+        <div className="container my-4">
+          <div className="alert alert-info" role="alert">
+            No weekly menu available.
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
 
   return (
     <>
       <AnnouncementPopup />
       <Navbar />
       <WeekContainer
-        monBreakfast={weekMenu[0].Breakfast}
-        monLunch={weekMenu[0].Lunch}
-        satLunch={weekMenu[5].Lunch}
-        wedBreakfast={weekMenu[2].Breakfast}
-        tueLunch={weekMenu[1].Lunch}
-        tueBreakfast={weekMenu[1].Breakfast}
-        monDinner={weekMenu[0].Dinner}
-        tueDinner={weekMenu[1].Dinner}
-        wedLunch={weekMenu[2].Lunch}
-        wedDinner={weekMenu[2].Dinner}
-        thursBreakfast={weekMenu[3].Breakfast}
-        thursLunch={weekMenu[3].Lunch}
-        thursDinner={weekMenu[3].Dinner}
-        friLunch={weekMenu[4].Lunch}
-        friBreakfast={weekMenu[4].Breakfast}
-        friDinner={weekMenu[4].Dinner}
-        satDinner={weekMenu[5].Dinner}
-        satBreakfast={weekMenu[5].Breakfast}
-        sunDinner={weekMenu[6].Dinner}
-        sunLunch={weekMenu[6].Lunch}
-        sunBreakfast={weekMenu[6].Breakfast}
+        monBreakfast={getMenuString("monday", "breakfast")}
+        monLunch={getMenuString("monday", "lunch")}
+        monDinner={getMenuString("monday", "dinner")}
+        tueBreakfast={getMenuString("tuesday", "breakfast")}
+        tueLunch={getMenuString("tuesday", "lunch")}
+        tueDinner={getMenuString("tuesday", "dinner")}
+        wedBreakfast={getMenuString("wednesday", "breakfast")}
+        wedLunch={getMenuString("wednesday", "lunch")}
+        wedDinner={getMenuString("wednesday", "dinner")}
+        thursBreakfast={getMenuString("thursday", "breakfast")}
+        thursLunch={getMenuString("thursday", "lunch")}
+        thursDinner={getMenuString("thursday", "dinner")}
+        friBreakfast={getMenuString("friday", "breakfast")}
+        friLunch={getMenuString("friday", "lunch")}
+        friDinner={getMenuString("friday", "dinner")}
+        satBreakfast={getMenuString("saturday", "breakfast")}
+        satLunch={getMenuString("saturday", "lunch")}
+        satDinner={getMenuString("saturday", "dinner")}
+        sunBreakfast={getMenuString("sunday", "breakfast")}
+        sunLunch={getMenuString("sunday", "lunch")}
+        sunDinner={getMenuString("sunday", "dinner")}
       />
       <Footer />
     </>
