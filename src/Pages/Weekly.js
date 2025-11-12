@@ -6,10 +6,11 @@ import AnnouncementPopup from "../components/AnnouncementPopup";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchWeeklyMenu } from "../redux/menu.js";
 import Userback from "@userback/widget";
+import { formatMeal } from "../utils/formatMeal";
 
 export default function Weekly() {
   const dispatch = useDispatch();
-  const { weeklyMenu, loading, error } = useSelector((state) => state.menu);
+  const { weeklyMenu, weeklyLoading, weeklyError } = useSelector((state) => state.menu);
 
   // Initialize Userback feedback widget
   useEffect(() => {
@@ -23,15 +24,11 @@ export default function Weekly() {
 
   // Helper function to get menu items as string
   const getMenuString = (day, mealType) => {
-    if (!weeklyMenu || !weeklyMenu.menu || !weeklyMenu.menu[day]) {
-      return "No menu";
-    }
-    const items = weeklyMenu.menu[day][mealType];
-    return Array.isArray(items) ? items.join(", ") : "No menu";
+    return formatMeal(weeklyMenu?.menu?.[day]?.[mealType]);
   };
 
   // Handle loading state
-  if (loading) {
+  if (weeklyLoading) {
     return (
       <>
         <AnnouncementPopup />
@@ -50,7 +47,7 @@ export default function Weekly() {
   }
 
   // Handle error state
-  if (error) {
+  if (weeklyError) {
     return (
       <>
         <AnnouncementPopup />
@@ -58,7 +55,7 @@ export default function Weekly() {
         <div className="container my-4">
           <div className="alert alert-danger" role="alert">
             <h4 className="alert-heading">Error loading menu</h4>
-            <p>{error}</p>
+            <p>{weeklyError}</p>
             <button
               className="btn btn-primary"
               onClick={() => dispatch(fetchWeeklyMenu())}

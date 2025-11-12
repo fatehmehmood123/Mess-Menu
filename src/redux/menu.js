@@ -1,18 +1,22 @@
 /**
  * Menu Redux Store - API Integration
- * 
- * This file handles fetching and caching menu data from the backend API.
- * The app now uses dynamic menu data instead of hardcoded values.
- * 
+ *
+ * Handles fetching and caching menu data from the backend API.
+ * The app uses dynamic API data instead of hardcoded values.
+ *
  * Features:
  * - Fetches today's menu and weekly menu from API
- * - Caches responses in localStorage for 1 hour
- * - Handles loading and error states
- * 
+ * - Same-day caching using localStorage (invalidates on date change)
+ * - Separate loading and error states per request
+ *
  * API Endpoints:
  * - GET /api/menu/today - Returns today's breakfast, lunch, dinner
  * - GET /api/menu/week - Returns full week menu (Monday-Sunday)
- * 
+ *
+ * Caching policy:
+ * - Keys: todayMenu, todayMenuDate, weeklyMenu, weeklyMenuDate
+ * - Policy: cache is considered valid for the current calendar day only
+ *
  * Developer Contact: taahabz@gmail.com
  */
 
@@ -99,41 +103,44 @@ const menuSlice = createSlice({
   initialState: {
     todayMenu: null,
     weeklyMenu: null,
-    loading: false,
-    error: null,
+    todayLoading: false,
+    weeklyLoading: false,
+    todayError: null,
+    weeklyError: null,
   },
   reducers: {
     clearError: (state) => {
-      state.error = null;
+      state.todayError = null;
+      state.weeklyError = null;
     },
   },
   extraReducers: (builder) => {
     builder
       // Handle fetchTodayMenu
       .addCase(fetchTodayMenu.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+        state.todayLoading = true;
+        state.todayError = null;
       })
       .addCase(fetchTodayMenu.fulfilled, (state, action) => {
-        state.loading = false;
+        state.todayLoading = false;
         state.todayMenu = action.payload;
       })
       .addCase(fetchTodayMenu.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+        state.todayLoading = false;
+        state.todayError = action.payload;
       })
       // Handle fetchWeeklyMenu
       .addCase(fetchWeeklyMenu.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+        state.weeklyLoading = true;
+        state.weeklyError = null;
       })
       .addCase(fetchWeeklyMenu.fulfilled, (state, action) => {
-        state.loading = false;
+        state.weeklyLoading = false;
         state.weeklyMenu = action.payload;
       })
       .addCase(fetchWeeklyMenu.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+        state.weeklyLoading = false;
+        state.weeklyError = action.payload;
       });
   },
 });

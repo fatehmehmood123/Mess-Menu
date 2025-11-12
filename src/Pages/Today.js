@@ -6,10 +6,11 @@ import AnnouncementPopup from "../components/AnnouncementPopup";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchTodayMenu, fetchWeeklyMenu } from "../redux/menu.js";
 import Userback from "@userback/widget";
+import { formatMeal } from "../utils/formatMeal";
 
 export default function Daily() {
   const dispatch = useDispatch();
-  const { todayMenu, loading, error } = useSelector((state) => state.menu);
+  const { todayMenu, todayLoading, todayError } = useSelector((state) => state.menu);
 
   // Initialize Userback feedback widget
   useEffect(() => {
@@ -23,7 +24,7 @@ export default function Daily() {
   }, [dispatch]);
 
   // Handle loading state
-  if (loading) {
+  if (todayLoading) {
     return (
       <>
         <AnnouncementPopup />
@@ -42,7 +43,7 @@ export default function Daily() {
   }
 
   // Handle error state
-  if (error) {
+  if (todayError) {
     return (
       <>
         <AnnouncementPopup />
@@ -50,7 +51,7 @@ export default function Daily() {
         <div className="container my-4">
           <div className="alert alert-danger" role="alert">
             <h4 className="alert-heading">Error loading menu</h4>
-            <p>{error}</p>
+            <p>{todayError}</p>
             <button
               className="btn btn-primary"
               onClick={() => dispatch(fetchTodayMenu())}
@@ -85,9 +86,9 @@ export default function Daily() {
       <AnnouncementPopup />
       <Navbar />
       <TodayContainer
-        breakfast={todayMenu.meals.breakfast?.join(", ") || "No menu"}
-        lunch={todayMenu.meals.lunch?.join(", ") || "No menu"}
-        dinner={todayMenu.meals.dinner?.join(", ") || "No menu"}
+        breakfast={formatMeal(todayMenu.meals.breakfast)}
+        lunch={formatMeal(todayMenu.meals.lunch)}
+        dinner={formatMeal(todayMenu.meals.dinner)}
       />
       <Footer />
     </>

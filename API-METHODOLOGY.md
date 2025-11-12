@@ -1,11 +1,10 @@
 # API Methodology
 
-> **For Developers:** Need help with the codebase or menu management?  
-> Contact: **taahabz@gmail.com**
+> For help with the codebase or menu management, contact: [taahabz@gmail.com](mailto:taahabz@gmail.com)
 
 ## Overview
 
-This app fetches mess menu data dynamically from a backend API. Menu items are cached for 1 hour to improve performance and reduce API calls.
+The app fetches mess menu data dynamically from a backend API. Responses are cached for the current calendar day (same-day caching) to reduce API calls and improve performance.
 
 ## Configuration
 
@@ -15,15 +14,19 @@ API URL is configured in `src/config.js`:
 const config = {
   API_BASE_URL: "http://localhost:3000"
 };
+
+export default config;
 ```
 
-For production, just change it to your deployed API URL.
+- For production, set `API_BASE_URL` to your deployed API URL.
+- For development, if you are not using a proxy, set `API_BASE_URL` to your local backend URL (e.g., `http://localhost:3000`).
 
 ## Endpoints Used
 
 ### 1. Today's Menu
-- **URL:** `GET /api/menu/today`
-- **Returns:** Today's breakfast, lunch, and dinner
+
+- URL: `GET /api/menu/today`
+- Returns: Today's breakfast, lunch, and dinner
 
 ```json
 {
@@ -38,64 +41,55 @@ For production, just change it to your deployed API URL.
 ```
 
 ### 2. Weekly Menu
-- **URL:** `GET /api/menu/week`
-- **Returns:** Full week menu (Monday to Sunday)
+
+- URL: `GET /api/menu/week`
+- Returns: Full week menu (Monday to Sunday)
 
 ```json
 {
   "weekNumber": 1,
   "menu": {
     "monday": {
-      "breakfast": [...],
-      "lunch": [...],
-      "dinner": [...]
+      "breakfast": ["..."],
+      "lunch": ["..."],
+      "dinner": ["..."]
     },
-    "tuesday": {...},
-    ...
+    "tuesday": {"breakfast": ["..."], "lunch": ["..."], "dinner": ["..."]}
   }
 }
 ```
 
 ## How It Works
 
-1. **Redux Store** (`src/redux/menu.js`)
-   - `fetchTodayMenu()` - Fetches today's menu with caching
-   - `fetchWeeklyMenu()` - Fetches weekly menu with caching
-   - localStorage cache expires after 1 hour
-   - Handles loading and error states
+1. Redux Store (`src/redux/menu.js`)
+   - `fetchTodayMenu()` - Fetches today's menu with same-day caching
+   - `fetchWeeklyMenu()` - Fetches weekly menu with same-day caching
+   - Separate loading and error states per request
 
-2. **Caching Strategy**
-   - First visit: Fetches from API
-   - Subsequent visits: Uses cached data (1 hour)
-   - Instant loading for returning users
-   - Automatic cache refresh after expiry
+2. Caching Strategy
+   - First visit: fetch from API
+   - Subsequent visits: use cached data for the same calendar day
+   - Automatic cache refresh on date change
+   - Cache keys: `todayMenu`, `todayMenuDate`, `weeklyMenu`, `weeklyMenuDate`
 
-3. **Components**
-   - `Today.js` - Shows today's menu (prefetches weekly menu in background)
-   - `Weekly.js` - Shows weekly menu
-   - Green spinner (#9bb158) during loading
-   - Error messages with retry button
+3. Components
+   - `Today.js` - shows today's menu (prefetches weekly menu in background)
+   - `Weekly.js` - shows weekly menu
+   - UI: green spinner (#9bb158) during loading, error alerts with retry
 
-4. **Data Flow**
-   ```
-   Cache Check → API Call (if needed) → Redux Store → Components → Display
-   ```
+4. Data Flow
 
-## Usage
-
-The components automatically fetch data on page load. If there's an error, a retry button is shown.
+Cache Check → API Call (if needed) → Redux Store → Components → Display
 
 ## Deployment
 
-1. Update `src/config.js` with production API URL
-2. Build: `npm run build`
-3. Deploy the build folder
+1. Update `src/config.js` with production API URL.
+2. Optionally use a dev proxy pointing to your backend; otherwise set `API_BASE_URL` for development to your local backend.
+3. Build: `npm run build`.
+4. Deploy the `build` folder.
 
 ## Developer Notes
 
-- Cache duration: 1 hour (3600000ms)
-- Cache keys: `todayMenu`, `todayMenuTime`, `weeklyMenu`, `weeklyMenuTime`
-- Both menus prefetch on first page load for better UX
-- CORS handled via proxy in development
-
-**Questions?** Contact: **taahabz@gmail.com**
+- Cache policy: same-day caching (invalidates on date change)
+- Cache keys: `todayMenu`, `todayMenuDate`, `weeklyMenu`, `weeklyMenuDate`
+- CORS: use a proxy in development or configure your backend to allow the dev origin
