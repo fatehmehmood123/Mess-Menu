@@ -1,12 +1,11 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useCallback } from "react";
 import Navbar from "../components/Navbar";
 import TodayContainer from "../components/TodayContainer";
 import Footer from "../components/Footer";
 import AnnouncementPopup from "../components/AnnouncementPopup";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchTodayMenu, fetchWeeklyMenu } from "../redux/menu.js";
+import { fetchTodayMenu } from "../redux/menu.js";
 import Userback from "@userback/widget";
-import { formatMeal } from "../utils/formatMeal";
 
 export default function Daily() {
   const dispatch = useDispatch();
@@ -17,11 +16,17 @@ export default function Daily() {
     Userback("A-OnuXRblXLHIFp6PEPSwFMbm5M");
   }, []);
 
-  // Fetch both menus on component mount (cache for later)
-  useEffect(() => {
+  // Memoized fetch function to prevent infinite loops
+  const fetchMenu = useCallback(() => {
     dispatch(fetchTodayMenu());
-    dispatch(fetchWeeklyMenu());
   }, [dispatch]);
+
+  // Fetch today's menu only if not already loaded
+  useEffect(() => {
+    if (!todayMenu && !todayLoading) {
+      fetchMenu();
+    }
+  }, [todayMenu, todayLoading, fetchMenu]);
 
   // Handle loading state
   if (todayLoading) {
@@ -86,9 +91,9 @@ export default function Daily() {
       <AnnouncementPopup />
       <Navbar />
       <TodayContainer
-        breakfast={formatMeal(todayMenu.meals.breakfast)}
-        lunch={formatMeal(todayMenu.meals.lunch)}
-        dinner={formatMeal(todayMenu.meals.dinner)}
+        meals={todayMenu.meals}
+        weekNumber={todayMenu.weekNumber}
+        day={todayMenu.day}
       />
       <Footer />
     </>

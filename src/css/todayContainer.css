@@ -46,12 +46,7 @@ th {
   }
 }
 .table-container {
-  max-height: 0; /* Initially hide the table */
-  
-  transition: max-height 2s ease-in-out; /* Apply transition to max-height property */
-}
-.table-container.active {
-  max-height: 1000px; /* Set an appropriate max-height value to reveal the table */
+  max-height: none;
 }
 
 h2 {
@@ -62,4 +57,83 @@ h2 {
 
 h2 span {
   margin-left: 8px; /* Adjust the spacing as needed */
+}
+
+/* Meal info layout for ratings */
+.meal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.meal-items {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+.meal-rating {
+  color: #666;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.user-rated-badge {
+  background: #9bb158;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+}
+
+.rate-btn {
+  margin-top: 6px;
+  padding: 6px 14px;
+  background: transparent;
+  color: #9bb158;
+  border: 1px solid #9bb158;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+}
+
+.rate-btn:hover {
+  background: #9bb158;
+  color: white;
+  border-color: #9bb158;
+}
+
+.rate-btn:active {
+  transform: scale(0.98);
+}
+
+/* Mobile responsive for meal info */
+@media (max-width: 576px) {
+  .meal-items {
+    font-size: 0.9rem;
+  }
+
+  .meal-rating {
+    font-size: 0.8rem;
+  }
+
+  .rate-btn {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  .user-rated-badge {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+  }
 }

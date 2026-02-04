@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import Navbar from "../components/Navbar";
 import WeekContainer from "../components/WeekContainer";
 import Footer from "../components/Footer";
@@ -6,7 +6,6 @@ import AnnouncementPopup from "../components/AnnouncementPopup";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchWeeklyMenu } from "../redux/menu.js";
 import Userback from "@userback/widget";
-import { formatMeal } from "../utils/formatMeal";
 
 export default function Weekly() {
   const dispatch = useDispatch();
@@ -17,15 +16,17 @@ export default function Weekly() {
     Userback("A-OnuXRblXLHIFp6PEPSwFMbm5M");
   }, []);
 
-  // Fetch weekly menu on component mount
-  useEffect(() => {
+  // Memoized fetch function to prevent infinite loops
+  const fetchMenu = useCallback(() => {
     dispatch(fetchWeeklyMenu());
   }, [dispatch]);
 
-  // Helper function to get menu items as string
-  const getMenuString = (day, mealType) => {
-    return formatMeal(weeklyMenu?.menu?.[day]?.[mealType]);
-  };
+  // Fetch weekly menu only if not already loaded
+  useEffect(() => {
+    if (!weeklyMenu && !weeklyLoading) {
+      fetchMenu();
+    }
+  }, [weeklyMenu, weeklyLoading, fetchMenu]);
 
   // Handle loading state
   if (weeklyLoading) {
@@ -90,27 +91,8 @@ export default function Weekly() {
       <AnnouncementPopup />
       <Navbar />
       <WeekContainer
-        monBreakfast={getMenuString("monday", "breakfast")}
-        monLunch={getMenuString("monday", "lunch")}
-        monDinner={getMenuString("monday", "dinner")}
-        tueBreakfast={getMenuString("tuesday", "breakfast")}
-        tueLunch={getMenuString("tuesday", "lunch")}
-        tueDinner={getMenuString("tuesday", "dinner")}
-        wedBreakfast={getMenuString("wednesday", "breakfast")}
-        wedLunch={getMenuString("wednesday", "lunch")}
-        wedDinner={getMenuString("wednesday", "dinner")}
-        thursBreakfast={getMenuString("thursday", "breakfast")}
-        thursLunch={getMenuString("thursday", "lunch")}
-        thursDinner={getMenuString("thursday", "dinner")}
-        friBreakfast={getMenuString("friday", "breakfast")}
-        friLunch={getMenuString("friday", "lunch")}
-        friDinner={getMenuString("friday", "dinner")}
-        satBreakfast={getMenuString("saturday", "breakfast")}
-        satLunch={getMenuString("saturday", "lunch")}
-        satDinner={getMenuString("saturday", "dinner")}
-        sunBreakfast={getMenuString("sunday", "breakfast")}
-        sunLunch={getMenuString("sunday", "lunch")}
-        sunDinner={getMenuString("sunday", "dinner")}
+        weeklyMenu={weeklyMenu.menu}
+        weekNumber={weeklyMenu.weekNumber}
       />
       <Footer />
     </>

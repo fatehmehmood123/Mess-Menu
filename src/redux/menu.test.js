@@ -15,6 +15,8 @@ describe('menu reducer', () => {
       weeklyLoading: false,
       todayError: null,
       weeklyError: null,
+      ratingsLoading: false,
+      ratingsError: null,
     });
   });
 
@@ -33,7 +35,7 @@ describe('menu reducer', () => {
   });
 
   it('should set todayMenu and clear todayLoading on fetchTodayMenu.fulfilled', () => {
-    const payload = { meals: { breakfast: ['A'], lunch: ['B'], dinner: ['C'] } };
+    const payload = { meals: { breakfast: { mealId: 'm1', items: ['A'] }, lunch: { mealId: 'm2', items: ['B'] }, dinner: { mealId: 'm3', items: ['C'] } } };
     const prev = {
       todayMenu: null,
       weeklyMenu: null,
@@ -79,7 +81,7 @@ describe('menu reducer', () => {
   });
 
   it('should set weeklyMenu and clear weeklyLoading on fetchWeeklyMenu.fulfilled', () => {
-    const payload = { menu: { monday: { breakfast: ['X'] } } };
+    const payload = { menu: { monday: { breakfast: { mealId: 'm1', items: ['X'] } } } };
     const prev = {
       todayMenu: null,
       weeklyMenu: null,

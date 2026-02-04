@@ -12,14 +12,9 @@ th {
 }
 
 .table-container {
-  max-height: 0; /* Initially hide the table */
-  overflow: hidden;
-  overflow-y: auto; /* Ensure vertical scrolling */
-  transition: max-height 2s ease-in-out; /* Apply transition to max-height property */
-}
-
-.table-container.active {
-  max-height: 1000px; /* Set an appropriate max-height value to reveal the table */
+  max-height: none;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 @media (max-width: 600px) {
@@ -32,5 +27,73 @@ th {
   .table td {
     font-size: 12px;
     padding: 4px;
+  }
+}
+
+/* Meal cell styling for weekly view with ratings */
+.meal-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 150px;
+}
+
+.meal-items-week {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.meal-rating-week {
+  font-size: 0.85rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.user-rated-badge-sm {
+  background: #9bb158;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.rate-btn-sm {
+  padding: 4px 10px;
+  background: transparent;
+  color: #9bb158;
+  border: 1px solid #9bb158;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  align-self: flex-start;
+}
+
+.rate-btn-sm:hover {
+  background: #9bb158;
+  color: white;
+  border-color: #9bb158;
+}
+
+@media (max-width: 600px) {
+  .meal-cell {
+    min-width: 120px;
+  }
+
+  .meal-items-week {
+    font-size: 0.8rem;
+  }
+
+  .meal-rating-week {
+    font-size: 0.75rem;
+  }
+
+  .rate-btn-sm {
+    font-size: 0.7rem;
+    padding: 3px 8px;
   }
 }
