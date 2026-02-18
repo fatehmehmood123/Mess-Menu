@@ -1,231 +1,255 @@
 /**
- * Menu Redux Store - API Integration
+ * Menu Redux Store - Static Ramzan Menu
  *
- * Handles fetching and caching menu data from the backend API.
- * The app uses dynamic API data instead of hardcoded values.
+ * Contains hardcoded Ramzan mess menu for Feb/Mar 2026.
+ * Both Week 1 and Week 2 use the same menu.
  *
- * Features:
- * - Fetches today's menu and weekly menu from API
- * - 1-hour caching using localStorage (invalidates after 1 hour)
- * - Separate loading and error states per request
- * - Smart caching: only fetches if data doesn't exist or is stale
- * - skipCache option for force-refresh (e.g., after rating submission)
- *
- * API Endpoints:
- * - GET /api/v2/menu/today - Returns today's breakfast, lunch, dinner
- * - GET /api/v2/menu/week - Returns full week menu (Monday-Sunday)
- *
- * Caching policy:
- * - Keys: todayMenu, todayMenuTime, todayMenuDate, weeklyMenu, weeklyMenuTime, weeklyMenuDate
- * - TTL: 1 hour (3600000 milliseconds)
- * - Policy: cache is valid for 1 hour from last fetch AND same calendar day
- * - Invalidation: cache expires after 1 hour OR at midnight (day change)
- * - Smart loading: only fetches if data doesn't already exist in Redux state
+ * Meal Timings (Ramzan):
+ * - Sehri: 02:45 onward
+ * - Iftari: Iftar time
+ * - Dinner: 19:30 - 21:00
  *
  * Developer Contact: taahabz@gmail.com
  */
 
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { auth } from "../firebaseConfig";
-import config from "../config";
+import { createSlice } from "@reduxjs/toolkit";
 
-// API Base URL - Update in src/config.js when deploying
-const API_BASE_URL = config.API_BASE_URL;
+// ─── Static Ramzan Menu Data ────────────────────────────────────────────────
 
-// Cache TTL: 1 hour in milliseconds (reduced DB reads since menu doesn't change frequently)
-const CACHE_TTL = 60 * 60 * 1000; // 3600000ms = 1 hour
+const RAMZAN_WEEKLY_MENU = {
+  monday: {
+    breakfast: {
 
-// Versioned cache keys (bump if response shape changes to avoid stale data)
-const TODAY_KEY = 'todayMenuV2';
-const TODAY_TIME_KEY = 'todayMenuTimeV2';
-const TODAY_DATE_KEY = 'todayMenuDateV2';
-const WEEKLY_KEY = 'weeklyMenuV2';
-const WEEKLY_TIME_KEY = 'weeklyMenuTimeV2';
-const WEEKLY_DATE_KEY = 'weeklyMenuDateV2';
+      items: ["Omelette", "Paratha / Chapati", "Yogurt", "Tea"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "mon-sehri",
+    },
+    lunch: {
 
-// Clean up old cache keys from previous versions
-const legacyKeys = ['todayMenu', 'todayMenuTime', 'todayMenuDate', 'weeklyMenu', 'weeklyMenuTime', 'weeklyMenuDate'];
-legacyKeys.forEach((k) => {
-  try { localStorage.removeItem(k); } catch (_) { /* ignore */ }
-});
+      items: ["Dates", "Fruit Chaat", "Pakora Fries", "Chatni", "Jaame-Sheerin with Lemon"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "mon-iftari",
+    },
+    dinner: {
 
-/**
- * Fetch Today's Menu
- * Retrieves today's menu from API with caching (1-hour TTL + day change invalidation)
- * @param {boolean} skipCache - If true, bypass cache and fetch fresh data
- */
-export const fetchTodayMenu = createAsyncThunk(
-  "menu/fetchToday",
-  async (skipCache = false, { rejectWithValue, getState }) => {
-    try {
-      const now = Date.now();
-      const today = new Date().toDateString();
-      
-      // Check localStorage cache (skip if skipCache is true)
-      if (!skipCache) {
-        const cachedData = localStorage.getItem(TODAY_KEY);
-        const cachedTime = localStorage.getItem(TODAY_TIME_KEY);
-        const cachedDate = localStorage.getItem(TODAY_DATE_KEY);
-        
-        // Use cache only if:
-        // 1. It's less than 1 hour old AND
-        // 2. It's from the same calendar day
-        if (cachedData && cachedTime && cachedDate === today && 
-            (now - parseInt(cachedTime) < CACHE_TTL)) {
-          return JSON.parse(cachedData);
-        }
-      }
+      items: ["Chicken Manchurian", "Chinese Rice", "Tea"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "mon-dinner",
+    },
+  },
+  tuesday: {
+    breakfast: {
 
-      // Get auth token if user is logged in
-      const state = getState();
-      const user = state.auth?.user;
-      const headers = { 'Content-Type': 'application/json' };
-      
-      if (user && auth.currentUser) {
-        try {
-          const idToken = await auth.currentUser.getIdToken();
-          headers['Authorization'] = `Bearer ${idToken}`;
-        } catch (authError) {
-          console.log('Failed to get auth token, continuing without it');
-        }
-      }
+      items: ["Aloo Anda", "Onion Paratha / Chapati", "Yogurt", "Tea"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "tue-sehri",
+    },
+    lunch: {
 
-      // Fetch fresh data from V2 API (meal-based)
-      const response = await fetch(`${API_BASE_URL}/api/v2/menu/today`, { headers });
-      if (!response.ok) {
-        throw new Error("Failed to fetch today's menu");
-      }
-      const data = await response.json();
-      
-      // Store in cache with current timestamp and date
-      localStorage.setItem(TODAY_KEY, JSON.stringify(data));
-      localStorage.setItem(TODAY_TIME_KEY, now.toString());
-      localStorage.setItem(TODAY_DATE_KEY, today);
-      
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+      items: ["Dates", "Aloo Samosa", "Mix Pakora", "Chatni", "Tang (Orange / Mango)"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "tue-iftari",
+    },
+    dinner: {
 
-/**
- * Fetch Weekly Menu
- * Retrieves full week menu from API with caching (1-hour TTL + day change invalidation)
- * @param {boolean} skipCache - If true, bypass cache and fetch fresh data
- */
-export const fetchWeeklyMenu = createAsyncThunk(
-  "menu/fetchWeekly",
-  async (skipCache = false, { rejectWithValue, getState }) => {
-    try {
-      const now = Date.now();
-      const today = new Date().toDateString();
-      
-      // Check localStorage cache (skip if skipCache is true)
-      if (!skipCache) {
-        const cachedData = localStorage.getItem(WEEKLY_KEY);
-        const cachedTime = localStorage.getItem(WEEKLY_TIME_KEY);
-        const cachedDate = localStorage.getItem(WEEKLY_DATE_KEY);
-        
-        // Use cache only if:
-        // 1. It's less than 1 hour old AND
-        // 2. It's from the same calendar day
-        if (cachedData && cachedTime && cachedDate === today && 
-            (now - parseInt(cachedTime) < CACHE_TTL)) {
-          return JSON.parse(cachedData);
-        }
-      }
+      items: ["Boneless Handi", "Chapati", "Tea"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "tue-dinner",
+    },
+  },
+  wednesday: {
+    breakfast: {
 
-      // Get auth token if user is logged in
-      const state = getState();
-      const user = state.auth?.user;
-      const headers = { 'Content-Type': 'application/json' };
-      
-      if (user && auth.currentUser) {
-        try {
-          const idToken = await auth.currentUser.getIdToken();
-          headers['Authorization'] = `Bearer ${idToken}`;
-        } catch (authError) {
-          console.log('Failed to get auth token, continuing without it');
-        }
-      }
+      items: ["White Channa", "Paratha / Chapati", "Yogurt", "Tea"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "wed-sehri",
+    },
+    lunch: {
 
-      // Fetch fresh data from V2 API (meal-based)
-      const response = await fetch(`${API_BASE_URL}/api/v2/menu/week`, { headers });
-      if (!response.ok) {
-        throw new Error("Failed to fetch weekly menu");
-      }
-      const data = await response.json();
-      
-      // Store in cache with current timestamp and date
-      localStorage.setItem(WEEKLY_KEY, JSON.stringify(data));
-      localStorage.setItem(WEEKLY_TIME_KEY, now.toString());
-      localStorage.setItem(WEEKLY_DATE_KEY, today);
-      
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+      items: ["Dates", "Dahi Balay", "Mix Pakora", "Chatni", "Jaame-Sheerin with Lemon"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "wed-iftari",
+    },
+    dinner: {
 
-/**
- * Submit rating for a meal (V2 - meal-based rating)
- * @param {string} mealId - The meal ID to rate
- * @param {number} rating - Rating from 1-10
- * @param {string} comment - Optional comment
- */
-export const submitMealRating = createAsyncThunk(
-  "menu/submitMealRating",
-  async ({ mealId, rating, comment }, { getState, rejectWithValue }) => {
-    try {
-      const state = getState();
-      const user = state.auth?.user;
+      items: ["Chicken Pulao", "Raita", "Tea"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "wed-dinner",
+    },
+  },
+  thursday: {
+    breakfast: {
 
-      if (!user) {
-        throw new Error('Must be logged in to rate');
-      }
+      items: ["Chicken Nihari", "Paratha / Chapati", "Yogurt", "Tea"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "thu-sehri",
+    },
+    lunch: {
 
-      const idToken = await auth.currentUser.getIdToken();
+      items: ["Dates", "Fruit Chaat", "Pakora Fries", "Chatni", "Tang (Orange / Mango)"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "thu-iftari",
+    },
+    dinner: {
 
-      const response = await fetch(`${API_BASE_URL}/api/ratings/meal/submit`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${idToken}`,
-        },
-        body: JSON.stringify({
-          mealId,
-          rating,
-          comment,
-        }),
-      });
+      items: ["Chicken Biryani", "Raita", "Cold Drinks"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "thu-dinner",
+    },
+  },
+  friday: {
+    breakfast: {
 
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'Failed to submit rating');
-      }
+      items: ["Omelette", "Paratha / Chapati", "Yogurt", "Tea"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "fri-sehri",
+    },
+    lunch: {
 
-      const data = await response.json();
+      items: ["Dates", "Channa Chaat", "Mix Pakora", "Chatni", "Rooh Afza with Lemon"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "fri-iftari",
+    },
+    dinner: {
 
-      // Clear menu cache to fetch updated ratings
-      localStorage.removeItem('todayMenu');
-      localStorage.removeItem('todayMenuTime');
-      localStorage.removeItem('weeklyMenu');
-      localStorage.removeItem('weeklyMenuTime');
+      items: ["Chicken Daleem", "Chapati / Naan", "Tea"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "fri-dinner",
+    },
+  },
+  saturday: {
+    breakfast: {
 
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+      items: ["Chicken Curry", "Paratha / Chapati", "Yogurt", "Tea"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "sat-sehri",
+    },
+    lunch: {
+
+      items: ["Dates", "Chicken Veg Samosa", "Mix Pakora", "Chatni", "Tang (Orange / Mango)"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "sat-iftari",
+    },
+    dinner: {
+
+      items: ["Vegetable Pulao", "Shami Kabab", "Tea"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "sat-dinner",
+    },
+  },
+  sunday: {
+    breakfast: {
+
+      items: ["Half & Full Fried Egg", "Paratha / Chapati", "Yogurt", "Tea"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "sun-sehri",
+    },
+    lunch: {
+
+      items: ["Dates", "Dahi Balay", "Mix Pakora", "Chatni", "Rooh Afza with Lemon"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "sun-iftari",
+    },
+    dinner: {
+
+      items: ["Chicken Pulao", "Raita", "Kashmiri Tea"],
+      averageRating: null,
+      ratingCount: 0,
+      userRating: null,
+      mealId: "sun-dinner",
+    },
+  },
+};
+
+// ─── Helper: get today's meals from the static menu ─────────────────────────
+
+const DAY_MAP = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+
+function getTodayMenu() {
+  const dayIndex = new Date().getDay(); // 0=Sun … 6=Sat
+  const dayName = DAY_MAP[dayIndex];
+  const dayMeals = RAMZAN_WEEKLY_MENU[dayName];
+
+  return {
+    meals: {
+      breakfast: dayMeals.breakfast,
+      lunch: dayMeals.lunch,
+      dinner: dayMeals.dinner,
+    },
+    weekNumber: 1,
+    day: dayName.charAt(0).toUpperCase() + dayName.slice(1),
+  };
+}
+
+function getWeeklyMenu() {
+  return {
+    menu: RAMZAN_WEEKLY_MENU,
+    weekNumber: 1,
+  };
+}
+
+// ─── Thunk-like actions (synchronous, return static data) ───────────────────
+
+export const fetchTodayMenu = () => (dispatch) => {
+  dispatch(menuSlice.actions._setTodayMenu(getTodayMenu()));
+};
+
+export const fetchWeeklyMenu = () => (dispatch) => {
+  dispatch(menuSlice.actions._setWeeklyMenu(getWeeklyMenu()));
+};
+
+// Rating is a no-op for static mode
+export const submitMealRating = () => () => {
+  // No API in static mode
+};
+
+// ─── Slice ──────────────────────────────────────────────────────────────────
 
 const menuSlice = createSlice({
   name: "menu",
   initialState: {
-    todayMenu: null,
-    weeklyMenu: null,
+    todayMenu: getTodayMenu(),
+    weeklyMenu: getWeeklyMenu(),
     todayLoading: false,
     weeklyLoading: false,
     todayError: null,
@@ -239,47 +263,16 @@ const menuSlice = createSlice({
       state.weeklyError = null;
       state.ratingsError = null;
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      // Handle fetchTodayMenu
-      .addCase(fetchTodayMenu.pending, (state) => {
-        state.todayLoading = true;
-        state.todayError = null;
-      })
-      .addCase(fetchTodayMenu.fulfilled, (state, action) => {
-        state.todayLoading = false;
-        state.todayMenu = action.payload;
-      })
-      .addCase(fetchTodayMenu.rejected, (state, action) => {
-        state.todayLoading = false;
-        state.todayError = action.payload;
-      })
-      // Handle fetchWeeklyMenu
-      .addCase(fetchWeeklyMenu.pending, (state) => {
-        state.weeklyLoading = true;
-        state.weeklyError = null;
-      })
-      .addCase(fetchWeeklyMenu.fulfilled, (state, action) => {
-        state.weeklyLoading = false;
-        state.weeklyMenu = action.payload;
-      })
-      .addCase(fetchWeeklyMenu.rejected, (state, action) => {
-        state.weeklyLoading = false;
-        state.weeklyError = action.payload;
-      })
-      // Handle submitMealRating (V2)
-      .addCase(submitMealRating.pending, (state) => {
-        state.ratingsLoading = true;
-        state.ratingsError = null;
-      })
-      .addCase(submitMealRating.fulfilled, (state) => {
-        state.ratingsLoading = false;
-      })
-      .addCase(submitMealRating.rejected, (state, action) => {
-        state.ratingsLoading = false;
-        state.ratingsError = action.payload;
-      });
+    _setTodayMenu: (state, action) => {
+      state.todayMenu = action.payload;
+      state.todayLoading = false;
+      state.todayError = null;
+    },
+    _setWeeklyMenu: (state, action) => {
+      state.weeklyMenu = action.payload;
+      state.weeklyLoading = false;
+      state.weeklyError = null;
+    },
   },
 });
 
