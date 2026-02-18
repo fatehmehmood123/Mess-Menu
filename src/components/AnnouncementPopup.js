@@ -20,11 +20,6 @@ const glow = keyframes`
   50%      { box-shadow: 0 0 30px rgba(76, 145, 65, 0.45); }
 `;
 
-const float = keyframes`
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-8px); }
-`;
-
 // ─── Styled Components ─────────────────────────────────────────────────────
 
 const Overlay = styled.div`
