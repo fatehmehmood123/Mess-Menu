@@ -4,6 +4,22 @@ import MealRatingModal from "./MealRatingModal";
 import { submitMealRating, fetchTodayMenu } from "../redux/menu";
 import "../css/todayContainer.css";
 
+const StarIcon = ({ className = "" }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="14"
+    height="14"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      d="M12 2.75l2.86 5.8 6.4.93-4.63 4.51 1.09 6.37L12 17.34l-5.72 3.01 1.09-6.37-4.63-4.51 6.4-.93L12 2.75z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
 export default function TodayContainer({ meals, weekNumber, day }) {
   const [isActive, setIsActive] = useState(false);
   const [showRatingModal, setShowRatingModal] = useState(null);
@@ -88,9 +104,8 @@ export default function TodayContainer({ meals, weekNumber, day }) {
 
     const itemNames = mealData.items.length ? mealData.items.join(', ') : 'No menu';
     const title = mealData.name && mealData.name.trim() ? mealData.name : null;
-    const aggregateRating = typeof mealData.averageRating === 'number' 
-      ? `⭐ ${mealData.averageRating.toFixed(1)}/10`
-      : 'No ratings yet';
+    const hasRating = typeof mealData.averageRating === 'number';
+    const aggregateRating = hasRating ? `${mealData.averageRating.toFixed(1)}/10` : 'No ratings yet';
     const totalRatings = mealData.ratingCount > 0 
       ? `(${mealData.ratingCount})`
       : '';
@@ -105,18 +120,16 @@ export default function TodayContainer({ meals, weekNumber, day }) {
             {title && <div className="meal-title">{title}</div>}
             <div className="meal-items">{itemNames}</div>
             <div className="meal-rating">
-              {aggregateRating} {totalRatings}
-              {userHasRated && (
-                <span className="user-rated-badge">
-                  ✓ You rated: {mealData.userRating}/10
-                </span>
-              )}
+              {hasRating && <StarIcon className="icon-inline" />}
+              <span>{aggregateRating}</span>
+              {totalRatings && <span>{totalRatings}</span>}
+              {userHasRated && <span className="rated-note">Your rating: {mealData.userRating}/10</span>}
             </div>
             <button 
               className="rate-btn"
               onClick={() => handleRateClick(mealType)}
             >
-              {user ? (userHasRated ? 'Edit Rating' : 'Rate Meal') : '🔒 Sign in to rate'}
+              Rate
             </button>
           </div>
         </td>
@@ -137,7 +150,7 @@ export default function TodayContainer({ meals, weekNumber, day }) {
               <tr className="table-active">
                 <th scope="col">Timings</th>
                 <th scope="col">Meals</th>
-                <th scope="col">Menu & Rating</th>
+                <th scope="col">Menu</th>
               </tr>
             </thead>
             <tbody>

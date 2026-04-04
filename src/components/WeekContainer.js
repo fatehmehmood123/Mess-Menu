@@ -5,6 +5,22 @@ import MealRatingModal from "./MealRatingModal";
 import { submitMealRating, fetchWeeklyMenu } from "../redux/menu";
 import "../css/WeekContainer.css";
 
+const StarIcon = ({ className = "" }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="13"
+    height="13"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      d="M12 2.75l2.86 5.8 6.4.93-4.63 4.51 1.09 6.37L12 17.34l-5.72 3.01 1.09-6.37-4.63-4.51 6.4-.93L12 2.75z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
 export default function WeekContainer({ weeklyMenu, weekNumber }) {
   const [isActive, setIsActive] = useState(false);
   const [showRatingModal, setShowRatingModal] = useState(null);
@@ -81,9 +97,8 @@ export default function WeekContainer({ weeklyMenu, weekNumber }) {
 
     const itemNames = mealData.items.length ? mealData.items.join(', ') : 'No menu';
     const title = mealData.name && mealData.name.trim() ? mealData.name : null;
-    const aggregateRating = typeof mealData.averageRating === 'number' 
-      ? `⭐ ${mealData.averageRating.toFixed(1)}/10`
-      : 'No ratings';
+    const hasRating = typeof mealData.averageRating === 'number';
+    const aggregateRating = hasRating ? `${mealData.averageRating.toFixed(1)}/10` : 'No ratings';
     const userHasRated = mealData.userRating !== null;
 
     return (
@@ -92,14 +107,15 @@ export default function WeekContainer({ weeklyMenu, weekNumber }) {
           {title && <div className="meal-title-week">{title}</div>}
           <div className="meal-items-week">{itemNames}</div>
           <div className="meal-rating-week">
-            {aggregateRating}
-            {userHasRated && <span className="user-rated-badge-sm">✓</span>}
+            {hasRating && <StarIcon className="icon-inline" />}
+            <span>{aggregateRating}</span>
+            {userHasRated && <span className="rated-note-week">You rated</span>}
           </div>
           <button 
             className="rate-btn-sm"
             onClick={() => handleRateClick(day, mealType)}
           >
-            {user ? '⭐ Rate' : '🔒'}
+            Rate
           </button>
         </div>
       </td>

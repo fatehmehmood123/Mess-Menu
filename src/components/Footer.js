@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="fixed-bottom page-footer custom-footer">
+    <footer className="page-footer custom-footer">
       <div className="footer-copyright text-center py-2">
         <div className="footer-content">
           <span>© 2025 Muhammad Fateh</span>
