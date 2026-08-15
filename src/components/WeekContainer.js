@@ -89,25 +89,6 @@ function getMondayOf(date = new Date()) {
   return monday;
 }
 
-/**
- * Weighted average across a day's meals, so a meal with 200 ratings counts for
- * more than one with 2. Returns null when nothing has been rated.
- */
-function getDayAverage(dayMenu) {
-  let weightedTotal = 0;
-  let count = 0;
-
-  for (const mealType of MEAL_TYPES) {
-    const meal = dayMenu?.[mealType];
-    if (meal && typeof meal.averageRating === "number" && meal.ratingCount > 0) {
-      weightedTotal += meal.averageRating * meal.ratingCount;
-      count += meal.ratingCount;
-    }
-  }
-
-  return count > 0 ? weightedTotal / count : null;
-}
-
 /** One-line "what's on" summary for the collapsed state. */
 function getDayPreview(dayMenu) {
   const parts = MEAL_TYPES.map((mealType) => {
@@ -284,7 +265,6 @@ export default function WeekContainer({ weeklyMenu, weekNumber }) {
       month: "short",
     });
 
-    const dayAverage = getDayAverage(dayMenu);
     const timings = getTimings(day);
     const panelId = `day-panel-${day}`;
 
@@ -315,12 +295,6 @@ export default function WeekContainer({ weeklyMenu, weekNumber }) {
           </div>
 
           <div className="day-header-side">
-            {dayAverage !== null && (
-              <span className="day-score">
-                <StarIcon className="icon-inline" />
-                {dayAverage.toFixed(1)}
-              </span>
-            )}
             <ChevronIcon />
           </div>
         </button>
