@@ -1,0 +1,417 @@
+/**
+ * Meal reviews
+ *
+ * Uses the same restrained palette as the menu tables: olive accent (#9bb158),
+ * neutral greys for text, hairline #d7d9dd borders, 6px radii.
+ */
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---------- Summary ---------- */
+
+.reviews-summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid #e4e6ea;
+  border-radius: 8px;
+  background: #fafbfc;
+}
+
+.reviews-score {
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+  flex-shrink: 0;
+}
+
+.reviews-score-value {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #30363d;
+  font-variant-numeric: tabular-nums;
+}
+
+.reviews-score-scale {
+  font-size: 0.85rem;
+  color: #8b939d;
+  font-weight: 500;
+}
+
+.reviews-summary-detail {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rating-meter {
+  height: 5px;
+  border-radius: 3px;
+  background: #e7eaee;
+  overflow: hidden;
+}
+
+.rating-meter-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: #9bb158;
+  transition: width 0.3s ease;
+}
+
+.reviews-summary-meta {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #6b737d;
+}
+
+.reviews-dot {
+  margin: 0 6px;
+  color: #b9bfc7;
+}
+
+/* ---------- List ---------- */
+
+.reviews-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.review {
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid #eceef1;
+}
+
+.review:first-child {
+  border-top: none;
+  padding-top: 2px;
+}
+
+/* Stock anonymous avatar - no real profile photos are ever loaded */
+.review-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+  background: #eef0f2;
+  /* App-wide img rules greyscale images and add a right margin - opt out here */
+  -webkit-filter: none;
+  filter: none;
+  margin-right: 0;
+  user-select: none;
+}
+
+.review-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.review-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.review-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #30363d;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 55%;
+}
+
+.review-you {
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #7c9341;
+  background: #f3f8e7;
+  border: 1px solid #dbe8bd;
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+.review-rating {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #4d545d;
+  background: #f0f2f5;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.review-time {
+  font-size: 0.72rem;
+  color: #8b939d;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.review-text {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #3d444d;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.review-text.is-clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.review-toggle {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #7c9341;
+  cursor: pointer;
+}
+
+.review-toggle:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Upvote ---------- */
+
+.review-foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.review-upvote {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #5c646f;
+  background: #ffffff;
+  border: 1px solid #d7d9dd;
+  border-radius: 14px;
+  cursor: pointer;
+  /* No transform/scale on press - the count updates instantly and a moving
+     target makes rapid toggling feel unreliable */
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.review-upvote:hover {
+  background: #f5f6f8;
+  border-color: #bfc4cb;
+  color: #30363d;
+}
+
+.review-upvote.is-active {
+  color: #6f8438;
+  background: #f3f8e7;
+  border-color: #c4d796;
+}
+
+.review-upvote:focus-visible {
+  outline: 2px solid #7c9341;
+  outline-offset: 1px;
+}
+
+.review-upvote-count {
+  font-variant-numeric: tabular-nums;
+}
+
+.review-upvote-count:empty {
+  display: none;
+}
+
+/* Own review - count only, nothing to click */
+.review-upvote-static {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #8b939d;
+  background: #f4f5f7;
+  border-radius: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Load more ---------- */
+
+.reviews-more {
+  align-self: center;
+  padding: 7px 16px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #4d545d;
+  background: #ffffff;
+  border: 1px solid #d7d9dd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.reviews-more:hover:not(:disabled) {
+  background: #f5f6f8;
+  border-color: #bfc4cb;
+}
+
+.reviews-more:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* ---------- Empty / error states ---------- */
+
+.reviews-state {
+  padding: 28px 16px;
+  text-align: center;
+  border: 1px dashed #dfe2e6;
+  border-radius: 8px;
+}
+
+.reviews-state--error {
+  border-style: solid;
+  border-color: #e8d2d2;
+  background: #fdf7f7;
+}
+
+.reviews-state-title {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4d545d;
+}
+
+.reviews-state-text {
+  margin: 6px 0 0;
+  font-size: 0.8rem;
+  color: #8b939d;
+}
+
+.reviews-retry {
+  margin-top: 12px;
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #4d545d;
+  background: #ffffff;
+  border: 1px solid #d7d9dd;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.reviews-retry:hover {
+  background: #f5f6f8;
+}
+
+/* ---------- Loading skeleton ---------- */
+
+.skeleton-block,
+.skeleton-line {
+  background: linear-gradient(90deg, #eef0f2 25%, #e3e6e9 37%, #eef0f2 63%);
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+  border-radius: 4px;
+  display: block;
+}
+
+.skeleton-line {
+  height: 10px;
+  width: 100%;
+}
+
+.skeleton-line--short {
+  width: 35%;
+}
+
+.skeleton-line--mid {
+  width: 70%;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-block,
+  .skeleton-line {
+    animation: none;
+  }
+
+  .rating-meter-fill {
+    transition: none;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 576px) {
+  .reviews-summary {
+    padding: 12px 14px;
+    gap: 14px;
+  }
+
+  .reviews-score-value {
+    font-size: 1.5rem;
+  }
+
+  .review-avatar {
+    width: 30px;
+    height: 30px;
+  }
+
+  .review-name {
+    max-width: 45%;
+  }
+
+  .review-time {
+    /* Wrap onto its own line rather than squeezing the name */
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .review-text {
+    font-size: 0.84rem;
+  }
+
+  /* Keep the tap target comfortable on phones */
+  .review-upvote,
+  .review-upvote-static {
+    padding: 5px 12px;
+  }
+}

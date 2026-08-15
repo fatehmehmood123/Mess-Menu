@@ -97,8 +97,41 @@ h2 span {
   color: #7a838f;
 }
 
-.rate-btn {
+.meal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
   margin-top: 2px;
+}
+
+/* Secondary action - reads reviews, no sign-in required */
+.reviews-btn {
+  padding: 4px 10px;
+  background: #ffffff;
+  color: #5c646f;
+  border: 1px solid #d7d9dd;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.2;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.reviews-btn:hover {
+  background: #f5f6f8;
+  border-color: #bfc4cb;
+  color: #30363d;
+}
+
+.reviews-btn:active {
+  transform: translateY(1px);
+}
+
+.rate-btn {
+  margin-top: 0;
   padding: 4px 10px;
   background: #f3f8e7;
   color: #9bb158;
@@ -137,7 +170,8 @@ h2 span {
     font-size: 0.8rem;
   }
 
-  .rate-btn {
+  .rate-btn,
+  .reviews-btn {
     font-size: 0.74rem;
     padding: 3px 8px;
   }

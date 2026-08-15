@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import MealRatingModal from "./MealRatingModal";
 import { submitMealRating, fetchTodayMenu } from "../redux/menu";
+import { fetchMealComments } from "../redux/comments";
 import "../css/todayContainer.css";
 
 const StarIcon = ({ className = "" }) => (
@@ -22,6 +23,7 @@ const StarIcon = ({ className = "" }) => (
 
 export default function TodayContainer({ meals, weekNumber, day }) {
   const [isActive, setIsActive] = useState(false);
+  // { mealType, tab } - which meal's dialog is open and which pane it shows
   const [showRatingModal, setShowRatingModal] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
@@ -72,7 +74,12 @@ export default function TodayContainer({ meals, weekNumber, day }) {
       window.dispatchEvent(new Event('open-login-modal'));
       return;
     }
-    setShowRatingModal(mealType);
+    setShowRatingModal({ mealType, tab: 'rate' });
+  };
+
+  // Reviews are public - no sign-in needed to read them
+  const handleReviewsClick = (mealType) => {
+    setShowRatingModal({ mealType, tab: 'reviews' });
   };
 
   const handleSubmitRating = async (mealId, rating, comment) => {
@@ -83,12 +90,18 @@ export default function TodayContainer({ meals, weekNumber, day }) {
         rating,
         comment: comment || undefined,
       })).unwrap();
-      
+
       setShowRatingModal(null);
-      setSuccessMessage('Rating submitted successfully!');
+      setSuccessMessage(
+        comment
+          ? 'Thanks! Your rating and review are now live.'
+          : 'Rating submitted successfully!'
+      );
       setShowSuccessModal(true);
       // Refresh today's menu to show updated rating (skip cache for fresh data)
       dispatch(fetchTodayMenu(true));
+      // Pull the review list again so the new comment appears immediately
+      dispatch(fetchMealComments({ mealId, offset: 0, append: false }));
     } catch (error) {
       alert('Failed to submit rating: ' + error);
     } finally {
@@ -110,7 +123,8 @@ export default function TodayContainer({ meals, weekNumber, day }) {
       ? `(${mealData.ratingCount})`
       : '';
     const userHasRated = mealData.userRating !== null;
-    
+    const commentCount = mealData.commentCount || 0;
+
     return (
       <tr key={mealType}>
         <td>{timing}</td>
@@ -125,12 +139,22 @@ export default function TodayContainer({ meals, weekNumber, day }) {
               {totalRatings && <span>{totalRatings}</span>}
               {userHasRated && <span className="rated-note">Your rating: {mealData.userRating}/10</span>}
             </div>
-            <button 
-              className="rate-btn"
-              onClick={() => handleRateClick(mealType)}
-            >
-              Rate
-            </button>
+            <div className="meal-actions">
+              <button
+                className="rate-btn"
+                onClick={() => handleRateClick(mealType)}
+              >
+                {userHasRated ? 'Edit rating' : 'Rate'}
+              </button>
+              <button
+                className="reviews-btn"
+                onClick={() => handleReviewsClick(mealType)}
+              >
+                {commentCount > 0
+                  ? `Reviews (${commentCount})`
+                  : 'Reviews'}
+              </button>
+            </div>
           </div>
         </td>
       </tr>
@@ -162,12 +186,24 @@ export default function TodayContainer({ meals, weekNumber, day }) {
         </div>
       </div>
 
-      {showRatingModal && meals && meals[showRatingModal] && (
+      {showRatingModal && meals && meals[showRatingModal.mealType] && (
         <MealRatingModal
-          mealName={meals[showRatingModal].name || `${day} ${showRatingModal}`}
-          items={meals[showRatingModal].items}
-          mealId={meals[showRatingModal].mealId}
-          currentRating={meals[showRatingModal].userRating}
+          mealName={
+            meals[showRatingModal.mealType].name ||
+            `${day} ${showRatingModal.mealType}`
+          }
+          items={meals[showRatingModal.mealType].items}
+          mealId={meals[showRatingModal.mealType].mealId}
+          currentRating={meals[showRatingModal.mealType].userRating}
+          averageRating={meals[showRatingModal.mealType].averageRating}
+          ratingCount={meals[showRatingModal.mealType].ratingCount}
+          commentCount={meals[showRatingModal.mealType].commentCount || 0}
+          initialTab={showRatingModal.tab}
+          canRate={Boolean(user)}
+          onRequestLogin={() => {
+            setShowRatingModal(null);
+            window.dispatchEvent(new Event('open-login-modal'));
+          }}
           onSubmit={handleSubmitRating}
           onClose={() => setShowRatingModal(null)}
           isSubmitting={isSubmitting}

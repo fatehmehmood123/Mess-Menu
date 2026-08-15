@@ -1,8 +1,8 @@
-// filepath: /E:/MessMenu/src/components/WeekContainer.js
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import MealRatingModal from "./MealRatingModal";
 import { submitMealRating, fetchWeeklyMenu } from "../redux/menu";
+import { fetchMealComments } from "../redux/comments";
 import "../css/WeekContainer.css";
 
 const StarIcon = ({ className = "" }) => (
@@ -21,147 +21,365 @@ const StarIcon = ({ className = "" }) => (
   </svg>
 );
 
+const ChevronIcon = () => (
+  <svg
+    className="day-chevron"
+    viewBox="0 0 16 16"
+    width="16"
+    height="16"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      d="M4 6l4 4 4-4"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+  </svg>
+);
+
+const DAYS = [
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+  "sunday",
+];
+
+const DAY_LABELS = {
+  monday: "Monday",
+  tuesday: "Tuesday",
+  wednesday: "Wednesday",
+  thursday: "Thursday",
+  friday: "Friday",
+  saturday: "Saturday",
+  sunday: "Sunday",
+};
+
+const MEAL_TYPES = ["breakfast", "lunch", "dinner"];
+
+const MEAL_LABELS = {
+  breakfast: "Breakfast",
+  lunch: "Lunch",
+  dinner: "Dinner",
+};
+
+/** Serving times differ at weekends, matching the Today view. */
+function getTimings(day) {
+  const isWeekend = day === "saturday" || day === "sunday";
+  return {
+    breakfast: isWeekend ? "9:00 – 10:30 AM" : "7:30 – 9:30 AM",
+    lunch: isWeekend ? "2:00 – 3:30 PM" : "1:00 – 3:30 PM",
+    dinner: "7:30 – 9:30 PM",
+  };
+}
+
+/** Monday of the week containing `date`. */
+function getMondayOf(date = new Date()) {
+  const monday = new Date(date);
+  const weekday = date.getDay(); // 0 (Sunday) to 6 (Saturday)
+  const diffToMonday = weekday === 0 ? -6 : 1 - weekday;
+  monday.setDate(date.getDate() + diffToMonday);
+  monday.setHours(0, 0, 0, 0);
+  return monday;
+}
+
+/**
+ * Weighted average across a day's meals, so a meal with 200 ratings counts for
+ * more than one with 2. Returns null when nothing has been rated.
+ */
+function getDayAverage(dayMenu) {
+  let weightedTotal = 0;
+  let count = 0;
+
+  for (const mealType of MEAL_TYPES) {
+    const meal = dayMenu?.[mealType];
+    if (meal && typeof meal.averageRating === "number" && meal.ratingCount > 0) {
+      weightedTotal += meal.averageRating * meal.ratingCount;
+      count += meal.ratingCount;
+    }
+  }
+
+  return count > 0 ? weightedTotal / count : null;
+}
+
+/** One-line "what's on" summary for the collapsed state. */
+function getDayPreview(dayMenu) {
+  const parts = MEAL_TYPES.map((mealType) => {
+    const items = dayMenu?.[mealType]?.items;
+    return Array.isArray(items) && items.length > 0 ? items[0] : null;
+  }).filter(Boolean);
+
+  return parts.length > 0 ? parts.join(" · ") : "No menu set";
+}
+
 export default function WeekContainer({ weeklyMenu, weekNumber }) {
   const [isActive, setIsActive] = useState(false);
+  // { day, mealType, tab } - which meal's dialog is open and which pane it shows
   const [showRatingModal, setShowRatingModal] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth?.user);
 
-  function getWeekRange(date = new Date()) {
-    // Clone the input date to avoid mutation
-    const inputDate = new Date(date);
-    
-    // Calculate the Monday of the week
-    const monday = new Date(inputDate);
-    const day = inputDate.getDay(); // 0 (Sunday) to 6 (Saturday)
-    const diffToMonday = day === 0 ? -6 : 1 - day; // Adjust to get Monday
-    monday.setDate(inputDate.getDate() + diffToMonday);
-    
-    // Calculate the Sunday of the week (6 days after Monday)
-    const sunday = new Date(monday);
-    sunday.setDate(monday.getDate() + 6);
-  
-    // Format dates (e.g., "February 24, 2025")
-    const options = {  day: 'numeric',month: 'long'};
-    const formattedMonday = monday.toLocaleDateString('en-UK', options);
-    const formattedSunday = sunday.toLocaleDateString('en-UK', options);
-  
-    return `${formattedMonday} to ${formattedSunday}`;
-  }
+  // Dates for this calendar week, plus which row is today
+  const { monday, weekRange, todayKey } = useMemo(() => {
+    const now = new Date();
+    const mondayDate = getMondayOf(now);
+    const sunday = new Date(mondayDate);
+    sunday.setDate(mondayDate.getDate() + 6);
+
+    const options = { day: "numeric", month: "long" };
+    return {
+      monday: mondayDate,
+      weekRange: `${mondayDate.toLocaleDateString(
+        "en-GB",
+        options
+      )} to ${sunday.toLocaleDateString("en-GB", options)}`,
+      todayKey: DAYS[now.getDay() === 0 ? 6 : now.getDay() - 1],
+    };
+  }, []);
+
+  // Today starts open so the most relevant day needs no interaction
+  const [expandedDays, setExpandedDays] = useState(() => [todayKey]);
 
   useEffect(() => {
-    // Simulate loading the data or triggering the animation
-    setTimeout(() => {
-      setIsActive(true);
-    }, 100); // Adjust the delay as needed
+    const timer = setTimeout(() => setIsActive(true), 100);
+    return () => clearTimeout(timer);
   }, []);
+
+  const toggleDay = (day) => {
+    setExpandedDays((prev) =>
+      prev.includes(day) ? prev.filter((d) => d !== day) : [...prev, day]
+    );
+  };
+
+  const allExpanded = expandedDays.length === DAYS.length;
+
+  const toggleAll = () => {
+    setExpandedDays(allExpanded ? [] : [...DAYS]);
+  };
 
   const handleRateClick = (day, mealType) => {
     if (!user) {
-      window.dispatchEvent(new Event('open-login-modal'));
+      window.dispatchEvent(new Event("open-login-modal"));
       return;
     }
-    setShowRatingModal({ day, mealType });
+    setShowRatingModal({ day, mealType, tab: "rate" });
+  };
+
+  // Reviews are public - no sign-in needed to read them
+  const handleReviewsClick = (day, mealType) => {
+    setShowRatingModal({ day, mealType, tab: "reviews" });
   };
 
   const handleSubmitRating = async (mealId, rating, comment) => {
     setIsSubmitting(true);
     try {
-      await dispatch(submitMealRating({
-        mealId,
-        rating,
-        comment: comment || undefined,
-      })).unwrap();
-      
+      await dispatch(
+        submitMealRating({
+          mealId,
+          rating,
+          comment: comment || undefined,
+        })
+      ).unwrap();
+
       setShowRatingModal(null);
-      setSuccessMessage('Rating submitted successfully!');
+      setSuccessMessage(
+        comment
+          ? "Thanks! Your rating and review are now live."
+          : "Rating submitted successfully!"
+      );
       setShowSuccessModal(true);
       // Refresh weekly menu to show updated rating (skip cache for fresh data)
       dispatch(fetchWeeklyMenu(true));
+      // Pull the review list again so the new comment appears immediately
+      dispatch(fetchMealComments({ mealId, offset: 0, append: false }));
     } catch (error) {
-      alert('Failed to submit rating: ' + error);
+      alert("Failed to submit rating: " + error);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const renderMealCell = (day, mealType, mealData) => {
-    // V2 API returns MealWithRating structure
-    if (!mealData || !Array.isArray(mealData.items)) {
-      return <td>-</td>;
-    }
-
-    const itemNames = mealData.items.length ? mealData.items.join(', ') : 'No menu';
-    const title = mealData.name && mealData.name.trim() ? mealData.name : null;
-    const hasRating = typeof mealData.averageRating === 'number';
-    const aggregateRating = hasRating ? `${mealData.averageRating.toFixed(1)}/10` : 'No ratings';
-    const userHasRated = mealData.userRating !== null;
+  const renderMeal = (day, mealType, mealData, timing) => {
+    const hasMenu = mealData && Array.isArray(mealData.items);
+    const items =
+      hasMenu && mealData.items.length > 0
+        ? mealData.items.join(", ")
+        : "No menu";
+    const title =
+      hasMenu && mealData.name && mealData.name.trim() ? mealData.name : null;
+    const hasRating = hasMenu && typeof mealData.averageRating === "number";
+    const userHasRated = hasMenu && mealData.userRating !== null;
+    const commentCount = (hasMenu && mealData.commentCount) || 0;
 
     return (
-      <td>
-        <div className="meal-cell">
-          {title && <div className="meal-title-week">{title}</div>}
-          <div className="meal-items-week">{itemNames}</div>
-          <div className="meal-rating-week">
-            {hasRating && <StarIcon className="icon-inline" />}
-            <span>{aggregateRating}</span>
-            {userHasRated && <span className="rated-note-week">You rated</span>}
-          </div>
-          <button 
-            className="rate-btn-sm"
-            onClick={() => handleRateClick(day, mealType)}
-          >
-            Rate
-          </button>
+      <div className="meal-block" key={mealType}>
+        <div className="meal-block-head">
+          <span className="meal-type">{MEAL_LABELS[mealType]}</span>
+          <span className="meal-time">{timing}</span>
         </div>
-      </td>
+
+        {title && <div className="meal-title-week">{title}</div>}
+        <div className="meal-items-week">{items}</div>
+
+        <div className="meal-rating-week">
+          {hasRating ? (
+            <>
+              <StarIcon className="icon-inline" />
+              <span className="meal-score">
+                {mealData.averageRating.toFixed(1)}/10
+              </span>
+              <span className="meal-count">({mealData.ratingCount})</span>
+            </>
+          ) : (
+            <span className="meal-count">No ratings yet</span>
+          )}
+          {userHasRated && (
+            <span className="rated-note-week">
+              You rated {mealData.userRating}/10
+            </span>
+          )}
+        </div>
+
+        {hasMenu && (
+          <div className="meal-actions-week">
+            <button
+              className="rate-btn-sm"
+              onClick={() => handleRateClick(day, mealType)}
+            >
+              {userHasRated ? "Edit rating" : "Rate"}
+            </button>
+            <button
+              className="reviews-btn-sm"
+              onClick={() => handleReviewsClick(day, mealType)}
+            >
+              {commentCount > 0 ? `Reviews (${commentCount})` : "Reviews"}
+            </button>
+          </div>
+        )}
+      </div>
     );
   };
 
-  const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-  const dayLabels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  const renderDay = (day, index) => {
+    const dayMenu = weeklyMenu?.[day];
+    const isExpanded = expandedDays.includes(day);
+    const isToday = day === todayKey;
+
+    const date = new Date(monday);
+    date.setDate(monday.getDate() + index);
+    const dateLabel = date.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+    });
+
+    const dayAverage = getDayAverage(dayMenu);
+    const timings = getTimings(day);
+    const panelId = `day-panel-${day}`;
+
+    return (
+      <div
+        className={`day-card ${isExpanded ? "is-open" : ""} ${
+          isToday ? "is-today" : ""
+        }`}
+        key={day}
+      >
+        <button
+          type="button"
+          className="day-header"
+          onClick={() => toggleDay(day)}
+          aria-expanded={isExpanded}
+          aria-controls={panelId}
+        >
+          <div className="day-header-main">
+            <div className="day-title-row">
+              <span className="day-name">{DAY_LABELS[day]}</span>
+              <span className="day-date">{dateLabel}</span>
+              {isToday && <span className="day-today">Today</span>}
+            </div>
+            {/* Collapsed rows still show what's on, so the week stays scannable */}
+            {!isExpanded && (
+              <p className="day-preview">{getDayPreview(dayMenu)}</p>
+            )}
+          </div>
+
+          <div className="day-header-side">
+            {dayAverage !== null && (
+              <span className="day-score">
+                <StarIcon className="icon-inline" />
+                {dayAverage.toFixed(1)}
+              </span>
+            )}
+            <ChevronIcon />
+          </div>
+        </button>
+
+        {isExpanded && (
+          <div
+            className="day-panel"
+            id={panelId}
+            role="region"
+            aria-label={`${DAY_LABELS[day]} menu`}
+          >
+            {MEAL_TYPES.map((mealType) =>
+              renderMeal(day, mealType, dayMenu?.[mealType], timings[mealType])
+            )}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const selectedMeal = showRatingModal
+    ? weeklyMenu?.[showRatingModal.day]?.[showRatingModal.mealType]
+    : null;
 
   return (
     <>
-      <div id="weekContainer" className="container  my-3">
-        <h3 style={{ textAlign: "center" }}>{getWeekRange()}</h3>
+      <div id="weekContainer" className="container my-3">
+        <div className="week-head">
+          <div>
+            <h3 className="week-range">{weekRange}</h3>
+            {weekNumber && (
+              <p className="week-sub">Week {weekNumber} menu rotation</p>
+            )}
+          </div>
+          <button type="button" className="week-toggle-all" onClick={toggleAll}>
+            {allExpanded ? "Collapse all" : "Expand all"}
+          </button>
+        </div>
 
-        <div
-          className={`table-container ${
-            isActive ? "active" : ""
-          } overflow-x-scroll`}
-        >
-          <table  className=" container my-4 table table-hover shadow p-3 mb-5 bg-body-tertiary rounded">
-            <tbody>
-              <tr className="table-active">
-                <th>Day</th>
-                <th>Breakfast </th>
-                <th>Lunch </th>
-                <th>Dinner </th>
-              </tr>
-              {days.map((day, index) => (
-                <tr key={day}>
-                  <td>{dayLabels[index]}</td>
-                  {renderMealCell(day, 'breakfast', weeklyMenu?.[day]?.breakfast)}
-                  {renderMealCell(day, 'lunch', weeklyMenu?.[day]?.lunch)}
-                  {renderMealCell(day, 'dinner', weeklyMenu?.[day]?.dinner)}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className={`week-list ${isActive ? "active" : ""}`}>
+          {DAYS.map((day, index) => renderDay(day, index))}
         </div>
       </div>
 
-      {showRatingModal && weeklyMenu && weeklyMenu[showRatingModal.day] && weeklyMenu[showRatingModal.day][showRatingModal.mealType] && (
+      {showRatingModal && selectedMeal && (
         <MealRatingModal
-          mealName={`${showRatingModal.day} ${showRatingModal.mealType}`}
-          items={weeklyMenu[showRatingModal.day][showRatingModal.mealType].items}
-          mealId={weeklyMenu[showRatingModal.day][showRatingModal.mealType].mealId}
-          currentRating={weeklyMenu[showRatingModal.day][showRatingModal.mealType].userRating}
+          mealName={`${DAY_LABELS[showRatingModal.day]} ${
+            MEAL_LABELS[showRatingModal.mealType]
+          }`}
+          items={selectedMeal.items}
+          mealId={selectedMeal.mealId}
+          currentRating={selectedMeal.userRating}
+          averageRating={selectedMeal.averageRating}
+          ratingCount={selectedMeal.ratingCount}
+          commentCount={selectedMeal.commentCount || 0}
+          initialTab={showRatingModal.tab}
+          canRate={Boolean(user)}
+          onRequestLogin={() => {
+            setShowRatingModal(null);
+            window.dispatchEvent(new Event("open-login-modal"));
+          }}
           onSubmit={handleSubmitRating}
           onClose={() => setShowRatingModal(null)}
           isSubmitting={isSubmitting}
@@ -169,18 +387,33 @@ export default function WeekContainer({ weeklyMenu, weekNumber }) {
       )}
 
       {showSuccessModal && (
-        <div className="modal fade show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}>
+        <div
+          className="modal fade show d-block"
+          tabIndex="-1"
+          style={{ backgroundColor: "rgba(0,0,0,0.4)" }}
+        >
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Thank you!</h5>
-                <button type="button" className="btn-close" aria-label="Close" onClick={() => setShowSuccessModal(false)}></button>
+                <button
+                  type="button"
+                  className="btn-close"
+                  aria-label="Close"
+                  onClick={() => setShowSuccessModal(false)}
+                ></button>
               </div>
               <div className="modal-body">
                 <p>{successMessage}</p>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-primary" onClick={() => setShowSuccessModal(false)}>Close</button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => setShowSuccessModal(false)}
+                >
+                  Close
+                </button>
               </div>
             </div>
           </div>
