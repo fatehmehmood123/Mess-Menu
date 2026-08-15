@@ -266,6 +266,101 @@
   color: #9aa2ac;
 }
 
+/* ---------- Anonymous identity ---------- */
+
+/* Deliberately quiet: this is reassurance, not an announcement */
+.posting-as {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: #6b737d;
+}
+
+.posting-as-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  /* App-wide img rules greyscale images and add a margin - opt out */
+  -webkit-filter: none;
+  filter: none;
+  margin-right: 0;
+}
+
+.posting-as-text strong {
+  color: #30363d;
+  font-weight: 600;
+}
+
+.posting-as-why {
+  margin-left: auto;
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #7c9341;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.posting-as-why:hover {
+  text-decoration: underline;
+}
+
+.posting-as-note {
+  margin: 0;
+  padding: 9px 11px;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: #5f6873;
+  background: #f7f9f2;
+  border: 1px solid #e4ebd4;
+  border-radius: 6px;
+}
+
+.posting-as-note strong {
+  color: #6f8438;
+}
+
+/* ---------- Submit-without-a-note prompt ---------- */
+
+.confirm-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  border-top: 1px solid #e6e8ec;
+  background: #fafbfc;
+}
+
+.confirm-copy {
+  min-width: 0;
+}
+
+.confirm-title {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #30363d;
+}
+
+.confirm-text {
+  margin: 2px 0 0;
+  font-size: 0.78rem;
+  color: #8b939d;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
 .rate-textarea {
   width: 100%;
   border: 1px solid #d9dce1;
@@ -446,6 +541,23 @@
 
   .meal-modal-footer .btn-ghost,
   .meal-modal-footer .btn-primary-olive {
+    flex: 1;
+  }
+
+  /* Stack the prompt so both choices stay full-width and tappable */
+  .confirm-strip {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .confirm-actions {
+    width: 100%;
+  }
+
+  .confirm-actions .btn-ghost,
+  .confirm-actions .btn-primary-olive {
     flex: 1;
   }
 }

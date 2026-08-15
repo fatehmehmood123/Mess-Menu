@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import MealComments from "./MealComments";
+import { getAvatarForId } from "../utils/avatars";
 import "../css/mealModal.css";
 
 const MAX_COMMENT_LENGTH = 500;
@@ -59,8 +61,13 @@ export default function MealRatingModal({
   const [comment, setComment] = useState("");
   const [hoveredRating, setHoveredRating] = useState(0);
   const [validationError, setValidationError] = useState("");
+  const [showWhyAnonymous, setShowWhyAnonymous] = useState(false);
+  const [confirmNoComment, setConfirmNoComment] = useState(false);
 
   const panelRef = useRef(null);
+  const commentRef = useRef(null);
+
+  const username = useSelector((state) => state.auth?.user?.username);
 
   // Close on Escape, and lock background scrolling while open
   useEffect(() => {
@@ -94,6 +101,11 @@ export default function MealRatingModal({
     [onClose, isSubmitting]
   );
 
+  const submit = () => {
+    setConfirmNoComment(false);
+    onSubmit(mealId, rating, comment.trim());
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (rating === 0) {
@@ -101,7 +113,15 @@ export default function MealRatingModal({
       return;
     }
     setValidationError("");
-    onSubmit(mealId, rating, comment.trim());
+
+    // A score alone says the meal was bad; a line of text says why. Ask once
+    // rather than blocking - a rating with no note is still worth having.
+    if (comment.trim().length === 0) {
+      setConfirmNoComment(true);
+      return;
+    }
+
+    submit();
   };
 
   const activeScore = hoveredRating || rating;
@@ -243,12 +263,46 @@ export default function MealRatingModal({
                     <label className="rate-label" htmlFor="mealComment">
                       Add a review <span className="rate-optional">(optional)</span>
                     </label>
+
+                    {/* Answers "will people know it was me?" at the moment it
+                        is actually being asked - while writing */}
+                    {username && (
+                      <div className="posting-as">
+                        <img
+                          className="posting-as-avatar"
+                          src={getAvatarForId(username)}
+                          alt=""
+                        />
+                        <span className="posting-as-text">
+                          Posting as <strong>{username}</strong>
+                        </span>
+                        <button
+                          type="button"
+                          className="posting-as-why"
+                          onClick={() => setShowWhyAnonymous((prev) => !prev)}
+                          aria-expanded={showWhyAnonymous}
+                        >
+                          {showWhyAnonymous ? "Got it" : "Why?"}
+                        </button>
+                      </div>
+                    )}
+
+                    {username && showWhyAnonymous && (
+                      <p className="posting-as-note">
+                        Reviews are anonymous. Everyone sees{" "}
+                        <strong>{username}</strong> — never your name, email or
+                        photo. The name is picked at random, means nothing about
+                        you, and stays yours.
+                      </p>
+                    )}
+
                     <textarea
                       id="mealComment"
+                      ref={commentRef}
                       className="rate-textarea"
                       rows="4"
                       maxLength={MAX_COMMENT_LENGTH}
-                      placeholder="What was good? What could be better? Your review is shown publicly with your name."
+                      placeholder="What was good? What could be better? Your review is shown anonymously."
                       value={comment}
                       onChange={(event) => setComment(event.target.value)}
                       disabled={isSubmitting}
@@ -303,7 +357,44 @@ export default function MealRatingModal({
           )}
         </div>
 
-        {tab === "rate" && canRate && (
+        {/* Nudge, not a gate: a score with no note is still worth having, so
+            "Just the rating" submits immediately rather than hiding behind a
+            confirmation the user has to fight */}
+        {confirmNoComment && (
+          <div className="confirm-strip" role="group" aria-label="Submit without a review">
+            <div className="confirm-copy">
+              <p className="confirm-title">Add a quick note?</p>
+              <p className="confirm-text">
+                {rating <= 4
+                  ? "A score says it was bad. One line says what to fix."
+                  : "A score says it was good. One line says what to keep."}
+              </p>
+            </div>
+            <div className="confirm-actions">
+              <button
+                type="button"
+                className="btn-ghost"
+                onClick={submit}
+                disabled={isSubmitting}
+              >
+                Just the rating
+              </button>
+              <button
+                type="button"
+                className="btn-primary-olive"
+                onClick={() => {
+                  setConfirmNoComment(false);
+                  commentRef.current?.focus();
+                }}
+                disabled={isSubmitting}
+              >
+                Write a line
+              </button>
+            </div>
+          </div>
+        )}
+
+        {tab === "rate" && canRate && !confirmNoComment && (
           <footer className="meal-modal-footer">
             <button
               type="button"

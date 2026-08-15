@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { restoreSession, signOutUser } from "../redux/auth";
+import { signOutUser } from "../redux/auth";
 import LoginModal from "./LoginModal";
 import logo from "../images/android-chrome-192x192.png";
 import "../css/navbar.css";
@@ -12,10 +12,8 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
-  // Restore session on mount
-  useEffect(() => {
-    dispatch(restoreSession());
-  }, [dispatch]);
+  // Session restore and the Firebase auth listener live in App, which mounts
+  // once instead of on every route change
 
   // Allow other components to trigger the login modal (e.g., rating buttons)
   useEffect(() => {
@@ -120,6 +118,12 @@ export default function Navbar() {
                         <div className="dropdown-user-info">
                           <div className="dropdown-user-name">{user.displayName}</div>
                           <div className="dropdown-user-email">{user.email}</div>
+                          {/* The name their reviews actually appear under */}
+                          {user.username && (
+                            <div className="dropdown-user-alias">
+                              Posts as <strong>{user.username}</strong>
+                            </div>
+                          )}
                         </div>
                         <button 
                           className="dropdown-item-custom"

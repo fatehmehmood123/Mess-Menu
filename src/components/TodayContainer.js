@@ -103,7 +103,9 @@ export default function TodayContainer({ meals, weekNumber, day }) {
       // Pull the review list again so the new comment appears immediately
       dispatch(fetchMealComments({ mealId, offset: 0, append: false }));
     } catch (error) {
-      alert('Failed to submit rating: ' + error);
+      // Thunks reject with a user-facing message; an expired session has
+      // already opened the sign-in modal by this point
+      alert(String(error));
     } finally {
       setIsSubmitting(false);
     }

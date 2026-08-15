@@ -26,7 +26,8 @@
  */
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { auth } from "../firebaseConfig";
+import { getIdTokenSafely } from "../utils/firebaseAuth";
+import { sessionExpired } from "./auth";
 import config from "../config";
 
 // API Base URL - Update in src/config.js when deploying
@@ -81,12 +82,11 @@ export const fetchTodayMenu = createAsyncThunk(
       const user = state.auth?.user;
       const headers = { 'Content-Type': 'application/json' };
       
-      if (user && auth.currentUser) {
-        try {
-          const idToken = await auth.currentUser.getIdToken();
+      // Menus are public; a token only adds the user's own ratings
+      if (user) {
+        const idToken = await getIdTokenSafely();
+        if (idToken) {
           headers['Authorization'] = `Bearer ${idToken}`;
-        } catch (authError) {
-          console.log('Failed to get auth token, continuing without it');
         }
       }
 
@@ -141,12 +141,11 @@ export const fetchWeeklyMenu = createAsyncThunk(
       const user = state.auth?.user;
       const headers = { 'Content-Type': 'application/json' };
       
-      if (user && auth.currentUser) {
-        try {
-          const idToken = await auth.currentUser.getIdToken();
+      // Menus are public; a token only adds the user's own ratings
+      if (user) {
+        const idToken = await getIdTokenSafely();
+        if (idToken) {
           headers['Authorization'] = `Bearer ${idToken}`;
-        } catch (authError) {
-          console.log('Failed to get auth token, continuing without it');
         }
       }
 
@@ -177,7 +176,7 @@ export const fetchWeeklyMenu = createAsyncThunk(
  */
 export const submitMealRating = createAsyncThunk(
   "menu/submitMealRating",
-  async ({ mealId, rating, comment }, { getState, rejectWithValue }) => {
+  async ({ mealId, rating, comment }, { getState, dispatch, rejectWithValue }) => {
     try {
       const state = getState();
       const user = state.auth?.user;
@@ -186,7 +185,18 @@ export const submitMealRating = createAsyncThunk(
         throw new Error('Must be logged in to rate');
       }
 
-      const idToken = await auth.currentUser.getIdToken();
+      // The stored user says signed in, but Firebase is the authority on whether
+      // a usable session exists. Waiting also covers the case where the SDK has
+      // simply not finished restoring yet.
+      const idToken = await getIdTokenSafely();
+
+      if (!idToken) {
+        // Cached session outlived the Firebase one - stop claiming to be
+        // signed in and send the user back through sign-in
+        dispatch(sessionExpired());
+        window.dispatchEvent(new Event('open-login-modal'));
+        throw new Error('Your session has expired. Please sign in again.');
+      }
 
       const response = await fetch(`${API_BASE_URL}/api/ratings/meal/submit`, {
         method: 'POST',

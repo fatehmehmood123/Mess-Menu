@@ -20,7 +20,7 @@
  */
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { auth } from "../firebaseConfig";
+import { getIdTokenSafely } from "../utils/firebaseAuth";
 import config from "../config";
 
 const API_BASE_URL = config.API_BASE_URL;
@@ -39,14 +39,11 @@ export const fetchMealComments = createAsyncThunk(
     try {
       const headers = { "Content-Type": "application/json" };
 
-      // Optional: lets the backend mark which review belongs to this user
-      if (auth.currentUser) {
-        try {
-          const idToken = await auth.currentUser.getIdToken();
-          headers["Authorization"] = `Bearer ${idToken}`;
-        } catch (authError) {
-          // Reviews are public - carry on unauthenticated
-        }
+      // Optional: lets the backend mark which review belongs to this user.
+      // Reviews are public, so no session simply means an anonymous read.
+      const idToken = await getIdTokenSafely();
+      if (idToken) {
+        headers["Authorization"] = `Bearer ${idToken}`;
       }
 
       const params = new URLSearchParams({
@@ -92,11 +89,12 @@ export const upvoteComment = createAsyncThunk(
   "comments/upvoteComment",
   async ({ mealId, commentId, upvote }, { rejectWithValue }) => {
     try {
-      if (!auth.currentUser) {
-        throw new Error("Sign in to upvote");
-      }
+      // Waits for Firebase to settle rather than trusting a synchronous read
+      const idToken = await getIdTokenSafely();
 
-      const idToken = await auth.currentUser.getIdToken();
+      if (!idToken) {
+        throw new Error("Your session has expired. Please sign in again.");
+      }
 
       const response = await fetch(
         `${API_BASE_URL}/api/ratings/meal/comments/upvote`,
